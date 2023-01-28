@@ -1,9 +1,27 @@
 package com.openroad.api.controller.dtos;
 
+import java.time.LocalDateTime;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class AdminDTO {
+    private String id;
     private String name;
     private String email;
-    private String password;
+    @JsonFormat(pattern = "dd/MM/yyy HH:mm")
+    private LocalDateTime create_at;
+    @JsonFormat(pattern = "dd/MM/yyy HH:mm")
+    private LocalDateTime updated_at;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -21,12 +39,20 @@ public class AdminDTO {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
+    public LocalDateTime getCreate_at() {
+        return create_at;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setCreate_at(LocalDateTime create_at) {
+        this.create_at = create_at;
+    }
+
+    public LocalDateTime getUpdated_at() {
+        return updated_at;
+    }
+
+    public void setUpdated_at(LocalDateTime updated_at) {
+        this.updated_at = updated_at;
     }
 
 }
