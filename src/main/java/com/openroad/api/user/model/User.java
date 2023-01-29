@@ -1,28 +1,31 @@
-package com.openroad.api.model;
+package com.openroad.api.user.model;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
-public class Admin {
+@Table(name = "users")
+public class User {
 
     @Id
-    private String id;
+    @GeneratedValue
+    private UUID id;
+    @Column(nullable = false)
     private String name;
-    private String email;
+    @Column(nullable = false, unique = true)
+    private String username;
+    @Column(nullable = false)
     private String password;
+    @Column(nullable = false)
+    private String role;
     private LocalDateTime created_at;
     private LocalDateTime updated_at;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -32,12 +35,12 @@ public class Admin {
         this.name = name;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUsername() {
+        return username;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -46,6 +49,14 @@ public class Admin {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public LocalDateTime getCreated_at() {

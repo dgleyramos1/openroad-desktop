@@ -1,4 +1,4 @@
-package com.openroad.api.controller.dtos;
+package com.openroad.api.user.controller.dtos;
 
 import java.time.LocalDateTime;
 
@@ -6,10 +6,12 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class AdminDTO {
+public class UserDTO {
     private String id;
     private String name;
-    private String email;
+    private String username;
+    private String role;
+
     @JsonFormat(pattern = "dd/MM/yyy HH:mm")
     private LocalDateTime create_at;
     @JsonFormat(pattern = "dd/MM/yyy HH:mm")
@@ -31,12 +33,20 @@ public class AdminDTO {
         this.name = name;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUsername() {
+        return username;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public LocalDateTime getCreate_at() {
