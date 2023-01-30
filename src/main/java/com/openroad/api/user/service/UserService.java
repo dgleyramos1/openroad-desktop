@@ -1,11 +1,13 @@
 package com.openroad.api.user.service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.openroad.api.user.model.User;
@@ -39,6 +41,11 @@ public class UserService {
         userCreate.setCreated_at(LocalDateTime.now());
         userRepository.save(userCreate);
         return userCreate;
+    }
+
+    @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
+    public List<User> listUsers() {
+        return userRepository.findAll();
     }
 
 }
