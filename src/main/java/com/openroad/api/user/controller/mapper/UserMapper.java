@@ -15,8 +15,8 @@ public class UserMapper {
 
     private static final ModelMapper MODEL_MAPPER = new ModelMapper();
 
-    public UserDTO toUserDTO(User admin) {
-        return MODEL_MAPPER.map(admin, UserDTO.class);
+    public UserDTO toUserDTO(User user) {
+        return MODEL_MAPPER.map(user, UserDTO.class);
     }
 
     public List<UserDTO> toUserDTOList(List<User> userList) {

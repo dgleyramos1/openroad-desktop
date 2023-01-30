@@ -1,11 +1,9 @@
 package com.openroad.api.user.model;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -14,8 +12,7 @@ import javax.persistence.Table;
 public class User {
 
     @Id
-    @GeneratedValue
-    private UUID id;
+    private String id;
     @Column(nullable = false)
     private String name;
     @Column(nullable = false, unique = true)
@@ -73,6 +70,14 @@ public class User {
 
     public void setUpdated_at(LocalDateTime updated_at) {
         this.updated_at = updated_at;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
 }
