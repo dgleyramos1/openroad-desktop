@@ -51,7 +51,6 @@ public class UserService {
     }
 
     public User findById(String id) {
-        System.out.println("Chegou no Service");
         return userRepository.findById(id).orElseThrow(
                 () -> new UserNotFoundException(id));
     }

@@ -38,7 +38,6 @@ public class AdminController {
 
     @GetMapping("/{id}")
     public ResponseEntity<UserDTO> findById(@PathVariable("id") String id) {
-        System.out.println("Chegou no controller");
         User user = userService.findById(id);
         UserDTO result = userMapper.toUserDTO(user);
         return ResponseEntity.ok(result);
