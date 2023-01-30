@@ -1,5 +1,8 @@
 package com.openroad.api.user.controller.mapper;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
@@ -12,11 +15,19 @@ public class UserMapper {
 
     private static final ModelMapper MODEL_MAPPER = new ModelMapper();
 
-    public UserDTO toAdminDTO(User admin) {
+    public UserDTO toUserDTO(User admin) {
         return MODEL_MAPPER.map(admin, UserDTO.class);
     }
 
-    public User toAdminCreate(UserCreateDTO dto) {
+    public List<UserDTO> toUserDTOList(List<User> userList) {
+        return userList.stream().map(this::toUserDTO).collect(Collectors.toList());
+    }
+
+    public User toUser(UserDTO dto) {
+        return MODEL_MAPPER.map(dto, User.class);
+    }
+
+    public User toUserCreate(UserCreateDTO dto) {
         return MODEL_MAPPER.map(dto, User.class);
     }
 

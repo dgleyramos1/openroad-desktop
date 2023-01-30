@@ -44,7 +44,7 @@ public class UserService {
     }
 
     @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
-    public List<User> listUsers() {
+    public List<User> findAlll() {
         return userRepository.findAll();
     }
 
