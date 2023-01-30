@@ -23,7 +23,6 @@ import com.openroad.api.user.model.User;
 
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
-    private static final int TOKEN_EXPIRACAO = 2_592_000;
     static final String TOKEN_SENHA = "0948fdd6-031c-4b38-8a25-222efe017760";
 
     private final AuthenticationManager authenticationManager;
@@ -57,7 +56,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         DetailUserData userData = (DetailUserData) authResult.getPrincipal();
         String token = JWT.create()
                 .withSubject(userData.getUsername())
-                .withExpiresAt(new Date(System.currentTimeMillis() + TOKEN_EXPIRACAO))
+                .withExpiresAt(new Date(System.currentTimeMillis() + (30 * 24 * 60 * 60 * 100)))
                 .sign(Algorithm.HMAC512(TOKEN_SENHA));
 
         response.getWriter().write(token);

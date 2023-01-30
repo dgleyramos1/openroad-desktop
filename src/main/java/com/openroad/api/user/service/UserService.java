@@ -50,9 +50,19 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    @Transactional(readOnly = true)
     public User findById(String id) {
         return userRepository.findById(id).orElseThrow(
                 () -> new UserNotFoundException(id));
+    }
+
+    @Transactional
+    public void deleteUser(String id) {
+        User user = findById(id);
+        if (user == null) {
+            return;
+        }
+        userRepository.deleteById(id);
     }
 
     private String getUuid() {
