@@ -11,10 +11,9 @@ public class UserDTO {
     private String name;
     private String username;
     private String role;
-
-    @JsonFormat(pattern = "dd/MM/yyy HH:mm")
-    private LocalDateTime create_at;
-    @JsonFormat(pattern = "dd/MM/yyy HH:mm")
+    @JsonFormat(pattern = "dd/MM/yyy")
+    private LocalDateTime created_at;
+    @JsonFormat(pattern = "dd/MM/yyy")
     private LocalDateTime updated_at;
 
     public String getId() {
@@ -49,12 +48,12 @@ public class UserDTO {
         this.role = role;
     }
 
-    public LocalDateTime getCreate_at() {
-        return create_at;
+    public LocalDateTime getCreated_at() {
+        return created_at;
     }
 
-    public void setCreate_at(LocalDateTime create_at) {
-        this.create_at = create_at;
+    public void setCreated_at(LocalDateTime created_at) {
+        this.created_at = created_at;
     }
 
     public LocalDateTime getUpdated_at() {

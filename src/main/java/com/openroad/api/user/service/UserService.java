@@ -32,7 +32,6 @@ public class UserService {
 
     @Transactional
     public User create(User userCreate) {
-        System.out.println(userCreate);
         Optional<User> userExists = userRepository.findByUsername(userCreate.getUsername());
 
         if (userExists == null) {
@@ -63,6 +62,17 @@ public class UserService {
             return;
         }
         userRepository.deleteById(id);
+    }
+
+    @Transactional
+    public User update(String id, User userCreate) {
+        User user = findById(id);
+        user.setName(userCreate.getName());
+        user.setPassword(encoder.encode(userCreate.getPassword()));
+        user.setRole(userCreate.getRole());
+        user.setUsername(userCreate.getUsername());
+        user.setUpdated_at(LocalDateTime.now());
+        return user;
     }
 
     private String getUuid() {
