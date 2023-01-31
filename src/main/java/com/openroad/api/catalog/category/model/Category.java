@@ -9,10 +9,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import com.openroad.api.catalog.product.model.Product;
 
 @Entity
+@Table(name = "categories")
 public class Category {
 
     @Id

@@ -6,12 +6,14 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.ForeignKey;
 
 import com.openroad.api.catalog.category.model.Category;
 
 @Entity
+@Table(name = "products")
 public class Product {
     @Id
     private String id;
