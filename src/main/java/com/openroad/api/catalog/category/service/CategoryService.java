@@ -55,6 +55,15 @@ public class CategoryService {
         repository.deleteById(id);
     }
 
+    @Transactional
+    public Category update(String id, Category categoryUpdate) {
+        Category category = findById(id);
+        category.setName(categoryUpdate.getName());
+        category.setUpdated_at(LocalDateTime.now());
+        repository.save(category);
+        return category;
+    }
+
     private String getUuid() {
         return UUID.randomUUID().toString();
     }
