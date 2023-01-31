@@ -1,7 +1,10 @@
 package com.openroad.api.catalog.category.controller;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,7 +34,13 @@ public class CategoryController {
         Category category = service.create(categoryCreate);
         CategoryDTO result = mapper.toCategoryDTO(category);
         return ResponseEntity.status(HttpStatus.CREATED).body(result);
+    }
 
+    @GetMapping
+    public ResponseEntity<List<CategoryDTO>> findAll() {
+        List<Category> list = service.findAll();
+        List<CategoryDTO> result = mapper.toCategoryListDTO(list);
+        return ResponseEntity.ok(result);
     }
 
 }

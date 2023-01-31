@@ -34,7 +34,7 @@ public class UserService {
     public User create(User userCreate) {
         Optional<User> userExists = userRepository.findByUsername(userCreate.getUsername());
 
-        if (userExists == null) {
+        if (!userExists.isEmpty()) {
             throw new Error("User exists!");
         }
         userCreate.setId(getUuid());

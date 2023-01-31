@@ -1,5 +1,8 @@
 package com.openroad.api.catalog.category.controller.mapper;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
@@ -14,6 +17,14 @@ public class CategoryMapper {
 
     public CategoryDTO toCategoryDTO(Category category) {
         return MODEL_MAPPER.map(category, CategoryDTO.class);
+    }
+
+    public List<CategoryDTO> toCategoryListDTO(List<Category> list) {
+        return list.stream().map(this::toCategoryDTO).collect(Collectors.toList());
+    }
+
+    public Category toUser(CategoryDTO dto) {
+        return MODEL_MAPPER.map(dto, Category.class);
     }
 
     public Category toCategoryCreateDTO(CategoryCreateDTO dto) {
