@@ -46,6 +46,15 @@ public class CategoryService {
                 () -> new CategoryNotFoundException(id));
     }
 
+    @Transactional
+    public void delete(String id) {
+        Category category = findById(id);
+        if (category == null) {
+            return;
+        }
+        repository.deleteById(id);
+    }
+
     private String getUuid() {
         return UUID.randomUUID().toString();
     }
