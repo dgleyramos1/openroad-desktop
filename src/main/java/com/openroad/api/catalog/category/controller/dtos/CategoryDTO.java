@@ -1,30 +1,22 @@
-package com.openroad.api.catalog.category.model;
+package com.openroad.api.catalog.category.controller.dtos;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.openroad.api.catalog.product.model.Product;
 
-@Entity
-@Table(name = "categories")
-public class Category {
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class CategoryDTO {
 
-    @Id
     private String id;
-    @Column(nullable = false, unique = true)
     private String name;
+    @JsonFormat(pattern = "dd/MM/yyy")
     private LocalDateTime created_at;
+    @JsonFormat(pattern = "dd/MM/yyy")
     private LocalDateTime updated_at;
-
-    @OneToMany(mappedBy = "category", orphanRemoval = true, cascade = CascadeType.ALL)
     private List<Product> products = new ArrayList<Product>();
 
     public String getId() {

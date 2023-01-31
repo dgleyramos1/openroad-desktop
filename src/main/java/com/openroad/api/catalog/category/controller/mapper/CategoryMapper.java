@@ -1,0 +1,22 @@
+package com.openroad.api.catalog.category.controller.mapper;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Component;
+
+import com.openroad.api.catalog.category.controller.dtos.CategoryCreateDTO;
+import com.openroad.api.catalog.category.controller.dtos.CategoryDTO;
+import com.openroad.api.catalog.category.model.Category;
+
+@Component
+public class CategoryMapper {
+
+    private static final ModelMapper MODEL_MAPPER = new ModelMapper();
+
+    public CategoryDTO toCategoryDTO(Category category) {
+        return MODEL_MAPPER.map(category, CategoryDTO.class);
+    }
+
+    public Category toCategoryCreateDTO(CategoryCreateDTO dto) {
+        return MODEL_MAPPER.map(dto, Category.class);
+    }
+}
