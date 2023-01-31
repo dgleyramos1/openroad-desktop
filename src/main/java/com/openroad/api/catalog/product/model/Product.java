@@ -5,6 +5,11 @@ import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+import org.hibernate.annotations.ForeignKey;
+
+import com.openroad.api.catalog.category.model.Category;
 
 @Entity
 public class Product {
@@ -19,6 +24,10 @@ public class Product {
     private String description;
     private LocalDateTime created_at;
     private LocalDateTime updated_at;
+
+    @ForeignKey(name = "category_id")
+    @ManyToOne
+    private Category category;
 
     public String getId() {
         return id;
@@ -66,6 +75,14 @@ public class Product {
 
     public void setUpdated_at(LocalDateTime updated_at) {
         this.updated_at = updated_at;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
 }

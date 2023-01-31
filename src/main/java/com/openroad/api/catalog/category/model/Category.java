@@ -1,10 +1,16 @@
 package com.openroad.api.catalog.category.model;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import com.openroad.api.catalog.product.model.Product;
 
 @Entity
 public class Category {
@@ -16,6 +22,9 @@ public class Category {
     private String name;
     private LocalDateTime created_at;
     private LocalDateTime updated_at;
+
+    @OneToMany(mappedBy = "category", orphanRemoval = true, cascade = CascadeType.ALL)
+    private List<Product> products = new ArrayList<Product>();
 
     public String getId() {
         return id;
@@ -47,6 +56,14 @@ public class Category {
 
     public void setUpdated_at(LocalDateTime updated_at) {
         this.updated_at = updated_at;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 
 }
