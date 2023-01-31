@@ -23,10 +23,6 @@ public class UserMapper {
         return userList.stream().map(this::toUserDTO).collect(Collectors.toList());
     }
 
-    public User toUser(UserDTO dto) {
-        return MODEL_MAPPER.map(dto, User.class);
-    }
-
     public User toUserCreate(UserCreateDTO dto) {
         return MODEL_MAPPER.map(dto, User.class);
     }

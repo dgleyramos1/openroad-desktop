@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,6 +41,13 @@ public class CategoryController {
     public ResponseEntity<List<CategoryDTO>> findAll() {
         List<Category> list = service.findAll();
         List<CategoryDTO> result = mapper.toCategoryListDTO(list);
+        return ResponseEntity.ok(result);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<CategoryDTO> findById(@PathVariable String id) {
+        Category category = service.findById(id);
+        CategoryDTO result = mapper.toCategoryDTO(category);
         return ResponseEntity.ok(result);
     }
 

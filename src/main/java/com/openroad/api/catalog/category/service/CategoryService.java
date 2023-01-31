@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.openroad.api.catalog.category.exception.CategoryNotFoundException;
 import com.openroad.api.catalog.category.model.Category;
 import com.openroad.api.catalog.category.repository.CategoryRepository;
 
@@ -37,6 +38,12 @@ public class CategoryService {
     @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
     public List<Category> findAll() {
         return repository.findAll();
+    }
+
+    @Transactional(readOnly = true)
+    public Category findById(String id) {
+        return repository.findById(id).orElseThrow(
+                () -> new CategoryNotFoundException(id));
     }
 
     private String getUuid() {
