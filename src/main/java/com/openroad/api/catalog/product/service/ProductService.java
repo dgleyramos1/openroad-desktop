@@ -3,6 +3,8 @@ package com.openroad.api.catalog.product.service;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+import javax.transaction.Transactional;
+
 import org.springframework.stereotype.Service;
 
 import com.openroad.api.catalog.product.model.Product;
@@ -17,10 +19,12 @@ public class ProductService {
         this.repository = repository;
     }
 
-    public Product create(String category_id, Product productCreate) {
+    @Transactional
+    public Product create(Product productCreate) {
         productCreate.setId(getUuid());
         productCreate.setCreated_at(LocalDateTime.now());
         repository.save(productCreate);
+        System.out.println(productCreate);
         return productCreate;
 
     }

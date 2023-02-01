@@ -11,7 +11,6 @@ public class ProductDTO {
     private String name;
     private String description;
     private Float price;
-    private String category_id;
 
     @JsonFormat(pattern = "dd/MM/yyy")
     private LocalDateTime created_at;
@@ -48,14 +47,6 @@ public class ProductDTO {
 
     public void setPrice(Float price) {
         this.price = price;
-    }
-
-    public String getCategory_id() {
-        return category_id;
-    }
-
-    public void setCategory_id(String category_id) {
-        this.category_id = category_id;
     }
 
     public LocalDateTime getCreated_at() {

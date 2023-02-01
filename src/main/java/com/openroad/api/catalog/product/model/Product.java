@@ -5,11 +5,11 @@ import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.ForeignKey;
-
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.openroad.api.catalog.category.model.Category;
 
 @Entity
@@ -21,14 +21,15 @@ public class Product {
     @Column(nullable = false)
     private String name;
     @Column(nullable = false)
-    private String price;
-    @Column(nullable = false)
     private String description;
+    @Column(nullable = false)
+    private Float price;
     private LocalDateTime created_at;
     private LocalDateTime updated_at;
 
-    @ForeignKey(name = "category_id")
     @ManyToOne
+    @JoinColumn(name = "category_id", referencedColumnName = "id")
+    @JsonManagedReference
     private Category category;
 
     public String getId() {
@@ -47,11 +48,11 @@ public class Product {
         this.name = name;
     }
 
-    public String getPrice() {
+    public Float getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(Float price) {
         this.price = price;
     }
 
@@ -85,6 +86,12 @@ public class Product {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    @Override
+    public String toString() {
+        return "Product [id=" + id + ", name=" + name + ", price=" + price + ", description=" + description
+                + ", created_at=" + created_at + ", updated_at=" + updated_at + ", category=" + category + "]";
     }
 
 }

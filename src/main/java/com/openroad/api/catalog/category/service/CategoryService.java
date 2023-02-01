@@ -26,7 +26,6 @@ public class CategoryService {
     public Category create(Category categoryCreate) {
         Optional<Category> exist = repository.findByName(categoryCreate.getName());
         if (!exist.isEmpty()) {
-            System.out.println("Categoria já exist");
             throw new Error("Category exist!");
         }
         categoryCreate.setId(getUuid());

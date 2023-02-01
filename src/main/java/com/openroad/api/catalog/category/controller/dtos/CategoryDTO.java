@@ -1,7 +1,6 @@
 package com.openroad.api.catalog.category.controller.dtos;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -13,11 +12,12 @@ public class CategoryDTO {
 
     private String id;
     private String name;
+
     @JsonFormat(pattern = "dd/MM/yyy")
     private LocalDateTime created_at;
     @JsonFormat(pattern = "dd/MM/yyy")
     private LocalDateTime updated_at;
-    private List<Product> products = new ArrayList<Product>();
+    private List<Product> products;
 
     public String getId() {
         return id;
