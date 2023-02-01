@@ -52,4 +52,11 @@ public class ProductController {
         return ResponseEntity.ok(result);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<ProductDTO> findById(@PathVariable String id) {
+        Product product = service.findById(id);
+        ProductDTO result = mapper.toProductDTO(product);
+        return ResponseEntity.ok(result);
+    }
+
 }
