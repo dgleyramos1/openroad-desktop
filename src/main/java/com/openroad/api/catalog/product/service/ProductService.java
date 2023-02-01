@@ -41,6 +41,11 @@ public class ProductService {
                 () -> new ProductNotFoundException(id));
     }
 
+    @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
+    public List<Product> findByCategoryId(String category_id) {
+        return repository.findByCategoryID(category_id);
+    }
+
     private String getUuid() {
         return UUID.randomUUID().toString();
     }

@@ -59,4 +59,11 @@ public class ProductController {
         return ResponseEntity.ok(result);
     }
 
+    @GetMapping("/category/{category_id}")
+    public ResponseEntity<List<ProductDTO>> findByCategoryId(@PathVariable String category_id) {
+        List<Product> list = service.findByCategoryId(category_id);
+        List<ProductDTO> result = mapper.toProductListDTO(list);
+        return ResponseEntity.ok(result);
+    }
+
 }
