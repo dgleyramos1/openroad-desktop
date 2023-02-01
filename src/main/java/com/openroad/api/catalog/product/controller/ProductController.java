@@ -1,7 +1,10 @@
 package com.openroad.api.catalog.product.controller;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -40,6 +43,13 @@ public class ProductController {
 
         ProductDTO result = mapper.toProductDTO(product);
         return ResponseEntity.status(HttpStatus.CREATED).body(result);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<ProductDTO>> findAll() {
+        List<Product> list = service.findAll();
+        List<ProductDTO> result = mapper.toProductListDTO(list);
+        return ResponseEntity.ok(result);
     }
 
 }

@@ -1,11 +1,12 @@
 package com.openroad.api.catalog.product.service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
-import javax.transaction.Transactional;
-
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.openroad.api.catalog.product.model.Product;
 import com.openroad.api.catalog.product.repository.ProductRepository;
@@ -26,7 +27,11 @@ public class ProductService {
         repository.save(productCreate);
         System.out.println(productCreate);
         return productCreate;
+    }
 
+    @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
+    public List<Product> findAll() {
+        return repository.findAll();
     }
 
     private String getUuid() {
