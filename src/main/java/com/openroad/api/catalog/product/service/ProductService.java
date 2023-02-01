@@ -46,6 +46,15 @@ public class ProductService {
         return repository.findByCategoryID(category_id);
     }
 
+    @Transactional
+    public void delete(String id) {
+        Product product = findById(id);
+        if (product == null) {
+            return;
+        }
+        repository.deleteById(id);
+    }
+
     private String getUuid() {
         return UUID.randomUUID().toString();
     }
