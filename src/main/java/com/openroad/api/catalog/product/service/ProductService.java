@@ -55,6 +55,17 @@ public class ProductService {
         repository.deleteById(id);
     }
 
+    @Transactional
+    public Product update(String id, Product productUpdate) {
+        Product product = findById(id);
+        product.setName(productUpdate.getName());
+        product.setDescription(productUpdate.getDescription());
+        product.setPrice(productUpdate.getPrice());
+        product.setUpdated_at(LocalDateTime.now());
+        repository.save(product);
+        return product;
+    }
+
     private String getUuid() {
         return UUID.randomUUID().toString();
     }

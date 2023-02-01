@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -73,4 +74,14 @@ public class ProductController {
         return ResponseEntity.noContent().build();
     }
 
+    @PutMapping("/{id}/{category_id}")
+    public ResponseEntity<ProductDTO> update(@PathVariable String id, @PathVariable String category_id,
+            @RequestBody ProductCreateDTO dto) {
+        Category category = categoryService.findById(category_id);
+        Product productCreate = mapper.toProductCreateDTO(dto);
+        Product product = service.update(id, productCreate);
+        product.setCategory(category);
+        ProductDTO result = mapper.toProductDTO(product);
+        return ResponseEntity.status(HttpStatus.OK).body(result);
+    }
 }
