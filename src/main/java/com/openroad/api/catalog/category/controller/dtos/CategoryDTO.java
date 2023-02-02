@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.openroad.api.catalog.product.model.Product;
+import com.openroad.api.catalog.product.controller.dtos.ProductDTO;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CategoryDTO {
@@ -17,7 +17,7 @@ public class CategoryDTO {
     private LocalDateTime created_at;
     @JsonFormat(pattern = "dd/MM/yyy")
     private LocalDateTime updated_at;
-    private List<Product> products;
+    private List<ProductDTO> products;
 
     public String getId() {
         return id;
@@ -51,11 +51,11 @@ public class CategoryDTO {
         this.updated_at = updated_at;
     }
 
-    public List<Product> getProducts() {
+    public List<ProductDTO> getProducts() {
         return products;
     }
 
-    public void setProducts(List<Product> products) {
+    public void setProducts(List<ProductDTO> products) {
         this.products = products;
     }
 
