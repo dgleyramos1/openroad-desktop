@@ -42,7 +42,13 @@ public class itemService {
         item.setDraft(false);
         item.setStatus(true);
         item.setUpdated_at(LocalDateTime.now());
+        repository.save(item);
         return item;
+    }
+
+    @Transactional
+    public void delete(Item item) {
+        repository.delete(item);
     }
 
     private String getUuid() {

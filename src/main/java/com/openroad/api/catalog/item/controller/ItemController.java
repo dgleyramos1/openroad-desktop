@@ -2,6 +2,7 @@ package com.openroad.api.catalog.item.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -45,14 +46,33 @@ public class ItemController {
         item.setProduct(product);
         item.setOrder(order);
         Item itemSave = service.create(item);
-        order.setTotal(order.getTotal() + itemSave.getPrice());
-        orderService.update(order_id, order);
         ItemDTO result = mapper.toItemDTO(itemSave);
         return ResponseEntity.status(HttpStatus.CREATED).body(result);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<ItemDTO> sendToKitchen(@PathVariable(name = "id") String id) {
+    @DeleteMapping("/{id}/{order_id}")
+    public ResponseEntity<ItemDTO> delete(@PathVariable(name = "id") String id,
+            @PathVariable(name = "order_id") String order_id) {
+        Order order = orderService.findByID(order_id);
+        Item item = service.findById(id);
+        if (!item.isDraft()) {
+            return ResponseEntity.status(404).body(null);
+        }
+        item.setOrder(null);
+        item.setProduct(null);
+        Order orderUpdated = orderService.update(order_id, order);
+        service.delete(item);
+
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/{id}/{order_id}")
+    public ResponseEntity<ItemDTO> sendToKitchen(@PathVariable(name = "id") String id,
+            @PathVariable(name = "order_id") String order_id) {
+        Order order = orderService.findByID(order_id);
+        Item item = service.findById(id);
+        order.setTotal(order.getTotal() + item.getPrice());
+        orderService.update(order_id, order);
         Item sendItem = service.sendToKicthen(id);
         ItemDTO result = mapper.toItemDTO(sendItem);
         return ResponseEntity.status(HttpStatus.OK).body(result);

@@ -1,13 +1,16 @@
 package com.openroad.api.catalog.product.model;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -35,9 +38,9 @@ public class Product {
     @JsonManagedReference
     private Category category;
 
-    @OneToOne
+    @OneToMany(mappedBy = "product", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonBackReference
-    private Item item;
+    private List<Item> item;
 
     public String getId() {
         return id;
@@ -101,11 +104,11 @@ public class Product {
         this.price = price;
     }
 
-    public Item getItem() {
+    public List<Item> getItem() {
         return item;
     }
 
-    public void setItem(Item item) {
+    public void setItem(List<Item> item) {
         this.item = item;
     }
 
