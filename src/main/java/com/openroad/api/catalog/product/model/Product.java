@@ -7,10 +7,13 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.openroad.api.catalog.category.model.Category;
+import com.openroad.api.catalog.item.model.Item;
 
 @Entity
 @Table(name = "products")
@@ -23,7 +26,7 @@ public class Product {
     @Column(nullable = false)
     private String description;
     @Column(nullable = false)
-    private Float price;
+    private Double price;
     private LocalDateTime created_at;
     private LocalDateTime updated_at;
 
@@ -31,6 +34,10 @@ public class Product {
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     @JsonManagedReference
     private Category category;
+
+    @OneToOne
+    @JsonBackReference
+    private Item item;
 
     public String getId() {
         return id;
@@ -46,14 +53,6 @@ public class Product {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Float getPrice() {
-        return price;
-    }
-
-    public void setPrice(Float price) {
-        this.price = price;
     }
 
     public String getDescription() {
@@ -92,6 +91,22 @@ public class Product {
     public String toString() {
         return "Product [id=" + id + ", name=" + name + ", price=" + price + ", description=" + description
                 + ", created_at=" + created_at + ", updated_at=" + updated_at + ", category=" + category + "]";
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public Item getItem() {
+        return item;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
     }
 
 }

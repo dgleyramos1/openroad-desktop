@@ -1,14 +1,14 @@
 package com.openroad.api.catalog.item.controller.dtos;
 
 public class ItemCreateDTO {
-    private int table;
+    private int amount;
 
-    public int getTable() {
-        return table;
+    public int getAmount() {
+        return amount;
     }
 
-    public void setTable(int table) {
-        this.table = table;
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 
 }

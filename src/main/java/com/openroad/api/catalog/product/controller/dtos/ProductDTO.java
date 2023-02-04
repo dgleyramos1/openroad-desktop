@@ -10,7 +10,7 @@ public class ProductDTO {
     private String id;
     private String name;
     private String description;
-    private Float price;
+    private Double price;
 
     @JsonFormat(pattern = "dd/MM/yyy")
     private LocalDateTime created_at;
@@ -41,14 +41,6 @@ public class ProductDTO {
         this.description = description;
     }
 
-    public Float getPrice() {
-        return price;
-    }
-
-    public void setPrice(Float price) {
-        this.price = price;
-    }
-
     public LocalDateTime getCreated_at() {
         return created_at;
     }
@@ -63,6 +55,14 @@ public class ProductDTO {
 
     public void setUpdated_at(LocalDateTime updated_at) {
         this.updated_at = updated_at;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
     }
 
 }

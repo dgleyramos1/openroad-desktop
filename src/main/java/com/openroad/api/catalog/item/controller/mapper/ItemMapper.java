@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
+import com.openroad.api.catalog.item.controller.dtos.ItemCreateDTO;
 import com.openroad.api.catalog.item.controller.dtos.ItemDTO;
 import com.openroad.api.catalog.item.model.Item;
 
@@ -21,7 +22,7 @@ public class ItemMapper {
         return list.stream().map(this::toItemDTO).collect(Collectors.toList());
     }
 
-    public Item toItemCreateDTO(ItemDTO dto) {
+    public Item toItemCreateDTO(ItemCreateDTO dto) {
         return MODEL_MAPPER.map(dto, Item.class);
     }
 }

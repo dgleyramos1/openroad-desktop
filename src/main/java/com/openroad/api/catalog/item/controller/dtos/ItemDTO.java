@@ -4,8 +4,6 @@ import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.openroad.api.catalog.order.controller.dtos.OrderDTO;
-import com.openroad.api.catalog.product.controller.dtos.ProductDTO;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ItemDTO {
@@ -15,9 +13,6 @@ public class ItemDTO {
     private Float price;
     private boolean status;
     private boolean draft;
-
-    private ProductDTO product;
-    private OrderDTO order;
 
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDateTime created_at;
@@ -78,22 +73,6 @@ public class ItemDTO {
 
     public void setAmount(int amount) {
         this.amount = amount;
-    }
-
-    public ProductDTO getProduct() {
-        return product;
-    }
-
-    public void setProduct(ProductDTO product) {
-        this.product = product;
-    }
-
-    public OrderDTO getOrder() {
-        return order;
-    }
-
-    public void setOrder(OrderDTO order) {
-        this.order = order;
     }
 
 }

@@ -21,11 +21,13 @@ public class Item {
     private String id;
     @Column(nullable = false)
     private int amount;
-    private Float price;
+    private Double price;
     private boolean status;
     private boolean draft;
 
     @OneToOne
+    @JoinColumn(name = "product_id", referencedColumnName = "id")
+    @JsonManagedReference
     private Product product;
     @ManyToOne
     @JoinColumn(name = "order_id", referencedColumnName = "id")
@@ -83,14 +85,6 @@ public class Item {
         this.order = order;
     }
 
-    public Float getPrice() {
-        return price;
-    }
-
-    public void setPrice(Float price) {
-        this.price = price;
-    }
-
     public boolean isStatus() {
         return status;
     }
@@ -105,6 +99,14 @@ public class Item {
 
     public void setDraft(boolean draft) {
         this.draft = draft;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
     }
 
 }
