@@ -1,9 +1,11 @@
 package com.openroad.api.catalog.item.service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.openroad.api.catalog.item.exception.ItemNotFoundException;
@@ -44,6 +46,11 @@ public class itemService {
         item.setUpdated_at(LocalDateTime.now());
         repository.save(item);
         return item;
+    }
+
+    @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
+    public List<Item> kitchen(String order_id) {
+        return repository.findAllStatusTrue(order_id);
     }
 
     @Transactional

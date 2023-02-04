@@ -1,8 +1,11 @@
 package com.openroad.api.catalog.item.controller;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -60,8 +63,8 @@ public class ItemController {
         }
         item.setOrder(null);
         item.setProduct(null);
-        Order orderUpdated = orderService.update(order_id, order);
         service.delete(item);
+        Order orderUpdated = orderService.update(order_id, order);
 
         return ResponseEntity.noContent().build();
     }
@@ -78,4 +81,10 @@ public class ItemController {
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 
+    @GetMapping("/{order_id}")
+    public ResponseEntity<List<ItemDTO>> kitchen(@PathVariable String order_id) {
+        List<Item> items = service.kitchen(order_id);
+        List<ItemDTO> result = mapper.toItemListDTO(items);
+        return ResponseEntity.ok().body(result);
+    }
 }
