@@ -6,6 +6,7 @@ import java.util.UUID;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.openroad.api.catalog.order.exception.OrderNotFoundException;
 import com.openroad.api.catalog.order.model.Order;
 import com.openroad.api.catalog.order.repository.OrderRepository;
 
@@ -26,6 +27,22 @@ public class OrderService {
         orderCreate.setTotal(0.0);
         repository.save(orderCreate);
         return orderCreate;
+    }
+
+    @Transactional(readOnly = true)
+    public Order findByID(String id) {
+        return repository.findById(id).orElseThrow(
+                () -> new OrderNotFoundException(id));
+    }
+
+    @Transactional
+    public Order update(String id, Order orderUpdate) {
+        Order order = findByID(id);
+        order.setTable(orderUpdate.getTable());
+        order.setUpdated_at(LocalDateTime.now());
+        repository.save(order);
+        return order;
+
     }
 
     private String getUuid() {
