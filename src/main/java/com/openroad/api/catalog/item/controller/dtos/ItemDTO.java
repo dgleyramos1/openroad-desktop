@@ -4,20 +4,20 @@ import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.openroad.api.catalog.order.model.Order;
-import com.openroad.api.catalog.product.model.Product;
+import com.openroad.api.catalog.order.controller.dtos.OrderDTO;
+import com.openroad.api.catalog.product.controller.dtos.ProductDTO;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ItemDTO {
 
     private String id;
-    private int table;
+    private int amount;
     private Float price;
     private boolean status;
     private boolean draft;
 
-    private Product product;
-    private Order order;
+    private ProductDTO product;
+    private OrderDTO order;
 
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDateTime created_at;
@@ -30,14 +30,6 @@ public class ItemDTO {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public int getTable() {
-        return table;
-    }
-
-    public void setTable(int table) {
-        this.table = table;
     }
 
     public Float getPrice() {
@@ -64,22 +56,6 @@ public class ItemDTO {
         this.draft = draft;
     }
 
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
-    }
-
     public LocalDateTime getCreated_at() {
         return created_at;
     }
@@ -94,6 +70,30 @@ public class ItemDTO {
 
     public void setUpdated_at(LocalDateTime updated_at) {
         this.updated_at = updated_at;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
+    public ProductDTO getProduct() {
+        return product;
+    }
+
+    public void setProduct(ProductDTO product) {
+        this.product = product;
+    }
+
+    public OrderDTO getOrder() {
+        return order;
+    }
+
+    public void setOrder(OrderDTO order) {
+        this.order = order;
     }
 
 }
