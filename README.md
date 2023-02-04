@@ -29,4 +29,3 @@ API REST desenvolvida com o intuito de ajudar a estabelecimentos que não tem co
 ## Autor
 
 - [@dgleyramos](https://www.instagram.com/dgleyramos/)
-- [@dgleyramos1](https://github.com/dgleyramos1)
