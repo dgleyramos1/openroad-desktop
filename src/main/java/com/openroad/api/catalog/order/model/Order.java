@@ -22,7 +22,6 @@ public class Order {
     @Column(nullable = false)
     private int table;
     private Boolean status;
-    private Boolean draft;
     private Float total;
     private LocalDateTime created_at;
     private LocalDateTime updated_at;
@@ -47,13 +46,6 @@ public class Order {
         this.status = status;
     }
 
-    public boolean isDraft() {
-        return draft;
-    }
-
-    public void setDraft(boolean draft) {
-        this.draft = draft;
-    }
 
     public LocalDateTime getCreated_at() {
         return created_at;
@@ -93,14 +85,6 @@ public class Order {
 
     public void setStatus(Boolean status) {
         this.status = status;
-    }
-
-    public Boolean getDraft() {
-        return draft;
-    }
-
-    public void setDraft(Boolean draft) {
-        this.draft = draft;
     }
 
     public Float getTotal() {

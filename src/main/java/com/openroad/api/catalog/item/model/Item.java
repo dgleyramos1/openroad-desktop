@@ -21,6 +21,9 @@ public class Item {
     private String id;
     @Column(nullable = false)
     private int amount;
+    private Float price;
+    private boolean status;
+    private boolean draft;
 
     @OneToOne
     private Product product;
@@ -78,6 +81,30 @@ public class Item {
 
     public void setOrder(Order order) {
         this.order = order;
+    }
+
+    public Float getPrice() {
+        return price;
+    }
+
+    public void setPrice(Float price) {
+        this.price = price;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    public boolean isDraft() {
+        return draft;
+    }
+
+    public void setDraft(boolean draft) {
+        this.draft = draft;
     }
 
 }
