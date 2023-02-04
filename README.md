@@ -23,7 +23,7 @@ API REST desenvolvida com o intuito de ajudar a estabelecimentos que não tem co
 
 ## Licença
 
-[MIT](https://choosealicense.com/licenses/mit/)
+[MIT](https://github.com/dgleyramos1/aplication-api-openroad/blob/master/LICENSE)
 
 
 ## Autor
