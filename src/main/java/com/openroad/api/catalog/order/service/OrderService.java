@@ -1,9 +1,11 @@
 package com.openroad.api.catalog.order.service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.openroad.api.catalog.order.exception.OrderNotFoundException;
@@ -27,6 +29,11 @@ public class OrderService {
         orderCreate.setTotal(0.0);
         repository.save(orderCreate);
         return orderCreate;
+    }
+
+    @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
+    public List<Order> findAll() {
+        return repository.findAllStatusTrue();
     }
 
     @Transactional(readOnly = true)

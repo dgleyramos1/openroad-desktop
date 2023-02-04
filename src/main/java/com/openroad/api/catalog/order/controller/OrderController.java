@@ -1,5 +1,7 @@
 package com.openroad.api.catalog.order.controller;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,6 +36,13 @@ public class OrderController {
         Order order = service.create(orderCreate);
         OrderDTO result = mapper.toOrderDTO(order);
         return ResponseEntity.status(HttpStatus.CREATED).body(result);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<OrderDTO>> findAll() {
+        List<Order> list = service.findAll();
+        List<OrderDTO> result = mapper.toOrderListDTO(list);
+        return ResponseEntity.ok(result);
     }
 
     @GetMapping("/{id}")
