@@ -22,7 +22,7 @@ public class Order {
     @Column(nullable = false)
     private int table;
     private Boolean status;
-    private Float total;
+    private Double total;
     private LocalDateTime created_at;
     private LocalDateTime updated_at;
 
@@ -45,7 +45,6 @@ public class Order {
     public void setStatus(boolean status) {
         this.status = status;
     }
-
 
     public LocalDateTime getCreated_at() {
         return created_at;
@@ -87,11 +86,11 @@ public class Order {
         this.status = status;
     }
 
-    public Float getTotal() {
+    public Double getTotal() {
         return total;
     }
 
-    public void setTotal(Float total) {
+    public void setTotal(Double total) {
         this.total = total;
     }
 

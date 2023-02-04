@@ -12,7 +12,7 @@ public class OrderDTO {
     private String id;
     private int table;
     private Boolean status;
-    private Float total;
+    private Double total;
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDateTime created_at;
     @JsonFormat(pattern = "dd/MM/yyyy")
@@ -43,14 +43,6 @@ public class OrderDTO {
         this.status = status;
     }
 
-    public Float getTotal() {
-        return total;
-    }
-
-    public void setTotal(Float total) {
-        this.total = total;
-    }
-
     public LocalDateTime getCreated_at() {
         return created_at;
     }
@@ -73,6 +65,14 @@ public class OrderDTO {
 
     public void setItems(List<ItemDTO> items) {
         this.items = items;
+    }
+
+    public Double getTotal() {
+        return total;
+    }
+
+    public void setTotal(Double total) {
+        this.total = total;
     }
 
 }
