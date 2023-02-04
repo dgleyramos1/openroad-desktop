@@ -59,4 +59,11 @@ public class OrderController {
         OrderDTO result = mapper.toOrderDTO(order);
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
+
+    @PutMapping("/finish/{id}")
+    public ResponseEntity<OrderDTO> finish(@PathVariable String id) {
+        Order order = service.finishOrder(id);
+        OrderDTO result = mapper.toOrderDTO(order);
+        return ResponseEntity.ok(result);
+    }
 }

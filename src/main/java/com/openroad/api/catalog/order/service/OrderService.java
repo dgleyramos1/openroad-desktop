@@ -49,7 +49,14 @@ public class OrderService {
         order.setUpdated_at(LocalDateTime.now());
         repository.save(order);
         return order;
+    }
 
+    @Transactional
+    public Order finishOrder(String id) {
+        Order order = findByID(id);
+        order.setStatus(false);
+        order.setUpdated_at(LocalDateTime.now());
+        return order;
     }
 
     private String getUuid() {
