@@ -7,6 +7,9 @@ import org.springframework.stereotype.Repository;
 
 import com.openroad.api.user.model.User;
 
+/**
+ * Repositório da classe usuário
+ */
 @Repository
 public interface UserRepository extends JpaRepository<User, String> {
 

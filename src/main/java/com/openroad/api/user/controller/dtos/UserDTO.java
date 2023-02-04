@@ -5,6 +5,9 @@ import java.time.LocalDateTime;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+/**
+ * Classe de suporte de retorno de um usuário
+ */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserDTO {
     private String id;

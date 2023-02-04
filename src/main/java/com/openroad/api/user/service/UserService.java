@@ -15,6 +15,9 @@ import com.openroad.api.user.exception.UserNotFoundException;
 import com.openroad.api.user.model.User;
 import com.openroad.api.user.repository.UserRepository;
 
+/**
+ * Classe de serviço
+ */
 @Service
 public class UserService {
 
@@ -26,10 +29,17 @@ public class UserService {
         this.encoder = encoder;
     }
 
+    /**
+     * @return Metodo para criptografar a senha do usuário
+     */
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
+    /**
+     * @param userCreate
+     * @return Cria um novo usuário e salva ele no banco de dados e retorna ele
+     */
     @Transactional
     public User create(User userCreate) {
         Optional<User> userExists = userRepository.findByUsername(userCreate.getUsername());
@@ -44,17 +54,28 @@ public class UserService {
         return userCreate;
     }
 
+    /**
+     * @return Faz a listagem de todos os usuários no banco de dados
+     */
     @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
     public List<User> findAlll() {
         return userRepository.findAll();
     }
 
+    /**
+     * @param id
+     * @return Busca usuário pelo ID e retorna o usuário encontrado
+     */
     @Transactional(readOnly = true)
     public User findById(String id) {
         return userRepository.findById(id).orElseThrow(
                 () -> new UserNotFoundException(id));
     }
 
+    /**
+     * @param id
+     *           Deleta usuário do banco de dados
+     */
     @Transactional
     public void deleteUser(String id) {
         User user = findById(id);
@@ -64,6 +85,11 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
+    /**
+     * @param id
+     * @param userCreate
+     * @return Atualiza usuário e retorna ele mesmo
+     */
     @Transactional
     public User update(String id, User userCreate) {
         User user = findById(id);
@@ -75,6 +101,9 @@ public class UserService {
         return user;
     }
 
+    /**
+     * @return Retorna um UUID randomico e único
+     */
     private String getUuid() {
         return UUID.randomUUID().toString();
     }

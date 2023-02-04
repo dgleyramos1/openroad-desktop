@@ -7,6 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * Classe para criação de entidade usuário
+ */
 @Entity
 @Table(name = "users")
 public class User {

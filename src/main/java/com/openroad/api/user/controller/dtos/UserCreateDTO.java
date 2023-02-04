@@ -1,5 +1,8 @@
 package com.openroad.api.user.controller.dtos;
 
+/**
+ * Classe de suporte para criação de um novo usuário
+ */
 public class UserCreateDTO {
     private String name;
     private String username;

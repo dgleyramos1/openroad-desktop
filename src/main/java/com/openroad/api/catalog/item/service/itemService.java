@@ -48,6 +48,15 @@ public class itemService {
         return item;
     }
 
+    @Transactional
+    public Item delivered(String id) {
+        Item item = findById(id);
+        item.setStatus(false);
+        item.setUpdated_at(LocalDateTime.now());
+        repository.save(item);
+        return item;
+    }
+
     @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
     public List<Item> kitchen(String order_id) {
         return repository.findAllStatusTrue(order_id);

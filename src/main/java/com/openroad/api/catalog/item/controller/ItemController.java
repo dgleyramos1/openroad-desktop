@@ -81,6 +81,13 @@ public class ItemController {
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 
+    @PutMapping("/delivered/{id}")
+    public ResponseEntity<ItemDTO> delivered(@PathVariable String id) {
+        Item item = service.delivered(id);
+        ItemDTO result = mapper.toItemDTO(item);
+        return ResponseEntity.ok().body(result);
+    }
+
     @GetMapping("/{order_id}")
     public ResponseEntity<List<ItemDTO>> kitchen(@PathVariable String order_id) {
         List<Item> items = service.kitchen(order_id);
