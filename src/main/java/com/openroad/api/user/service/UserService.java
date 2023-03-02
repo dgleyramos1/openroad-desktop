@@ -8,7 +8,6 @@ import java.util.UUID;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.openroad.api.user.exception.UserNotFoundException;
@@ -57,7 +56,6 @@ public class UserService {
     /**
      * @return Faz a listagem de todos os usuários no banco de dados
      */
-    @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
     public List<User> findAlll() {
         return userRepository.findAll();
     }
