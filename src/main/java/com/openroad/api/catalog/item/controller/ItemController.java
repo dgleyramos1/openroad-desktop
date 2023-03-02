@@ -53,18 +53,13 @@ public class ItemController {
         return ResponseEntity.status(HttpStatus.CREATED).body(result);
     }
 
-    @DeleteMapping("/{id}/{order_id}")
-    public ResponseEntity<ItemDTO> delete(@PathVariable(name = "id") String id,
-            @PathVariable(name = "order_id") String order_id) {
-        Order order = orderService.findByID(order_id);
+    @DeleteMapping("/{id}")
+    public ResponseEntity<ItemDTO> delete(@PathVariable(name = "id") String id) {
         Item item = service.findById(id);
         if (!item.isDraft()) {
             return ResponseEntity.status(404).body(null);
         }
-        item.setOrder(null);
-        item.setProduct(null);
         service.delete(item);
-        Order orderUpdated = orderService.update(order_id, order);
 
         return ResponseEntity.noContent().build();
     }
