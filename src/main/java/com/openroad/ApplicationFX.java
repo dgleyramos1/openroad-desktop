@@ -9,7 +9,6 @@ import com.openroad.controller.PrincipalController;
 
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -38,9 +37,12 @@ public class ApplicationFX extends Application {
     public void start(Stage stage) throws IOException {
         FxWeaver fxWeaver = contextoSpring.getBean(FxWeaver.class);
         Parent root = fxWeaver.loadView(PrincipalController.class);
+
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Open Road");
+        stage.setMinHeight(600.0);
+        stage.setMinWidth(800.0);
         stage.show();
     }
 

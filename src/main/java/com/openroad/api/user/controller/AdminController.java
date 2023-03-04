@@ -4,14 +4,9 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.openroad.api.user.controller.dtos.UserCreateDTO;
 import com.openroad.api.user.controller.dtos.UserDTO;
@@ -22,8 +17,7 @@ import com.openroad.api.user.service.UserService;
 /**
  * Controlador de rotas e de serviços do nosso usuário
  */
-@RestController
-@RequestMapping("/users")
+@Service
 public class AdminController {
 
     private final UserService userService;
@@ -37,18 +31,16 @@ public class AdminController {
     /**
      * @return Retorna lista com todos os usuários salvos no banco de dados
      */
-    @GetMapping
-    public ResponseEntity<List<UserDTO>> findAll() {
+    public List<UserDTO> findAll() {
         List<User> users = userService.findAlll();
         List<UserDTO> result = userMapper.toUserDTOList(users);
-        return ResponseEntity.ok(result);
+        return result;
     }
 
     /**
      * @param id
      * @return Busca usuário pelo ID
      */
-    @GetMapping("/{id}")
     public ResponseEntity<UserDTO> findById(@PathVariable("id") String id) {
         User user = userService.findById(id);
         UserDTO result = userMapper.toUserDTO(user);
@@ -60,7 +52,6 @@ public class AdminController {
      * @return Cria novo usuário e salva no banco de dados depois retorna um DTO com
      *         os dados desse usuário
      */
-    @PostMapping("/create")
     public ResponseEntity<UserDTO> create(@RequestBody UserCreateDTO dto) {
         User userCreate = userMapper.toUserCreate(dto);
         User user = userService.create(userCreate);
@@ -72,7 +63,6 @@ public class AdminController {
      * @param id
      * @return Deleta usuário do banco de dados
      */
-    @DeleteMapping("/{id}")
     public ResponseEntity<UserDTO> delete(@PathVariable("id") String id) {
         userService.deleteUser(id);
         return ResponseEntity.noContent().build();
@@ -83,7 +73,6 @@ public class AdminController {
      * @param dto
      * @return Atualiza usuário e retorna um DTO com os dados a serem mostrados
      */
-    @PutMapping("/{id}")
     public ResponseEntity<UserDTO> update(@PathVariable("id") String id, @RequestBody UserCreateDTO dto) {
         User userCreate = userMapper.toUserCreate(dto);
         User user = userService.update(id, userCreate);

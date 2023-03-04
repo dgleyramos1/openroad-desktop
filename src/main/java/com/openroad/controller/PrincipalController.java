@@ -1,33 +1,25 @@
 package com.openroad.controller;
 
-import org.springframework.stereotype.Service;
+import java.io.IOException;
 
-import com.openroad.api.user.controller.dtos.UserDTO;
-
+import org.springframework.stereotype.Component;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.AnchorPane;
 import net.rgielen.fxweaver.core.FxmlView;
 
-@Service
+@Component
 @FxmlView("viewPrincipal.fxml")
 public class PrincipalController {
-    @FXML
-    private TableColumn<UserDTO, String> tableColumnUserCreatedAt;
 
     @FXML
-    private TableColumn<UserDTO, String> tableColumnUserName;
+    private AnchorPane anchorPane;
 
     @FXML
-    private TableColumn<UserDTO, String> tableColumnUserUpdatedAt;
-
-    @FXML
-    private TableColumn<UserDTO, String> tableColumnUserUsername;
-
-    @FXML
-    private TableView<UserDTO> tableViewUsers;
-
-    public PrincipalController() {
+    public void handleAnchoPaneAtendentes(ActionEvent event) throws IOException {
+        AnchorPane a = FXMLLoader.load(getClass().getResource("/com/openroad/controller/anchorPaneAtendentes.fxml"));
+        anchorPane.getChildren().setAll(a);
     }
 
 }

@@ -13,7 +13,6 @@ public class UserDTO {
     private String id;
     private String name;
     private String username;
-    private String role;
     @JsonFormat(pattern = "dd/MM/yyy")
     private LocalDateTime created_at;
     @JsonFormat(pattern = "dd/MM/yyy")
@@ -41,14 +40,6 @@ public class UserDTO {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
     }
 
     public LocalDateTime getCreated_at() {
