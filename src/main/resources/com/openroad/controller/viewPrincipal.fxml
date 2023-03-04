@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="800.0" minWidth="623.0" prefHeight="623.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.openroad.controller.PrincipalController">
+   <children>
+      <MenuBar>
+        <menus>
+          <Menu mnemonicParsing="false" text="Atendentes" />
+          <Menu mnemonicParsing="false" text="Orders" />
+            <Menu mnemonicParsing="false" text="Kitchen" />
+            <Menu mnemonicParsing="false" text="Catalog">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Categories" />
+                  <MenuItem mnemonicParsing="false" text="Products" />
+               </items>
+            </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </MenuBar>
+      <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="607.0" prefWidth="800.0">
+         <children>
+            <VBox focusTraversable="true" layoutX="14.0" layoutY="56.0" prefHeight="607.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <GridPane>
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Button cache="true" text="Adicionar novo" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="1">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="6.0" left="14.0" right="14.0" top="6.0" />
+                           </padding>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Button>
+                        <Label text="Atendentes">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin>
+                  </GridPane>
+                  <TableView fx:id="tableViewUsers" minHeight="-Infinity" minWidth="-Infinity" prefHeight="549.0" prefWidth="800.0">
+                    <columns>
+                      <TableColumn fx:id="tableColumnUserName" prefWidth="75.0" text="Name" />
+                      <TableColumn fx:id="tableColumnUserUsername" prefWidth="75.0" text="Username" />
+                        <TableColumn fx:id="tableColumnUserCreatedAt" prefWidth="50.0" text="Created_at" />
+                        <TableColumn fx:id="tableColumnUserUpdatedAt" prefWidth="50.0" text="Updated_at" />
+                        <TableColumn prefWidth="50.0" text="Update" />
+                        <TableColumn prefWidth="50.0" text="Delete" />
+                    </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>
