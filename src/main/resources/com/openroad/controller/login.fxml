@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="350.0" styleClass="login" stylesheets="@../styles/login.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Group layoutX="55.0" layoutY="27.0" AnchorPane.leftAnchor="54.0" AnchorPane.rightAnchor="54.0" AnchorPane.topAnchor="30.0">
@@ -17,7 +16,7 @@
                   <Font name="Fira Code Regular" size="14.0" />
                </font>
             </Label>
-            <TextField focusTraversable="false" layoutY="23.0" pickOnBounds="false" prefHeight="40.0" prefWidth="242.0" styleClass="input" stylesheets="@../styles/login.css" />
+            <TextField layoutY="24.0" prefHeight="40.0" prefWidth="242.0" styleClass="input" stylesheets="@../styles/login.css" />
          </children>
       </Group>
       <Group layoutX="54.0" layoutY="102.0" AnchorPane.leftAnchor="54.0" AnchorPane.rightAnchor="54.0">
@@ -27,7 +26,7 @@
                   <Font name="Fira Code Regular" size="14.0" />
                </font>
             </Label>
-            <TextField layoutY="27.0" prefHeight="40.0" prefWidth="242.0" styleClass="input" stylesheets="@../styles/login.css" />
+            <TextField layoutY="24.0" prefHeight="40.0" prefWidth="242.0" styleClass="input" stylesheets="@../styles/login.css" />
          </children>
       </Group>
       <Button layoutX="53.0" layoutY="180.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="242.0" styleClass="btn" stylesheets="@../styles/login.css" text="Acessar" textFill="WHITE" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="54.0" AnchorPane.rightAnchor="54.0">
