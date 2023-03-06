@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.openroad.controller.PrincipalController">
+<VBox prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.openroad.controller.PrincipalController">
    <children>
       <MenuBar>
         <menus>
@@ -33,6 +33,6 @@
             <Cursor fx:constant="DEFAULT" />
          </cursor>
       </MenuBar>
-      <AnchorPane fx:id="anchorPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="577.0" prefWidth="800.0" snapToPixel="false" />
+      <AnchorPane fx:id="anchorPane" snapToPixel="false" VBox.vgrow="ALWAYS" />
    </children>
 </VBox>

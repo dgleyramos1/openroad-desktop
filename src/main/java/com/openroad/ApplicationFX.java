@@ -16,26 +16,26 @@ import net.rgielen.fxweaver.core.FxWeaver;
 
 public class ApplicationFX extends Application {
 
-    private ConfigurableApplicationContext contextoSpring;
+    private static ConfigurableApplicationContext contextSpring;
 
     @Override
     public void init() {
         String[] args = getParameters().getRaw().toArray(new String[0]);
 
-        this.contextoSpring = new SpringApplicationBuilder()
+        ApplicationFX.contextSpring = new SpringApplicationBuilder()
                 .sources(OpenRoadApplication.class)
                 .run(args);
     }
 
     @Override
     public void stop() {
-        this.contextoSpring.close();
+        ApplicationFX.contextSpring.close();
         Platform.exit();
     }
 
     @Override
     public void start(Stage stage) throws IOException {
-        FxWeaver fxWeaver = contextoSpring.getBean(FxWeaver.class);
+        FxWeaver fxWeaver = contextSpring.getBean(FxWeaver.class);
         Parent root = fxWeaver.loadView(PrincipalController.class);
 
         Scene scene = new Scene(root);
@@ -44,6 +44,10 @@ public class ApplicationFX extends Application {
         stage.setMinHeight(600.0);
         stage.setMinWidth(800.0);
         stage.show();
+    }
+
+    public static ConfigurableApplicationContext getContextSpring() {
+        return contextSpring;
     }
 
 }

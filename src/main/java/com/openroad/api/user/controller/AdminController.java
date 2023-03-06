@@ -4,9 +4,12 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.openroad.api.user.controller.dtos.UserCreateDTO;
 import com.openroad.api.user.controller.dtos.UserDTO;
@@ -17,7 +20,8 @@ import com.openroad.api.user.service.UserService;
 /**
  * Controlador de rotas e de serviços do nosso usuário
  */
-@Service
+@Controller
+@RequestMapping("/users")
 public class AdminController {
 
     private final UserService userService;
@@ -32,7 +36,7 @@ public class AdminController {
      * @return Retorna lista com todos os usuários salvos no banco de dados
      */
     public List<UserDTO> findAll() {
-        List<User> users = userService.findAlll();
+        List<User> users = userService.findAll();
         List<UserDTO> result = userMapper.toUserDTOList(users);
         return result;
     }
@@ -52,6 +56,7 @@ public class AdminController {
      * @return Cria novo usuário e salva no banco de dados depois retorna um DTO com
      *         os dados desse usuário
      */
+    @PostMapping("/create")
     public ResponseEntity<UserDTO> create(@RequestBody UserCreateDTO dto) {
         User userCreate = userMapper.toUserCreate(dto);
         User user = userService.create(userCreate);

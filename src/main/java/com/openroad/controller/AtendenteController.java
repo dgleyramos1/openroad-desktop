@@ -1,27 +1,29 @@
 package com.openroad.controller;
 
-import java.net.URL;
+import java.io.IOException;
 import java.util.List;
-import java.util.ResourceBundle;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 
+import com.openroad.ApplicationFX;
 import com.openroad.api.user.controller.AdminController;
 import com.openroad.api.user.controller.dtos.UserDTO;
+import com.openroad.api.user.model.User;
 import com.openroad.api.user.service.UserService;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import net.rgielen.fxweaver.core.FxmlView;
 
-@Component
+@Controller
 @FxmlView("anchorPaneAtendentes.fxml")
 public class AtendenteController {
 
@@ -47,22 +49,34 @@ public class AtendenteController {
     }
 
     private void carregarTabViewAtendentes() {
-        tableColumnName.setCellValueFactory(new PropertyValueFactory<>("Nome"));
-        tableColumnUsername.setCellValueFactory(new PropertyValueFactory<>("Usuário"));
-        tableColumnCreatedAt.setCellValueFactory(new PropertyValueFactory<>("Data criação"));
-        tableColumnUpdatedAt.setCellValueFactory(new PropertyValueFactory<>("Data atualização"));
+        tableColumnName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        tableColumnUsername.setCellValueFactory(new PropertyValueFactory<>("username"));
+        tableColumnCreatedAt.setCellValueFactory(new PropertyValueFactory<>("created_at"));
+        tableColumnUpdatedAt.setCellValueFactory(new PropertyValueFactory<>("updated_at"));
 
-        // userList = adminController.findAll();
+        userList = adminController.findAll();
 
-        // observableList = FXCollections.observableArrayList(userList);
-        // tableViewUsers.setItems(observableList);
+        observableList = FXCollections.observableArrayList(userList);
+        tableViewUsers.setItems(observableList);
 
     }
 
     @FXML
     public void initialize() {
-        System.out.println(adminController.findAll());
         carregarTabViewAtendentes();
+    }
+
+    public static AnchorPane setAnchorPane(AnchorPane pane) {
+
+        try {
+            FXMLLoader loader = new FXMLLoader(AtendenteController.class.getResource("anchorPaneAtendentes.fxml"));
+            loader.setControllerFactory(ApplicationFX.getContextSpring()::getBean);
+            AnchorPane a = loader.load();
+            return a;
+        } catch (IOException ex) {
+            new IOException("Error " + ex.getMessage());
+        }
+        return pane;
     }
 
 }

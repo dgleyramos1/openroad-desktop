@@ -56,7 +56,7 @@ public class UserService {
     /**
      * @return Faz a listagem de todos os usuários no banco de dados
      */
-    public List<User> findAlll() {
+    public List<User> findAll() {
         return userRepository.findAll();
     }
 
