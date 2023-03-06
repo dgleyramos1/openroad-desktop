@@ -1,0 +1,23 @@
+*{
+    -fx-color-primary:#FF3F4B;
+    -fx-color-background: #1d1d2e;
+    -fx-secundary-color: #3fffa3;
+    -fx-color-border: #8A8A8A;
+    -fx-input-background: #101026;
+}
+.menu{
+    -fx-background-color: -fx-color-border;
+}
+
+.menu .label{
+    -fx-text-fill: white;
+    -fx-transition: all 3ms ease-in-out;
+}
+
+.menu .label:hover{
+    -fx-text-fill: -fx-input-background;
+    -fx-cursor: HAND;
+}
+.anchor{
+    -fx-background-color: -fx-color-background;
+}
