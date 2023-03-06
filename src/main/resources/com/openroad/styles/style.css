@@ -21,3 +21,9 @@
 .anchor{
     -fx-background-color: -fx-color-background;
 }
+
+.order{
+    -fx-border-color:-fx-secundary-color;
+    -fx-border-width: 0px 0px 0px 3px;
+    -fx-background-color: transparent;
+}
