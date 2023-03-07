@@ -70,6 +70,24 @@ public class AtendenteController {
     @FXML
     public void initialize() {
         carregarTabViewAtendentes();
+        selecionarItemTableView(null);
+
+        tableViewUsers.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue) -> selecionarItemTableView(newValue));
+    }
+
+    private void selecionarItemTableView(UserDTO userDTO) {
+        if (userDTO != null) {
+            detailLabelNome.setText(userDTO.getName());
+            detailLabelUser.setText(userDTO.getUsername());
+            detailLabelCreatedAt.setText(String.valueOf(userDTO.getCreated_at()));
+            detailLabelUpdatedAt.setText(String.valueOf(userDTO.getUpdated_at()));
+        } else {
+            detailLabelNome.setText("");
+            detailLabelUser.setText("");
+            detailLabelCreatedAt.setText("");
+            detailLabelUpdatedAt.setText("");
+        }
     }
 
     public static AnchorPane setAnchorPane(AnchorPane pane) {
