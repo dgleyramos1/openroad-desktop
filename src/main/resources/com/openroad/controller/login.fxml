@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="270.0" prefWidth="350.0" styleClass="login" stylesheets="@../styles/login.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.openroad.controller.Login">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="350.0" styleClass="login" stylesheets="@../styles/login.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.openroad.controller.Login">
    <children>
       <Group layoutX="55.0" layoutY="27.0" AnchorPane.leftAnchor="54.0" AnchorPane.rightAnchor="54.0" AnchorPane.topAnchor="30.0">
          <children>
@@ -33,12 +33,7 @@
             <PasswordField fx:id="inputPassword" layoutY="24.0" prefHeight="40.0" prefWidth="242.0" styleClass="input" />
          </children>
       </Group>
-      <Button layoutX="54.0" layoutY="177.0" mnemonicParsing="false" onMouseClicked="#handleLogin" prefHeight="40.0" prefWidth="242.0" styleClass="btn" stylesheets="@../styles/login.css" text="Acessar" textFill="WHITE" AnchorPane.bottomAnchor="53.0" AnchorPane.leftAnchor="54.0" AnchorPane.rightAnchor="54.0">
-         <font>
-            <Font name="Fira Code Regular" size="14.0" />
-         </font>
-      </Button>
-      <Button layoutX="119.0" layoutY="226.0" mnemonicParsing="false" styleClass="btn-fluxo" stylesheets="@../styles/login.css" text="inscreva-se">
+      <Button layoutX="54.0" layoutY="176.0" mnemonicParsing="false" onMouseClicked="#handleLogin" prefHeight="40.0" prefWidth="242.0" styleClass="btn" stylesheets="@../styles/login.css" text="Acessar" textFill="WHITE" AnchorPane.bottomAnchor="34.0" AnchorPane.leftAnchor="54.0" AnchorPane.rightAnchor="54.0">
          <font>
             <Font name="Fira Code Regular" size="14.0" />
          </font>

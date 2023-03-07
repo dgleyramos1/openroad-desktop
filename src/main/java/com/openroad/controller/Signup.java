@@ -37,15 +37,14 @@ public class Signup {
 
     }
 
-    public void signup(Stage stage) throws IOException {
+    public static void signup(Stage stage) throws IOException {
         FXMLLoader loader = new FXMLLoader(Signup.class.getResource("signup.fxml"));
         loader.setControllerFactory(ApplicationFX.getContextSpring()::getBean);
         Parent root = loader.load();
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.setTitle("Open Road - Login");
+        stage.setTitle("Open Road - Sign-up");
         stage.setResizable(false);
-        stage.initStyle(StageStyle.UNIFIED);
         stage.show();
         s = stage;
     }

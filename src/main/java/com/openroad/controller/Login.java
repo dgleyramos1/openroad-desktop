@@ -92,7 +92,6 @@ public class Login {
         stage.setScene(scene);
         stage.setTitle("Open Road - Login");
         stage.setResizable(false);
-        stage.initStyle(StageStyle.UNIFIED);
         stage.show();
         s = stage;
     }
