@@ -8,7 +8,7 @@ import javafx.scene.layout.AnchorPane;
 import net.rgielen.fxweaver.core.FxmlView;
 
 @Component
-@FxmlView("viewPrincipal.fxml")
+@FxmlView("principal.fxml")
 public class PrincipalController {
 
     @FXML

@@ -1,0 +1,40 @@
+.login{
+    -fx-background-color: #1D1D2E;
+}
+
+
+.input{
+    -fx-background-color: #101026;
+    -fx-border-color: #8A8A8A;
+    -fx-border-width: 1px;
+    -fx-border-radius: 4px;
+    -fx-border-style: solid;
+    -fx-text-fill: white;
+}
+
+.input:focused{
+    -fx-border-color: #3fffa3;
+    -fx-Prompt-text-fill: transparent;
+    -fx-outline: 0;
+}
+
+.btn{
+    -fx-background-color: #FF3F4B;
+    -fx-background-radius: 4px;
+}
+
+.btn:hover{
+    -fx-background-color: #3FFFA3;
+    -fx-cursor: HAND;
+}
+
+.btn-fluxo{
+    -fx-background-color: none;
+    -fx-text-fill: white;
+}
+
+.btn-fluxo:hover{
+    -fx-text-fill: rgb(180, 176, 176);
+    -fx-text-decoration: underline;
+    -fx-cursor: HAND;
+}

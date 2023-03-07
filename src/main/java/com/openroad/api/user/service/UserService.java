@@ -10,6 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.openroad.api.user.controller.dtos.UserDTO;
 import com.openroad.api.user.exception.UserNotFoundException;
 import com.openroad.api.user.model.User;
 import com.openroad.api.user.repository.UserRepository;
@@ -104,6 +105,10 @@ public class UserService {
      */
     private String getUuid() {
         return UUID.randomUUID().toString();
+    }
+
+    public Optional<User> findByUsername(String username) {
+        return userRepository.findByUsername(username);
     }
 
 }

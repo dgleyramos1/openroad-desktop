@@ -1,6 +1,7 @@
 package com.openroad.api.user.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,8 @@ import com.openroad.api.user.controller.dtos.UserDTO;
 import com.openroad.api.user.controller.mapper.UserMapper;
 import com.openroad.api.user.model.User;
 import com.openroad.api.user.service.UserService;
+
+import javafx.scene.control.TextField;
 
 /**
  * Controlador de rotas e de serviços do nosso usuário
@@ -84,6 +87,11 @@ public class AdminController {
         UserDTO result = userMapper.toUserDTO(user);
         return ResponseEntity.status(HttpStatus.OK).body(result);
 
+    }
+
+    public User findByUsername(String username) {
+        Optional<User> user = userService.findByUsername(username);
+        return user.get();
     }
 
 }

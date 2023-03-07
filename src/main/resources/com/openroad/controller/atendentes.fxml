@@ -15,12 +15,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="anchor" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.openroad.controller.AtendenteController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" styleClass="anchor" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.openroad.controller.AtendenteController">
    <children>
       <BorderPane layoutX="131.0" layoutY="82.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
          <left>
-            <TableView cacheShape="false" centerShape="false" focusTraversable="false" pickOnBounds="false" prefHeight="200.0" prefWidth="300.0" scaleShape="false" BorderPane.alignment="CENTER">
+            <TableView fx:id="tableViewUsers" cacheShape="false" centerShape="false" focusTraversable="false" pickOnBounds="false" prefHeight="200.0" prefWidth="300.0" scaleShape="false" BorderPane.alignment="CENTER">
               <columns>
                 <TableColumn fx:id="tableViewColumnName" prefWidth="75.0" text="Nome" />
                 <TableColumn fx:id="tableViewColumnUser" prefWidth="75.0" text="Usuário" />
@@ -108,12 +107,12 @@
          <bottom>
             <ButtonBar nodeOrientation="LEFT_TO_RIGHT" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
               <buttons>
-                <Button mnemonicParsing="false" styleClass="btn" text="Inserir" textFill="WHITE">
+                <Button mnemonicParsing="false" styleClass="btn-app" stylesheets="@../styles/style.css" text="Inserir" textFill="WHITE">
                      <font>
                         <Font name="Fira Code Regular" size="14.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" styleClass="btn, editar" text="Editar" textFill="WHITE">
+                  <Button mnemonicParsing="false" styleClass="btn-app" stylesheets="@../styles/style.css" text="Editar" textFill="WHITE">
                      <font>
                         <Font name="Fira Code Regular" size="14.0" />
                      </font>

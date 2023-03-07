@@ -9,14 +9,13 @@ import org.springframework.stereotype.Controller;
 import com.openroad.ApplicationFX;
 import com.openroad.api.user.controller.AdminController;
 import com.openroad.api.user.controller.dtos.UserDTO;
-import com.openroad.api.user.model.User;
-import com.openroad.api.user.service.UserService;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -28,16 +27,26 @@ import net.rgielen.fxweaver.core.FxmlView;
 public class AtendenteController {
 
     @FXML
-    private TableColumn<UserDTO, String> tableColumnCreatedAt;
+    private Label detailLabelCreatedAt;
+
     @FXML
-    private TableColumn<UserDTO, String> tableColumnName;
+    private Label detailLabelNome;
+
     @FXML
-    private TableColumn<UserDTO, String> tableColumnUpdatedAt;
+    private Label detailLabelUpdatedAt;
+
     @FXML
-    private TableColumn<UserDTO, String> tableColumnUsername;
+    private Label detailLabelUser;
+
+    @FXML
+    private TableColumn<UserDTO, String> tableViewColumnName;
+
+    @FXML
+    private TableColumn<UserDTO, String> tableViewColumnUser;
     @FXML
     private TableView<UserDTO> tableViewUsers;
     private List<UserDTO> userList;
+
     private ObservableList<UserDTO> observableList;
 
     @Autowired
@@ -49,16 +58,13 @@ public class AtendenteController {
     }
 
     private void carregarTabViewAtendentes() {
-        tableColumnName.setCellValueFactory(new PropertyValueFactory<>("name"));
-        tableColumnUsername.setCellValueFactory(new PropertyValueFactory<>("username"));
-        tableColumnCreatedAt.setCellValueFactory(new PropertyValueFactory<>("created_at"));
-        tableColumnUpdatedAt.setCellValueFactory(new PropertyValueFactory<>("updated_at"));
+        tableViewColumnName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        tableViewColumnUser.setCellValueFactory(new PropertyValueFactory<>("username"));
 
         userList = adminController.findAll();
 
         observableList = FXCollections.observableArrayList(userList);
         tableViewUsers.setItems(observableList);
-
     }
 
     @FXML
