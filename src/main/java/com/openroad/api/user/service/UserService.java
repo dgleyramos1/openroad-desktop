@@ -42,7 +42,7 @@ public class UserService {
      */
     @Transactional
     public User create(User userCreate) {
-        Optional<User> userExists = userRepository.findByUsuario(userCreate.getUsername());
+        Optional<User> userExists = userRepository.findByUsername(userCreate.getUsername());
 
         if (!userExists.isEmpty()) {
             throw new Error("User exists!");
@@ -108,7 +108,7 @@ public class UserService {
     }
 
     public User findByUsername(String username) {
-        return userRepository.findByUsername(username);
+        return userRepository.findUserByUsername(username);
     }
 
 }

@@ -18,6 +18,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -46,6 +47,7 @@ public class Login {
     private static Stage s;
 
     Alert a;
+    DialogPane dialogPane;
 
     @FXML
     void handleLogin(MouseEvent event) throws IOException {
@@ -76,6 +78,10 @@ public class Login {
     public void initialize() {
         a = new Alert(AlertType.NONE);
         a.initStyle(StageStyle.UNIFIED);
+        dialogPane = a.getDialogPane();
+        dialogPane.getStylesheets().add(
+                getClass().getResource("../styles/myDialog.css").toExternalForm());
+        dialogPane.getStyleClass().add("myDialog");
     }
 
     public static void loadLogin(Stage stage) throws IOException {
