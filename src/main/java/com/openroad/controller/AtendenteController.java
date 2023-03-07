@@ -24,7 +24,7 @@ import javafx.scene.layout.AnchorPane;
 import net.rgielen.fxweaver.core.FxmlView;
 
 @Controller
-@FxmlView("anchorPaneAtendentes.fxml")
+@FxmlView("atendentes.fxml")
 public class AtendenteController {
 
     @FXML
@@ -69,7 +69,7 @@ public class AtendenteController {
     public static AnchorPane setAnchorPane(AnchorPane pane) {
 
         try {
-            FXMLLoader loader = new FXMLLoader(AtendenteController.class.getResource("anchorPaneAtendentes.fxml"));
+            FXMLLoader loader = new FXMLLoader(AtendenteController.class.getResource("atendentes.fxml"));
             loader.setControllerFactory(ApplicationFX.getContextSpring()::getBean);
             AnchorPane a = loader.load();
             return a;
