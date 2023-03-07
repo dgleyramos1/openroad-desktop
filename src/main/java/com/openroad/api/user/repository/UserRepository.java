@@ -13,6 +13,6 @@ import com.openroad.api.user.model.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, String> {
 
-    Optional<User> findByUsername(String username);
+    User findByUsername(String username);
 
 }

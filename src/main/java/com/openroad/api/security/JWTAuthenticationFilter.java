@@ -42,7 +42,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                     user.getPassword(),
                     new ArrayList<>()));
         } catch (IOException e) {
-            throw new RuntimeException("Falha au autenticar usuário", e);
+            throw new RuntimeException("Falha ao autenticar usuário", e);
         }
     }
 

@@ -42,9 +42,9 @@ public class UserService {
      */
     @Transactional
     public User create(User userCreate) {
-        Optional<User> userExists = userRepository.findByUsername(userCreate.getUsername());
+        User userExists = userRepository.findByUsername(userCreate.getUsername());
 
-        if (!userExists.isEmpty()) {
+        if (userExists == null) {
             throw new Error("User exists!");
         }
         userCreate.setId(getUuid());
@@ -107,7 +107,7 @@ public class UserService {
         return UUID.randomUUID().toString();
     }
 
-    public Optional<User> findByUsername(String username) {
+    public User findByUsername(String username) {
         return userRepository.findByUsername(username);
     }
 

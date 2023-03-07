@@ -90,8 +90,8 @@ public class AdminController {
     }
 
     public User findByUsername(String username) {
-        Optional<User> user = userService.findByUsername(username);
-        return user.get();
+        User user = userService.findByUsername(username);
+        return user;
     }
 
 }
