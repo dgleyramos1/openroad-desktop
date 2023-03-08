@@ -5,7 +5,6 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
 
 import com.openroad.controller.Fluxo;
-import com.openroad.controller.Login;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXML;

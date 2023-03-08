@@ -1,12 +1,10 @@
 package com.openroad.api.user.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,8 +15,6 @@ import com.openroad.api.user.controller.dtos.UserDTO;
 import com.openroad.api.user.controller.mapper.UserMapper;
 import com.openroad.api.user.model.User;
 import com.openroad.api.user.service.UserService;
-
-import javafx.scene.control.TextField;
 
 /**
  * Controlador de rotas e de serviços do nosso usuário

@@ -32,7 +32,6 @@ public class Fluxo {
     @FXML
     void initialize() throws IOException {
         list = controller.findAll();
-
     }
 
     public static void load(Stage stage) throws IOException {
