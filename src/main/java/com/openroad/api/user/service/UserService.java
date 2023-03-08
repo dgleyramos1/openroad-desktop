@@ -49,6 +49,7 @@ public class UserService {
         userCreate.setId(getUuid());
         userCreate.setPassword(encoder.encode(userCreate.getPassword()));
         userCreate.setCreated_at(LocalDate.now());
+        userCreate.setUpdated_at(LocalDate.now());
         userRepository.save(userCreate);
         return userCreate;
     }

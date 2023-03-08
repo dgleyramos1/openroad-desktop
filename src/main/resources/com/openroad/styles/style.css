@@ -9,12 +9,15 @@
     -fx-background-color: -fx-color-border;
 }
 
-.menu .label{
+.menu-item{
     -fx-text-fill: white;
     -fx-transition: all 3ms ease-in-out;
+    -fx-border-width: 0px 2px 0px 0px;
+    -fx-border-color: -fx-secundary-color;
+    
 }
 
-.menu .label:hover{
+.menu-item:hover{
     -fx-text-fill: -fx-input-background;
     -fx-cursor: HAND;
 }
