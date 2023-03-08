@@ -8,6 +8,9 @@ public class UserCreateDTO {
     private String username;
     private String password;
 
+    public UserCreateDTO() {
+    }
+
     public String getUsername() {
         return username;
     }
