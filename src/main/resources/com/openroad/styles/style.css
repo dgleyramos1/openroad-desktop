@@ -97,10 +97,19 @@
     -fx-opacity: 0;
 }
 
-
-
 .delete{
     -fx-background-color: red;
     -fx-background-radius: 4px;
     -fx-text-fill: white;
+}
+
+
+.btn-app-salvar{
+    -fx-background-color: -fx-secundary-color;
+    -fx-background-radius: 4px;
+    -fx-text-fill: -fx-color-background;
+}
+
+.btn-app-salvar:hover{
+    -fx-cursor: HAND;
 }

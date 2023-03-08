@@ -20,6 +20,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import net.rgielen.fxweaver.core.FxmlView;
 
@@ -56,7 +57,17 @@ public class AtendenteController {
     DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     @FXML
-    void handleAdicionarNovoAtendente(ActionEvent event) {
+    void handleAdicionarDeletarAtendente(MouseEvent event) {
+
+    }
+
+    @FXML
+    void handleAdicionarEditarAtendente(MouseEvent event) {
+
+    }
+
+    @FXML
+    void handleAdicionarNovoAtendente(MouseEvent event) {
 
     }
 
