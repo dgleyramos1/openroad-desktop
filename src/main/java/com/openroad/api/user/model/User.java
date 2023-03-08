@@ -22,8 +22,6 @@ public class User {
     private String username;
     @Column(nullable = false)
     private String password;
-    @Column(nullable = false)
-    private String role;
     private LocalDate created_at;
     private LocalDate updated_at;
 
@@ -49,14 +47,6 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
     }
 
     public LocalDate getCreated_at() {

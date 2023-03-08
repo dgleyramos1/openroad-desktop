@@ -94,7 +94,6 @@ public class UserService {
         User user = findById(id);
         user.setName(userCreate.getName());
         user.setPassword(encoder.encode(userCreate.getPassword()));
-        user.setRole(userCreate.getRole());
         user.setUsername(userCreate.getUsername());
         user.setUpdated_at(LocalDate.now());
         return user;
