@@ -1,6 +1,6 @@
 package com.openroad.api.catalog.item.model;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -33,8 +33,8 @@ public class Item {
     @JsonManagedReference
     private Order order;
 
-    private LocalDateTime created_at;
-    private LocalDateTime updated_at;
+    private LocalDate created_at;
+    private LocalDate updated_at;
 
     public String getId() {
         return id;
@@ -60,19 +60,19 @@ public class Item {
         this.product = product;
     }
 
-    public LocalDateTime getCreated_at() {
+    public LocalDate getCreated_at() {
         return created_at;
     }
 
-    public void setCreated_at(LocalDateTime created_at) {
+    public void setCreated_at(LocalDate created_at) {
         this.created_at = created_at;
     }
 
-    public LocalDateTime getUpdated_at() {
+    public LocalDate getUpdated_at() {
         return updated_at;
     }
 
-    public void setUpdated_at(LocalDateTime updated_at) {
+    public void setUpdated_at(LocalDate updated_at) {
         this.updated_at = updated_at;
     }
 

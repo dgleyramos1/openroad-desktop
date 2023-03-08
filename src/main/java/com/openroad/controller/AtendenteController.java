@@ -1,6 +1,7 @@
 package com.openroad.controller;
 
 import java.io.IOException;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +53,8 @@ public class AtendenteController {
     @Autowired
     private AdminController adminController;
 
+    DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
     @FXML
     void handleAdicionarNovoAtendente(ActionEvent event) {
 
@@ -74,14 +77,15 @@ public class AtendenteController {
 
         tableViewUsers.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> selecionarItemTableView(newValue));
+
     }
 
     private void selecionarItemTableView(UserDTO userDTO) {
         if (userDTO != null) {
             detailLabelNome.setText(userDTO.getName());
             detailLabelUser.setText(userDTO.getUsername());
-            detailLabelCreatedAt.setText(String.valueOf(userDTO.getCreated_at()));
-            detailLabelUpdatedAt.setText(String.valueOf(userDTO.getUpdated_at()));
+            detailLabelCreatedAt.setText(String.valueOf(userDTO.getCreated_at().format(dateTimeFormatter)));
+            detailLabelUpdatedAt.setText(String.valueOf(userDTO.getUpdated_at().format(dateTimeFormatter)));
         } else {
             detailLabelNome.setText("");
             detailLabelUser.setText("");

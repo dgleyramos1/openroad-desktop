@@ -1,8 +1,6 @@
 package com.openroad.api.user.controller.dtos;
 
-import java.time.LocalDateTime;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
+import java.time.LocalDate;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 /**
@@ -13,10 +11,8 @@ public class UserDTO {
     private String id;
     private String name;
     private String username;
-    @JsonFormat(pattern = "dd/MM/yyy")
-    private LocalDateTime created_at;
-    @JsonFormat(pattern = "dd/MM/yyy")
-    private LocalDateTime updated_at;
+    private LocalDate created_at;
+    private LocalDate updated_at;
 
     public String getId() {
         return id;
@@ -42,19 +38,19 @@ public class UserDTO {
         this.username = username;
     }
 
-    public LocalDateTime getCreated_at() {
+    public LocalDate getCreated_at() {
         return created_at;
     }
 
-    public void setCreated_at(LocalDateTime created_at) {
+    public void setCreated_at(LocalDate created_at) {
         this.created_at = created_at;
     }
 
-    public LocalDateTime getUpdated_at() {
+    public LocalDate getUpdated_at() {
         return updated_at;
     }
 
-    public void setUpdated_at(LocalDateTime updated_at) {
+    public void setUpdated_at(LocalDate updated_at) {
         this.updated_at = updated_at;
     }
 

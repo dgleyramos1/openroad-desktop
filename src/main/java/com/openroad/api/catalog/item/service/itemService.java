@@ -1,6 +1,6 @@
 package com.openroad.api.catalog.item.service;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -24,7 +24,7 @@ public class itemService {
     @Transactional
     public Item create(Item itemCreate) {
         itemCreate.setId(getUuid());
-        itemCreate.setCreated_at(LocalDateTime.now());
+        itemCreate.setCreated_at(LocalDate.now());
         itemCreate.setPrice(itemCreate.getProduct().getPrice() * itemCreate.getAmount());
         itemCreate.setDraft(true);
         itemCreate.setStatus(false);
@@ -43,7 +43,7 @@ public class itemService {
         Item item = findById(id);
         item.setDraft(false);
         item.setStatus(true);
-        item.setUpdated_at(LocalDateTime.now());
+        item.setUpdated_at(LocalDate.now());
         repository.save(item);
         return item;
     }
@@ -52,7 +52,7 @@ public class itemService {
     public Item delivered(String id) {
         Item item = findById(id);
         item.setStatus(false);
-        item.setUpdated_at(LocalDateTime.now());
+        item.setUpdated_at(LocalDate.now());
         repository.save(item);
         return item;
     }

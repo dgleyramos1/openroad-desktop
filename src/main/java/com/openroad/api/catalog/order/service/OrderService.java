@@ -1,6 +1,6 @@
 package com.openroad.api.catalog.order.service;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -25,7 +25,7 @@ public class OrderService {
     public Order create(Order orderCreate) {
         orderCreate.setId(getUuid());
         orderCreate.setStatus(true);
-        orderCreate.setCreated_at(LocalDateTime.now());
+        orderCreate.setCreated_at(LocalDate.now());
         orderCreate.setTotal(0.0);
         repository.save(orderCreate);
         return orderCreate;
@@ -46,7 +46,7 @@ public class OrderService {
     public Order update(String id, Order orderUpdate) {
         Order order = findByID(id);
         order.setTable(orderUpdate.getTable());
-        order.setUpdated_at(LocalDateTime.now());
+        order.setUpdated_at(LocalDate.now());
         repository.save(order);
         return order;
     }
@@ -55,7 +55,7 @@ public class OrderService {
     public Order finishOrder(String id) {
         Order order = findByID(id);
         order.setStatus(false);
-        order.setUpdated_at(LocalDateTime.now());
+        order.setUpdated_at(LocalDate.now());
         return order;
     }
 

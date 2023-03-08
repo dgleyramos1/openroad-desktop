@@ -1,6 +1,6 @@
 package com.openroad.api.catalog.category.service;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -29,7 +29,7 @@ public class CategoryService {
             throw new Error("Category exist!");
         }
         categoryCreate.setId(getUuid());
-        categoryCreate.setCreated_at(LocalDateTime.now());
+        categoryCreate.setCreated_at(LocalDate.now());
         repository.save(categoryCreate);
         return categoryCreate;
     }
@@ -58,7 +58,7 @@ public class CategoryService {
     public Category update(String id, Category categoryUpdate) {
         Category category = findById(id);
         category.setName(categoryUpdate.getName());
-        category.setUpdated_at(LocalDateTime.now());
+        category.setUpdated_at(LocalDate.now());
         repository.save(category);
         return category;
     }
