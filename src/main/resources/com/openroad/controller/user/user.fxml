@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="330.0" prefWidth="350.0" styleClass="anchor" stylesheets="@../../styles/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.openroad.controller.user.NovoUserController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="330.0" prefWidth="350.0" styleClass="anchor" stylesheets="@../../styles/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.openroad.controller.user.UserController">
    <children>
       <Group layoutX="30.0" layoutY="28.0" AnchorPane.rightAnchor="54.0" AnchorPane.topAnchor="30.0">
          <children>
@@ -18,7 +18,7 @@
                   <Font name="Fira Code Regular" size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="inputNovaAtedenteNome" layoutY="27.0" prefHeight="40.0" prefWidth="242.0" styleClass="input" stylesheets="@../../styles/login.css">
+            <TextField fx:id="inputAtedenteNome" layoutY="27.0" prefHeight="40.0" prefWidth="242.0" styleClass="input" stylesheets="@../../styles/login.css">
                <font>
                   <Font name="Fira Code Regular" size="14.0" />
                </font>
@@ -32,7 +32,7 @@
                   <Font name="Fira Code Regular" size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="inputNovaAtedenteUsuario" layoutY="26.0" prefHeight="40.0" prefWidth="242.0" styleClass="input" stylesheets="@../../styles/login.css">
+            <TextField fx:id="inputAtedenteUsuario" layoutY="26.0" prefHeight="40.0" prefWidth="242.0" styleClass="input" stylesheets="@../../styles/login.css">
                <font>
                   <Font name="Fira Code Regular" size="14.0" />
                </font>
@@ -46,7 +46,7 @@
                   <Font name="Fira Code Regular" size="14.0" />
                </font>
             </Label>
-            <PasswordField fx:id="inputNovaAtedenteSenha" layoutY="26.0" prefHeight="40.0" prefWidth="242.0" styleClass="input" stylesheets="@../../styles/login.css">
+            <PasswordField fx:id="inputAtedenteSenha" layoutY="26.0" prefHeight="40.0" prefWidth="242.0" styleClass="input" stylesheets="@../../styles/login.css">
                <font>
                   <Font name="Fira Code Regular" size="14.0" />
                </font>
@@ -55,12 +55,12 @@
       </Group>
       <Group layoutX="54.0" layoutY="256.0">
          <children>
-            <Button mnemonicParsing="false" onMouseClicked="#handleNovoUsuarioCancelar" prefHeight="30.0" prefWidth="110.0" styleClass="btn-app" text="Cancelar" textFill="WHITE">
+            <Button mnemonicParsing="false" onMouseClicked="#handleUsuarioCancelar" prefHeight="30.0" prefWidth="110.0" styleClass="btn-app" text="Cancelar" textFill="WHITE">
                <font>
                   <Font name="Fira Code Regular" size="14.0" />
                </font>
             </Button>
-            <Button layoutX="132.0" mnemonicParsing="false" onMouseClicked="#handleNovoUsuarioSalvar" prefHeight="30.0" prefWidth="110.0" styleClass="btn-app-salvar" text="Salvar" textFill="WHITE">
+            <Button layoutX="132.0" mnemonicParsing="false" onMouseClicked="#handleUsuarioSalvar" prefHeight="30.0" prefWidth="110.0" styleClass="btn-app-salvar" text="Salvar" textFill="WHITE">
                <font>
                   <Font name="Fira Code Regular" size="14.0" />
                </font>

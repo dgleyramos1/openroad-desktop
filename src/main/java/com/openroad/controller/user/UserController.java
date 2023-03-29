@@ -20,16 +20,16 @@ import javafx.stage.StageStyle;
 import net.rgielen.fxweaver.core.FxmlView;
 
 @Controller
-@FxmlView("criarNovoUser.fxml")
-public class NovoUserController implements Initializable {
+@FxmlView("user.fxml")
+public class UserController implements Initializable {
     @FXML
-    private TextField inputNovaAtedenteNome;
+    private TextField inputAtedenteNome;
 
     @FXML
-    private PasswordField inputNovaAtedenteSenha;
+    private PasswordField inputAtedenteSenha;
 
     @FXML
-    private TextField inputNovaAtedenteUsuario;
+    private TextField inputAtedenteUsuario;
 
     private UserCreateDTO userCreateDTO;
     private Boolean isButtonConfirmedClicked = false;
@@ -41,15 +41,15 @@ public class NovoUserController implements Initializable {
     private static Stage s;
 
     @FXML
-    void handleNovoUsuarioCancelar(MouseEvent event) {
+    void handleUsuarioCancelar(MouseEvent event) {
         dialogStage.close();
     }
 
     @FXML
-    void handleNovoUsuarioSalvar(MouseEvent event) {
-        userCreateDTO.setName(inputNovaAtedenteNome.getText());
-        userCreateDTO.setUsername(inputNovaAtedenteUsuario.getText());
-        userCreateDTO.setPassword(inputNovaAtedenteSenha.getText());
+    void handleUsuarioSalvar(MouseEvent event) {
+        userCreateDTO.setName(inputAtedenteNome.getText());
+        userCreateDTO.setUsername(inputAtedenteUsuario.getText());
+        userCreateDTO.setPassword(inputAtedenteSenha.getText());
 
         dialogStage.close();
         isButtonConfirmedClicked = true;
@@ -59,11 +59,12 @@ public class NovoUserController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         a = new Alert(AlertType.NONE);
-        a.initStyle(StageStyle.UNIFIED);
+        a.initStyle(StageStyle.UTILITY);
         dialogPane = a.getDialogPane();
         dialogPane.getStylesheets().add(
                 getClass().getResource("../../styles/myDialog.css").toExternalForm());
         dialogPane.getStyleClass().add("myDialog");
+
     }
 
     public UserCreateDTO getUserCreateDTO() {
@@ -72,6 +73,10 @@ public class NovoUserController implements Initializable {
 
     public void setUserCreateDTO(UserCreateDTO userCreateDTO) {
         this.userCreateDTO = userCreateDTO;
+        if (userCreateDTO != null) {
+            inputAtedenteNome.setText(userCreateDTO.getName());
+            inputAtedenteUsuario.setText(userCreateDTO.getUsername());
+        }
     }
 
     public Boolean getIsButtonConfirmedClicked() {

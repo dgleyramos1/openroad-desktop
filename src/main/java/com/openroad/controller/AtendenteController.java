@@ -11,7 +11,7 @@ import com.openroad.ApplicationFX;
 import com.openroad.api.user.controller.AdminController;
 import com.openroad.api.user.controller.dtos.UserCreateDTO;
 import com.openroad.api.user.controller.dtos.UserDTO;
-import com.openroad.controller.user.NovoUserController;
+import com.openroad.controller.user.UserController;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -64,14 +64,14 @@ public class AtendenteController {
     Alert alert;
     DialogPane dialogPane;
 
-    DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
     @FXML
-    void handleAdicionarDeletarAtendente(MouseEvent event) {
+    void handleDeletarAtendente(MouseEvent event) {
         var user = tableViewUsers.getSelectionModel().getSelectedItem();
         if (user == null) {
             alert.setAlertType(AlertType.ERROR);
-            alert.setContentText("Selecione um usuário na tabela, para poder deletar!");
+            alert.setContentText("Selecione um usuário na tabela!");
             alert.show();
             return;
         }
@@ -87,23 +87,37 @@ public class AtendenteController {
     }
 
     @FXML
-    void handleAdicionarEditarAtendente(MouseEvent event) {
-
+    void handleEditarAtendente(MouseEvent event) throws IOException {
+        UserDTO userDTO = tableViewUsers.getSelectionModel().getSelectedItem();
+        if (userDTO == null) {
+            alert.setAlertType(AlertType.ERROR);
+            alert.setContentText("Selecione um usuário na tabela!");
+            alert.show();
+            return;
+        }
+        UserCreateDTO user = new UserCreateDTO();
+        user.setName(userDTO.getName());
+        user.setUsername(userDTO.getUsername());
+        Boolean confirmedButton = showFXMLUsuario(user);
+        if (confirmedButton) {
+            adminController.update(userDTO.getId(), user);
+            carregarTabViewAtendentes();
+        }
     }
 
     @FXML
-    void handleAdicionarNovoAtendente(MouseEvent event) throws IOException {
+    void handleAdicionarAtendente(MouseEvent event) throws IOException {
         UserCreateDTO user = new UserCreateDTO();
-        Boolean confirmedButton = showFXMLNovoUsuario(user);
+        Boolean confirmedButton = showFXMLUsuario(user);
         if (confirmedButton) {
             adminController.create(user);
             carregarTabViewAtendentes();
         }
     }
 
-    private Boolean showFXMLNovoUsuario(UserCreateDTO user) throws IOException {
+    private Boolean showFXMLUsuario(UserCreateDTO user) throws IOException {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(NovoUserController.class.getResource("criarNovoUser.fxml"));
+        loader.setLocation(UserController.class.getResource("user.fxml"));
         AnchorPane page = (AnchorPane) loader.load();
 
         // Criando um Estágio de Diálogo (Stage Dialog)
@@ -114,7 +128,7 @@ public class AtendenteController {
         dialogStage.setResizable(false);
 
         // Setando o cliente no Controller.
-        NovoUserController controller = loader.getController();
+        UserController controller = loader.getController();
         controller.setDialogStage(dialogStage);
         controller.setUserCreateDTO(user);
 

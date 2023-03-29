@@ -107,17 +107,17 @@
          <bottom>
             <ButtonBar nodeOrientation="LEFT_TO_RIGHT" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
               <buttons>
-                <Button mnemonicParsing="false" onMouseClicked="#handleAdicionarNovoAtendente" styleClass="btn-app" stylesheets="@../styles/style.css" text="Inserir" textFill="WHITE">
+                <Button mnemonicParsing="false" onMouseClicked="#handleAdicionarAtendente" styleClass="btn-app" stylesheets="@../styles/style.css" text="Inserir" textFill="WHITE">
                      <font>
                         <Font name="Fira Code Regular" size="14.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" onMouseClicked="#handleAdicionarEditarAtendente" styleClass="btn-app" stylesheets="@../styles/style.css" text="Editar" textFill="WHITE">
+                  <Button mnemonicParsing="false" onMouseClicked="#handleEditarAtendente" styleClass="btn-app" stylesheets="@../styles/style.css" text="Editar" textFill="WHITE">
                      <font>
                         <Font name="Fira Code Regular" size="14.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" onMouseClicked="#handleAdicionarDeletarAtendente" styleClass="btn, delete" text="Deletar" textFill="WHITE">
+                  <Button mnemonicParsing="false" onMouseClicked="#handleDeletarAtendente" styleClass="btn, delete" text="Deletar" textFill="WHITE">
                      <font>
                         <Font name="Fira Code Regular" size="14.0" />
                      </font>
