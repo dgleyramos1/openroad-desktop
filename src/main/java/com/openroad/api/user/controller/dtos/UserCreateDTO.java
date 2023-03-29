@@ -7,14 +7,8 @@ public class UserCreateDTO {
     private String name;
     private String username;
     private String password;
-    private String role;
 
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
+    public UserCreateDTO() {
     }
 
     public String getUsername() {

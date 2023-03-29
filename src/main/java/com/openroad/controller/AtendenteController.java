@@ -1,6 +1,7 @@
 package com.openroad.controller;
 
 import java.io.IOException;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,18 +9,22 @@ import org.springframework.stereotype.Controller;
 
 import com.openroad.ApplicationFX;
 import com.openroad.api.user.controller.AdminController;
+import com.openroad.api.user.controller.dtos.UserCreateDTO;
 import com.openroad.api.user.controller.dtos.UserDTO;
+import com.openroad.controller.user.NovoUserController;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import net.rgielen.fxweaver.core.FxmlView;
 
 @Controller
@@ -52,8 +57,49 @@ public class AtendenteController {
     @Autowired
     private AdminController adminController;
 
+    DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
     @FXML
-    void handleAdicionarNovoAtendente(ActionEvent event) {
+    void handleAdicionarDeletarAtendente(MouseEvent event) {
+
+    }
+
+    @FXML
+    void handleAdicionarEditarAtendente(MouseEvent event) {
+
+    }
+
+    @FXML
+    void handleAdicionarNovoAtendente(MouseEvent event) throws IOException {
+        UserCreateDTO user = new UserCreateDTO();
+        Boolean confirmedButton = showFXMLNovoUsuario(user);
+        if (confirmedButton) {
+            adminController.create(user);
+            carregarTabViewAtendentes();
+        }
+    }
+
+    private Boolean showFXMLNovoUsuario(UserCreateDTO user) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(NovoUserController.class.getResource("criarNovoUser.fxml"));
+        AnchorPane page = (AnchorPane) loader.load();
+
+        // Criando um Estágio de Diálogo (Stage Dialog)
+        Stage dialogStage = new Stage();
+        dialogStage.setTitle("Cadastro de usuários");
+        Scene scene = new Scene(page);
+        dialogStage.setScene(scene);
+        dialogStage.setResizable(false);
+
+        // Setando o cliente no Controller.
+        NovoUserController controller = loader.getController();
+        controller.setDialogStage(dialogStage);
+        controller.setUserCreateDTO(user);
+
+        // Mostra o Dialog e espera até que o usuário o feche
+        dialogStage.showAndWait();
+
+        return controller.getIsButtonConfirmedClicked();
 
     }
 
@@ -74,14 +120,15 @@ public class AtendenteController {
 
         tableViewUsers.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> selecionarItemTableView(newValue));
+
     }
 
     private void selecionarItemTableView(UserDTO userDTO) {
         if (userDTO != null) {
             detailLabelNome.setText(userDTO.getName());
             detailLabelUser.setText(userDTO.getUsername());
-            detailLabelCreatedAt.setText(String.valueOf(userDTO.getCreated_at()));
-            detailLabelUpdatedAt.setText(String.valueOf(userDTO.getUpdated_at()));
+            detailLabelCreatedAt.setText(String.valueOf(userDTO.getCreated_at().format(dateTimeFormatter)));
+            detailLabelUpdatedAt.setText(String.valueOf(userDTO.getUpdated_at().format(dateTimeFormatter)));
         } else {
             detailLabelNome.setText("");
             detailLabelUser.setText("");

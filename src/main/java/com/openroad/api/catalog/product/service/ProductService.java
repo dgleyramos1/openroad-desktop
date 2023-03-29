@@ -1,6 +1,6 @@
 package com.openroad.api.catalog.product.service;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -24,7 +24,7 @@ public class ProductService {
     @Transactional
     public Product create(Product productCreate) {
         productCreate.setId(getUuid());
-        productCreate.setCreated_at(LocalDateTime.now());
+        productCreate.setCreated_at(LocalDate.now());
         repository.save(productCreate);
         System.out.println(productCreate);
         return productCreate;
@@ -61,7 +61,7 @@ public class ProductService {
         product.setName(productUpdate.getName());
         product.setDescription(productUpdate.getDescription());
         product.setPrice(productUpdate.getPrice());
-        product.setUpdated_at(LocalDateTime.now());
+        product.setUpdated_at(LocalDate.now());
         repository.save(product);
         return product;
     }

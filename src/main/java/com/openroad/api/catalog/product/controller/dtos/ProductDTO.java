@@ -1,8 +1,7 @@
 package com.openroad.api.catalog.product.controller.dtos;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -11,11 +10,8 @@ public class ProductDTO {
     private String name;
     private String description;
     private Double price;
-
-    @JsonFormat(pattern = "dd/MM/yyy")
-    private LocalDateTime created_at;
-    @JsonFormat(pattern = "dd/MM/yyy")
-    private LocalDateTime updated_at;
+    private LocalDate created_at;
+    private LocalDate updated_at;
 
     public String getId() {
         return id;
@@ -41,19 +37,19 @@ public class ProductDTO {
         this.description = description;
     }
 
-    public LocalDateTime getCreated_at() {
+    public LocalDate getCreated_at() {
         return created_at;
     }
 
-    public void setCreated_at(LocalDateTime created_at) {
+    public void setCreated_at(LocalDate created_at) {
         this.created_at = created_at;
     }
 
-    public LocalDateTime getUpdated_at() {
+    public LocalDate getUpdated_at() {
         return updated_at;
     }
 
-    public void setUpdated_at(LocalDateTime updated_at) {
+    public void setUpdated_at(LocalDate updated_at) {
         this.updated_at = updated_at;
     }
 

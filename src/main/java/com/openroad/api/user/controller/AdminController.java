@@ -55,12 +55,11 @@ public class AdminController {
      * @return Cria novo usuário e salva no banco de dados depois retorna um DTO com
      *         os dados desse usuário
      */
-    @PostMapping("/create")
-    public ResponseEntity<UserDTO> create(@RequestBody UserCreateDTO dto) {
+    public UserDTO create(@RequestBody UserCreateDTO dto) {
         User userCreate = userMapper.toUserCreate(dto);
         User user = userService.create(userCreate);
         UserDTO result = userMapper.toUserDTO(user);
-        return ResponseEntity.status(HttpStatus.CREATED).body(result);
+        return result;
     }
 
     /**

@@ -1,7 +1,6 @@
 package com.openroad.controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -9,8 +8,6 @@ import org.springframework.stereotype.Controller;
 
 import com.openroad.ApplicationFX;
 import com.openroad.api.user.controller.AdminController;
-import com.openroad.api.user.exception.UserNotFoundException;
-import com.openroad.api.user.exception.UsernameNotFoundException;
 import com.openroad.api.user.model.User;
 
 import javafx.fxml.FXML;
@@ -19,14 +16,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DialogPane;
-import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import net.bytebuddy.asm.Advice.Thrown;
 import net.rgielen.fxweaver.core.FxmlView;
 
 @Controller
@@ -95,4 +90,5 @@ public class Login {
         stage.show();
         s = stage;
     }
+
 }

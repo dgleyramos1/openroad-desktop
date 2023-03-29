@@ -1,6 +1,6 @@
 package com.openroad.api.user.service;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -10,7 +10,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.openroad.api.user.controller.dtos.UserDTO;
 import com.openroad.api.user.exception.UserNotFoundException;
 import com.openroad.api.user.model.User;
 import com.openroad.api.user.repository.UserRepository;
@@ -49,7 +48,8 @@ public class UserService {
         }
         userCreate.setId(getUuid());
         userCreate.setPassword(encoder.encode(userCreate.getPassword()));
-        userCreate.setCreated_at(LocalDateTime.now());
+        userCreate.setCreated_at(LocalDate.now());
+        userCreate.setUpdated_at(LocalDate.now());
         userRepository.save(userCreate);
         return userCreate;
     }
@@ -94,9 +94,8 @@ public class UserService {
         User user = findById(id);
         user.setName(userCreate.getName());
         user.setPassword(encoder.encode(userCreate.getPassword()));
-        user.setRole(userCreate.getRole());
         user.setUsername(userCreate.getUsername());
-        user.setUpdated_at(LocalDateTime.now());
+        user.setUpdated_at(LocalDate.now());
         return user;
     }
 
