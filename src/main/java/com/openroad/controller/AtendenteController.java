@@ -18,6 +18,9 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -25,6 +28,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import net.rgielen.fxweaver.core.FxmlView;
 
 @Controller
@@ -57,11 +61,29 @@ public class AtendenteController {
     @Autowired
     private AdminController adminController;
 
+    Alert alert;
+    DialogPane dialogPane;
+
     DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     @FXML
     void handleAdicionarDeletarAtendente(MouseEvent event) {
-
+        var user = tableViewUsers.getSelectionModel().getSelectedItem();
+        if (user == null) {
+            alert.setAlertType(AlertType.ERROR);
+            alert.setContentText("Selecione um usuário na tabela, para poder deletar!");
+            alert.show();
+            return;
+        }
+        if (adminController.findAll().size() == 1) {
+            alert.setAlertType(AlertType.WARNING);
+            alert.setHeaderText("Você tem que deixar pelo menos um usuário");
+            alert.setContentText("Adicione outro para poder excluir esse!");
+            alert.show();
+            return;
+        }
+        adminController.delete(user.getId());
+        carregarTabViewAtendentes();
     }
 
     @FXML
@@ -120,6 +142,13 @@ public class AtendenteController {
 
         tableViewUsers.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> selecionarItemTableView(newValue));
+
+        alert = new Alert(AlertType.NONE);
+        alert.initStyle(StageStyle.UNIFIED);
+        dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add(
+                getClass().getResource("../styles/myDialog.css").toExternalForm());
+        dialogPane.getStyleClass().add("myDialog");
 
     }
 

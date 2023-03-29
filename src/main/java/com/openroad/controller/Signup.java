@@ -2,14 +2,20 @@ package com.openroad.controller;
 
 import java.io.IOException;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import com.openroad.ApplicationFX;
+import com.openroad.api.user.controller.AdminController;
+import com.openroad.api.user.controller.dtos.UserCreateDTO;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -32,9 +38,38 @@ public class Signup {
 
     private static Stage s;
 
-    @FXML
-    void handleSignup(MouseEvent event) {
+    @Autowired
+    private AdminController controller;
 
+    Alert a;
+    DialogPane dialogPane;
+
+    @FXML
+    void initialize() {
+        a = new Alert(AlertType.NONE);
+        a.initStyle(StageStyle.UNIFIED);
+        dialogPane = a.getDialogPane();
+        dialogPane.getStylesheets().add(
+                getClass().getResource("../styles/myDialog.css").toExternalForm());
+        dialogPane.getStyleClass().add("myDialog");
+    }
+
+    @FXML
+    void handleSignup(MouseEvent event) throws IOException {
+        if (inputName.getText() == "" || inputPassword.getText() == "" || inputUsername.getText() == "") {
+            a.setAlertType(AlertType.ERROR);
+            a.setHeaderText("Erro");
+            a.setContentText("Todos os campos são obrigatórios!");
+            a.show();
+            return;
+        }
+        UserCreateDTO user = new UserCreateDTO();
+        user.setName(inputName.getText());
+        user.setUsername(inputUsername.getText());
+        user.setPassword(inputPassword.getText());
+        controller.create(user);
+        s.close();
+        PrincipalController.loadView();
     }
 
     public static void signup(Stage stage) throws IOException {
