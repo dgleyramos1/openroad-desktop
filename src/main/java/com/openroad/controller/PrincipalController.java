@@ -23,14 +23,9 @@ public class PrincipalController {
     private AnchorPane anchorPane;
 
     @FXML
-    public void handleAnchoPaneAtendentes(ActionEvent event) throws IOException {
+    public void handleAnchoPaneAtendente(ActionEvent event) throws IOException {
         // anchorPane.getChildren().clear();
-        primaryScene();
-    }
-
-    @FXML
-    void initialize() {
-        primaryScene();
+        atentendeScene();
     }
 
     public static void loadView() throws IOException {
@@ -47,7 +42,7 @@ public class PrincipalController {
         stage.show();
     }
 
-    public void primaryScene() {
+    public void atentendeScene() {
         AnchorPane a = AtendenteController.setAnchorPane(anchorPane);
         anchorPane.setTopAnchor(a, 0.0);
         anchorPane.setBottomAnchor(a, 0.0);

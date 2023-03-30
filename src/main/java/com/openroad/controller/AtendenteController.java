@@ -64,7 +64,7 @@ public class AtendenteController {
     Alert alert;
     DialogPane dialogPane;
 
-    DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+    DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     @FXML
     void handleDeletarAtendente(MouseEvent event) {

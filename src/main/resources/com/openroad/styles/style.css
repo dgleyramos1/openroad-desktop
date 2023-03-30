@@ -8,18 +8,35 @@
 .menu{
     -fx-background-color: -fx-color-border;
 }
-
-.menu-item{
-    -fx-text-fill: white;
-    -fx-transition: all 3ms ease-in-out;
+#menu-item{
+    -fx-padding: 4px 10px;
     -fx-border-width: 0px 2px 0px 0px;
     -fx-border-color: -fx-secundary-color;
-    
+    -fx-text-fill: white;
+    -fx-background-color: -fx-color-border;
 }
 
-.menu-item:hover{
-    -fx-text-fill: -fx-input-background;
+#menu-item:hover{
+    -fx-background-color: -fx-input-background;
     -fx-cursor: HAND;
+}
+
+#menu-item .label{
+    -fx-text-fill: white;
+}
+#menu-item .label:hover{
+    -fx-text-fill: white;
+    -fx-background-color: -fx-input-background;
+    -fx-cursor: HAND;
+}
+
+.context-menu {
+    -fx-text-fill: white;
+    -fx-background-color: -fx-color-border;
+    -fx-background-insets: 0.0, 1.0, 2.0;
+    -fx-background-radius: 0px;
+    -fx-padding: 10px; 
+    -fx-opacity: 0.9;
 }
 
 .btn-app{
