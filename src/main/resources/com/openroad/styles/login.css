@@ -4,6 +4,7 @@
 
 
 .input{
+    -fx-min-width: 100%;
     -fx-background-color: #101026;
     -fx-border-color: #8A8A8A;
     -fx-border-width: 1px;

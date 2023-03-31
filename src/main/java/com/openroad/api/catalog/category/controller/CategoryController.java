@@ -46,6 +46,10 @@ public class CategoryController {
         return ResponseEntity.ok(result);
     }
 
+    public List<CategoryDTO> listCategories() {
+        return mapper.toCategoryListDTO(service.findAll());
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<CategoryDTO> findById(@PathVariable String id) {
         Category category = service.findById(id);

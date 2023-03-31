@@ -16,7 +16,7 @@
           <Menu id="menu-item" mnemonicParsing="false" text="Inicio">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#handleAnchoPaneAtendente" styleClass="label" text="Funcionarios" />
-                  <MenuItem mnemonicParsing="false" styleClass="label" text="Categorias" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleAnchoPaneCategory" styleClass="label" text="Categorias" />
                   <MenuItem mnemonicParsing="false" styleClass="label" text="Produtos" />
                   <MenuItem mnemonicParsing="false" styleClass="label" text="Fechar" />
             </items>
