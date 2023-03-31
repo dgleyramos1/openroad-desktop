@@ -19,6 +19,10 @@ public class CategoryMapper {
         return MODEL_MAPPER.map(category, CategoryDTO.class);
     }
 
+    public Category toCategory(CategoryDTO dto) {
+        return MODEL_MAPPER.map(dto, Category.class);
+    }
+
     public List<CategoryDTO> toCategoryListDTO(List<Category> list) {
         return list.stream().map(this::toCategoryDTO).collect(Collectors.toList());
     }

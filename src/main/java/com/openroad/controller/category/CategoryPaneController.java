@@ -10,11 +10,15 @@ import com.openroad.ApplicationFX;
 import com.openroad.api.catalog.category.controller.CategoryController;
 import com.openroad.api.catalog.category.controller.dtos.CategoryDTO;
 import com.openroad.utils.AlertDialog;
-
+import javafx.event.EventHandler;
+import javafx.application.Platform;
+import javafx.beans.Observable;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TableColumn;
@@ -23,7 +27,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.stage.WindowEvent;
 import net.rgielen.fxweaver.core.FxmlView;
 
 @Controller
@@ -74,19 +80,32 @@ public class CategoryPaneController {
         carregarTabViewCategories();
         a = new Alert(AlertType.NONE);
         a.initStyle(StageStyle.UNIFIED);
+
+        tableViewCategory.getSelectionModel().selectedItemProperty()
+                .addListener((observable, oldValue, newValue) -> {
+                    selecionarCategoria(newValue);
+                });
+    }
+
+    private void selecionarCategoria(CategoryDTO dto) {
+        try {
+            Boolean confirmedButton = showFXMLCategory(dto);
+            if (confirmedButton) {
+                controller.update(dto.getId(), dto);
+            }
+            carregarTabViewCategories();
+        } catch (IOException e) {
+            throw new Error("Erro no catch: " + e.getMessage());
+        } finally {
+        }
     }
 
     private void carregarTabViewCategories() {
         tableColumnName.setCellValueFactory(new PropertyValueFactory<>("name"));
         tableColumnCreatedAt.setCellValueFactory(new PropertyValueFactory<>("created_at"));
         tableColumnUpdatedAt.setCellValueFactory(new PropertyValueFactory<>("updated_at"));
-        tableColumnProducts.setCellValueFactory(new PropertyValueFactory<>("qtdProducts"));
 
         list = controller.listCategories();
-
-        for (int i = 0; i < list.size(); i++) {
-            list.get(i).setQtdProducts(list.get(i).getProducts().size());
-        }
         observableList = FXCollections.observableArrayList(list);
 
         tableViewCategory.setItems(observableList);
@@ -103,5 +122,26 @@ public class CategoryPaneController {
             new IOException("Error " + ex.getMessage());
         }
         return pane;
+    }
+
+    private Boolean showFXMLCategory(CategoryDTO category) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(CategoryPopupController.class.getResource("categoryPopup.fxml"));
+        AnchorPane page = (AnchorPane) loader.load();
+
+        // Criando um Estágio de Diálogo (Stage Dialog)
+        Stage dialogStage = new Stage();
+        dialogStage.setTitle("Categoria");
+        Scene scene = new Scene(page);
+        dialogStage.setScene(scene);
+        dialogStage.setResizable(false);
+
+        // Setando o cliente no Controller.
+        CategoryPopupController controller = loader.getController();
+        controller.setDialogStage(dialogStage);
+        controller.setCategoryDTO(category);
+        controller.show();
+
+        return controller.getIsButtonConfirmedClicked();
     }
 }

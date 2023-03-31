@@ -133,7 +133,6 @@ public class AtendenteController {
         dialogStage.showAndWait();
 
         return controller.getIsButtonConfirmedClicked();
-
     }
 
     private void carregarTabViewAtendentes() {

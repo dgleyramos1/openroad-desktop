@@ -15,15 +15,6 @@ public class CategoryDTO {
     private LocalDate created_at;
     private LocalDate updated_at;
     private List<ProductDTO> products;
-    private int qtdProducts;
-
-    public void setQtdProducts(int qtdProducts) {
-        this.qtdProducts = qtdProducts;
-    }
-
-    public int getQtdProducts() {
-        return this.qtdProducts;
-    }
 
     public String getId() {
         return id;

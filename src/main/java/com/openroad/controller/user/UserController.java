@@ -38,8 +38,6 @@ public class UserController implements Initializable {
     Alert a;
     private AlertDialog dialog = new AlertDialog();
 
-    private static Stage s;
-
     @FXML
     void handleUsuarioCancelar(MouseEvent event) {
         dialogStage.close();

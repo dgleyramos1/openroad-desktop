@@ -55,12 +55,11 @@ public class CategoryService {
     }
 
     @Transactional
-    public Category update(String id, Category categoryUpdate) {
+    public void update(String id, Category categoryUpdate) {
         Category category = findById(id);
         category.setName(categoryUpdate.getName());
         category.setUpdated_at(LocalDate.now());
         repository.save(category);
-        return category;
     }
 
     private String getUuid() {
