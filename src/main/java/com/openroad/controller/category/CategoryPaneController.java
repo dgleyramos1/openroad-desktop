@@ -1,7 +1,12 @@
 package com.openroad.controller.category;
 
+import java.beans.EventHandler;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,19 +15,21 @@ import com.openroad.ApplicationFX;
 import com.openroad.api.catalog.category.controller.CategoryController;
 import com.openroad.api.catalog.category.controller.dtos.CategoryDTO;
 import com.openroad.utils.AlertDialog;
-import javafx.event.EventHandler;
-import javafx.application.Platform;
+
 import javafx.beans.Observable;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
@@ -57,8 +64,9 @@ public class CategoryPaneController {
     @Autowired
     private CategoryController controller;
 
-    private List<CategoryDTO> list;
+    private List<CategoryDTO> list = new ArrayList<>();
     private ObservableList<CategoryDTO> observableList;
+    Stage dialogStage;
 
     Alert a;
     private AlertDialog dialog = new AlertDialog();
@@ -80,24 +88,39 @@ public class CategoryPaneController {
         carregarTabViewCategories();
         a = new Alert(AlertType.NONE);
         a.initStyle(StageStyle.UNIFIED);
+        dialogStage = new Stage();
 
-        tableViewCategory.getSelectionModel().selectedItemProperty()
-                .addListener((observable, oldValue, newValue) -> {
-                    selecionarCategoria(newValue);
-                });
+        tableViewCategory.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            selecionarCategoria(observable.getValue());
+        });
+
+        dialogStage.setOnCloseRequest(event -> {
+            if (dialogStage.isShowing()) {
+                event.consume();
+                dialogStage.hide();
+            }
+        });
+
     }
 
     private void selecionarCategoria(CategoryDTO dto) {
         try {
-            Boolean confirmedButton = showFXMLCategory(dto);
-            if (confirmedButton) {
+            CategoryPopupController controllerCategory = showFXMLCategory(dto);
+            if (controllerCategory.getIsButtonConfirmedClicked()) {
+                if (controllerCategory.getIsDelete()) {
+                    controller.delete(dto.getId());
+                    carregarTabViewCategories();
+                    return;
+                }
                 controller.update(dto.getId(), dto);
+                return;
             }
             carregarTabViewCategories();
+
         } catch (IOException e) {
-            throw new Error("Erro no catch: " + e.getMessage());
-        } finally {
+            e.printStackTrace();
         }
+
     }
 
     private void carregarTabViewCategories() {
@@ -124,13 +147,13 @@ public class CategoryPaneController {
         return pane;
     }
 
-    private Boolean showFXMLCategory(CategoryDTO category) throws IOException {
+    private CategoryPopupController showFXMLCategory(CategoryDTO category) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(CategoryPopupController.class.getResource("categoryPopup.fxml"));
         AnchorPane page = (AnchorPane) loader.load();
 
         // Criando um Estágio de Diálogo (Stage Dialog)
-        Stage dialogStage = new Stage();
+
         dialogStage.setTitle("Categoria");
         Scene scene = new Scene(page);
         dialogStage.setScene(scene);
@@ -140,8 +163,8 @@ public class CategoryPaneController {
         CategoryPopupController controller = loader.getController();
         controller.setDialogStage(dialogStage);
         controller.setCategoryDTO(category);
-        controller.show();
+        dialogStage.showAndWait();
 
-        return controller.getIsButtonConfirmedClicked();
+        return controller;
     }
 }

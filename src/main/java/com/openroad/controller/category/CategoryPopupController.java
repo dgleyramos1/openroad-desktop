@@ -1,9 +1,7 @@
 package com.openroad.controller.category;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import com.openroad.api.catalog.category.controller.CategoryController;
 import com.openroad.api.catalog.category.controller.dtos.CategoryDTO;
 
 import javafx.fxml.FXML;
@@ -22,19 +20,15 @@ public class CategoryPopupController {
     private CategoryDTO categoryDTO;
 
     private Boolean isButtonConfirmedClicked = false;
+    private Boolean isDelete = false;
+
     private Stage dialogStage;
-
-    @Autowired
-    private CategoryController controller;
-
-    public void show() {
-        dialogStage.showAndWait();
-    }
 
     @FXML
     void handleCategoryDelete(MouseEvent event) {
-        controller.delete(categoryDTO.getId());
         dialogStage.close();
+        isButtonConfirmedClicked = true;
+        isDelete = true;
     }
 
     @FXML
@@ -69,5 +63,9 @@ public class CategoryPopupController {
 
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
+    }
+
+    public Boolean getIsDelete() {
+        return isDelete;
     }
 }
