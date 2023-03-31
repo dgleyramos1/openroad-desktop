@@ -6,11 +6,11 @@ import java.util.ResourceBundle;
 import org.springframework.stereotype.Controller;
 
 import com.openroad.api.user.controller.dtos.UserCreateDTO;
+import com.openroad.utils.AlertDialog;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
-import javafx.scene.control.DialogPane;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
@@ -36,7 +36,7 @@ public class UserController implements Initializable {
     private Stage dialogStage;
 
     Alert a;
-    DialogPane dialogPane;
+    private AlertDialog dialog = new AlertDialog();
 
     private static Stage s;
 
@@ -47,6 +47,12 @@ public class UserController implements Initializable {
 
     @FXML
     void handleUsuarioSalvar(MouseEvent event) {
+        if (inputAtedenteNome.getText().isEmpty() || inputAtedenteUsuario.getText().isEmpty()
+                || inputAtedenteSenha.getText().isEmpty()) {
+            dialog.alert(a, AlertType.ERROR, "Alerta de erro", "Campos obrigatórios",
+                    "Por favor, preencha todos os campos!");
+            return;
+        }
         userCreateDTO.setName(inputAtedenteNome.getText());
         userCreateDTO.setUsername(inputAtedenteUsuario.getText());
         userCreateDTO.setPassword(inputAtedenteSenha.getText());
@@ -60,11 +66,6 @@ public class UserController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         a = new Alert(AlertType.NONE);
         a.initStyle(StageStyle.UTILITY);
-        dialogPane = a.getDialogPane();
-        dialogPane.getStylesheets().add(
-                getClass().getResource("../../styles/myDialog.css").toExternalForm());
-        dialogPane.getStyleClass().add("myDialog");
-
     }
 
     public UserCreateDTO getUserCreateDTO() {

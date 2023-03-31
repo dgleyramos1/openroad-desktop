@@ -1,7 +1,6 @@
 package com.openroad.controller.category;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,17 +9,21 @@ import org.springframework.stereotype.Controller;
 import com.openroad.ApplicationFX;
 import com.openroad.api.catalog.category.controller.CategoryController;
 import com.openroad.api.catalog.category.controller.dtos.CategoryDTO;
+import com.openroad.utils.AlertDialog;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.StageStyle;
 import net.rgielen.fxweaver.core.FxmlView;
 
 @Controller
@@ -51,12 +54,16 @@ public class CategoryPaneController {
     private List<CategoryDTO> list;
     private ObservableList<CategoryDTO> observableList;
 
+    Alert a;
+    private AlertDialog dialog = new AlertDialog();
+
     @FXML
     void handleNewCategory(MouseEvent event) {
         if (inputCategoryName.getText().isEmpty()) {
+            dialog.alert(a, AlertType.ERROR, "Alerta de erro!", "Campo obrigatório",
+                    "Por favor, preencha todos os campos!");
             return;
         }
-
         controller.createCategory(inputCategoryName.getText());
         carregarTabViewCategories();
         inputCategoryName.setText("");
@@ -65,6 +72,8 @@ public class CategoryPaneController {
     @FXML
     void initialize() {
         carregarTabViewCategories();
+        a = new Alert(AlertType.NONE);
+        a.initStyle(StageStyle.UNIFIED);
     }
 
     private void carregarTabViewCategories() {

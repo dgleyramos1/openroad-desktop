@@ -12,6 +12,7 @@ import com.openroad.api.user.controller.AdminController;
 import com.openroad.api.user.controller.dtos.UserCreateDTO;
 import com.openroad.api.user.controller.dtos.UserDTO;
 import com.openroad.controller.user.UserController;
+import com.openroad.utils.AlertDialog;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -62,7 +63,7 @@ public class AtendenteController {
     private AdminController adminController;
 
     Alert alert;
-    DialogPane dialogPane;
+    private AlertDialog dialog = new AlertDialog();
 
     DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
@@ -70,16 +71,13 @@ public class AtendenteController {
     void handleDeletarAtendente(MouseEvent event) {
         var user = tableViewUsers.getSelectionModel().getSelectedItem();
         if (user == null) {
-            alert.setAlertType(AlertType.ERROR);
-            alert.setContentText("Selecione um usuário na tabela!");
-            alert.show();
+            dialog.alert(alert, AlertType.ERROR, "Alerta de erro!", "Selecione usuário",
+                    "Por favor, você precisa selecionar um usuário!");
             return;
         }
         if (adminController.findAll().size() == 1) {
-            alert.setAlertType(AlertType.WARNING);
-            alert.setHeaderText("Você tem que deixar pelo menos um usuário");
-            alert.setContentText("Adicione outro para poder excluir esse!");
-            alert.show();
+            dialog.alert(alert, AlertType.WARNING, "Alerta de perigo", "VOcê não pode excluir",
+                    "É necessario ter pelo menos um usuário");
             return;
         }
         adminController.delete(user.getId());
@@ -90,9 +88,8 @@ public class AtendenteController {
     void handleEditarAtendente(MouseEvent event) throws IOException {
         UserDTO userDTO = tableViewUsers.getSelectionModel().getSelectedItem();
         if (userDTO == null) {
-            alert.setAlertType(AlertType.ERROR);
-            alert.setContentText("Selecione um usuário na tabela!");
-            alert.show();
+            dialog.alert(alert, AlertType.ERROR, "Alerta de erro!", "Selecione usuário",
+                    "Você precisa selecionar um usuário na tabela");
             return;
         }
         UserCreateDTO user = new UserCreateDTO();
@@ -159,11 +156,6 @@ public class AtendenteController {
 
         alert = new Alert(AlertType.NONE);
         alert.initStyle(StageStyle.UNIFIED);
-        dialogPane = alert.getDialogPane();
-        dialogPane.getStylesheets().add(
-                getClass().getResource("../styles/myDialog.css").toExternalForm());
-        dialogPane.getStyleClass().add("myDialog");
-
     }
 
     private void selecionarItemTableView(UserDTO userDTO) {

@@ -10,7 +10,7 @@
 
 <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="anchor" stylesheets="@../../styles/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.openroad.controller.category.CategoryPaneController">
    <children>
-      <SplitPane dividerPositions="0.0" focusTraversable="false" layoutY="8.0" pickOnBounds="false" prefHeight="40.0" snapToPixel="false" style="-fx-background-color: transparet;" stylesheets="@../../styles/category.css" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+      <SplitPane dividerPositions="0.0" focusTraversable="false" layoutY="8.0" pickOnBounds="false" snapToPixel="false" style="-fx-background-color: transparet;" stylesheets="@../../styles/category.css" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
         <items>
             <TextField fx:id="inputCategoryName" focusTraversable="false" prefHeight="28.0" prefWidth="408.0" snapToPixel="false" styleClass="input" stylesheets="@../../styles/login.css">
                <font>
@@ -24,7 +24,7 @@
             </Button>
         </items>
       </SplitPane>
-      <TableView fx:id="tableViewCategory" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="60.0">
+      <TableView fx:id="tableViewCategory" focusTraversable="false" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="60.0">
         <columns>
           <TableColumn fx:id="tableColumnName" prefWidth="75.0" text="Nome" />
           <TableColumn fx:id="tableColumnCreatedAt" prefWidth="75.0" text="Data de criação" />

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import com.openroad.ApplicationFX;
 import com.openroad.api.user.controller.AdminController;
 import com.openroad.api.user.model.User;
+import com.openroad.utils.AlertDialog;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -42,27 +43,21 @@ public class Login {
     private static Stage s;
 
     Alert a;
-    DialogPane dialogPane;
+
+    private AlertDialog dialog = new AlertDialog();
 
     @FXML
     void handleLogin(MouseEvent event) throws IOException {
         User exists = controller.findByUsername(inputUsername.getText());
         if (exists == null) {
-            a.setAlertType(AlertType.ERROR);
-            a.setTitle("Alerta de erro!");
-            a.setHeaderText("Usuário não existe");
-            a.setContentText("Verifique se passou o usuário correto!");
-            a.show();
+            dialog.alert(a, AlertType.ERROR, "Alerta de erro!", "Usuário não existe",
+                    "Verifique se passou o usuário correto!");
             return;
         }
         var autenticado = encoder.matches(inputPassword.getText(), exists.getPassword());
         if (!autenticado) {
-            a.setAlertType(AlertType.ERROR);
-            a.setTitle("Alerta de erro!");
-            a.setHeaderText("Usuário e senha inválidos");
-            a.setContentText("Verifique se passou o usuário e senha corretos!");
-
-            a.show();
+            dialog.alert(a, AlertType.ERROR, "Alerta de erro!", "Usuário e senha inválidos",
+                    "Verifique se passou o usuário e senha corretos!");
             return;
         }
         s.close();
@@ -73,10 +68,6 @@ public class Login {
     public void initialize() {
         a = new Alert(AlertType.NONE);
         a.initStyle(StageStyle.UNIFIED);
-        dialogPane = a.getDialogPane();
-        dialogPane.getStylesheets().add(
-                getClass().getResource("../styles/myDialog.css").toExternalForm());
-        dialogPane.getStyleClass().add("myDialog");
     }
 
     public static void loadLogin(Stage stage) throws IOException {
