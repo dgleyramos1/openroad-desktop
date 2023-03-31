@@ -39,6 +39,13 @@ public class CategoryController {
         return ResponseEntity.status(HttpStatus.CREATED).body(result);
     }
 
+    public void createCategory(String text) {
+        CategoryCreateDTO categoryCreateDTO = new CategoryCreateDTO();
+        categoryCreateDTO.setName(text);
+        Category categoryCreate = mapper.toCategoryCreateDTO(categoryCreateDTO);
+        mapper.toCategoryDTO(service.create(categoryCreate));
+    }
+
     @GetMapping
     public ResponseEntity<List<CategoryDTO>> findAll() {
         List<Category> list = service.findAll();

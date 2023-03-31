@@ -49,14 +49,17 @@ public class CategoryPaneController {
     private CategoryController controller;
 
     private List<CategoryDTO> list;
-
-    private List<Object> categories = new ArrayList<>();
-
     private ObservableList<CategoryDTO> observableList;
 
     @FXML
     void handleNewCategory(MouseEvent event) {
+        if (inputCategoryName.getText().isEmpty()) {
+            return;
+        }
 
+        controller.createCategory(inputCategoryName.getText());
+        carregarTabViewCategories();
+        inputCategoryName.setText("");
     }
 
     @FXML
