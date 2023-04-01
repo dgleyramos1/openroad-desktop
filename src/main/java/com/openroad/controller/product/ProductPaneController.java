@@ -12,16 +12,20 @@ import org.springframework.stereotype.Controller;
 import com.openroad.ApplicationFX;
 import com.openroad.api.catalog.product.controller.ProductController;
 import com.openroad.api.catalog.product.controller.dtos.ProductDTO;
+import com.openroad.utils.AlertDialog;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.StageStyle;
 import net.rgielen.fxweaver.core.FxmlView;
 
 @Controller
@@ -52,6 +56,9 @@ public class ProductPaneController {
     private List<ProductDTO> list = new ArrayList<>();
     private ObservableList<ProductDTO> observableList;
 
+    Alert a;
+    private AlertDialog dialog = new AlertDialog();
+
     @FXML
     void handleAdicionarProduto(MouseEvent event) {
 
@@ -59,7 +66,14 @@ public class ProductPaneController {
 
     @FXML
     void handleDeletarProduto(MouseEvent event) {
-
+        ProductDTO selectedProduct = tableViewProducts.getSelectionModel().getSelectedItem();
+        if (selectedProduct == null) {
+            dialog.alert(a, AlertType.ERROR, "Alerta de erro", "Seleicone um produto",
+                    "Por favor, selecione um produto para poder deleta-lo!");
+            return;
+        }
+        controller.delete(selectedProduct.getId());
+        carregarTableView();
     }
 
     @FXML
@@ -83,6 +97,8 @@ public class ProductPaneController {
     @FXML
     void initialize() {
         carregarTableView();
+        a = new Alert(AlertType.NONE);
+        a.initStyle(StageStyle.UNIFIED);
     }
 
     public static AnchorPane setAnchorPane(AnchorPane pane) {

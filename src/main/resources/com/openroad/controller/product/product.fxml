@@ -26,7 +26,7 @@
                <children>
                   <Button layoutX="122.0" mnemonicParsing="false" onMouseClicked="#handleAdicionarProduto" styleClass="btn-app-salvar" text="Adicionar" />
                   <Button layoutX="65.0" mnemonicParsing="false" onMouseClicked="#handleEditarProduto" styleClass="btn-app" text="Editar" />
-                  <Button mnemonicParsing="false" onMouseClicked="#handleDeletarProduto" styleClass="btn-app" text="Deletar" />
+                  <Button mnemonicParsing="false" onMouseClicked="#handleDeletarProduto" styleClass="delete" text="Deletar" />
                </children>
             </Group>
          </children>
