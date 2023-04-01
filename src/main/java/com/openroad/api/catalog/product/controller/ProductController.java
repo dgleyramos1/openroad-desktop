@@ -2,14 +2,12 @@ package com.openroad.api.catalog.product.controller;
 
 import java.util.List;
 
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,8 +36,7 @@ public class ProductController {
         this.categoryService = categoryService;
     }
 
-    @PostMapping("/create/{category_id}")
-    public void create(@PathVariable String category_id, @RequestBody ProductCreateDTO dto) {
+    public void create(String category_id, ProductCreateDTO dto) {
         Category category = categoryService.findById(category_id);
         Product productCreate = mapper.toProductCreateDTO(dto);
         productCreate.setCategory(category);

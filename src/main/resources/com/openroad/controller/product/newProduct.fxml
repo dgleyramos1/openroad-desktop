@@ -2,31 +2,19 @@
 
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="233.0" prefWidth="400.0" styleClass="anchor" stylesheets="@../../styles/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.openroad.controller.product.NewProductController">
+<AnchorPane prefHeight="233.0" prefWidth="400.0" styleClass="anchor" stylesheets="@../../styles/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.openroad.controller.product.ProductNewController">
    <children>
-      <GridPane layoutX="14.0" layoutY="14.0" prefHeight="209.0" prefWidth="358.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="363.0" minWidth="10.0" prefWidth="360.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints maxHeight="40.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="70.0" minHeight="10.0" prefHeight="319.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
+      <VBox prefHeight="233.0" prefWidth="400.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
          <children>
-            <HBox alignment="CENTER_LEFT" prefHeight="90.0" prefWidth="300.0" spacing="10.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="300.0" spacing="10.0">
                <children>
                   <Label prefHeight="17.0" prefWidth="72.0" text="Nome:" textFill="WHITE">
                      <font>
@@ -40,7 +28,7 @@
                   </TextField>
                </children>
             </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="351.0" spacing="10.0" GridPane.rowIndex="1">
+            <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="351.0" spacing="10.0">
                <children>
                   <Label prefWidth="72.0" text="Descrição" textFill="WHITE">
                      <font>
@@ -54,13 +42,9 @@
                   </TextField>
                </children>
             </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.rowIndex="2">
+            <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="200.0" spacing="29.0">
                <children>
-                  <SplitMenuButton fx:id="selectCategory" contentDisplay="TOP" focusTraversable="false" mnemonicParsing="false" prefWidth="200.0" styleClass="btn-category" stylesheets="@../../styles/style.css" text="Categoria">
-                     <font>
-                        <Font name="Fira Code Regular" size="13.0" />
-                     </font>
-                  </SplitMenuButton>
+                  <ComboBox fx:id="selectCategory" focusTraversable="false" prefWidth="180.0" promptText="Categoria" />
                   <Group>
                      <children>
                         <Label contentDisplay="CENTER" focusTraversable="false" layoutY="5.0" prefWidth="80.0" text="Preço:" textFill="WHITE">
@@ -77,13 +61,13 @@
                   </Group>
                </children>
             </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="60.0" GridPane.rowIndex="3">
+            <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="200.0" spacing="55.0">
                <children>
                   <Button mnemonicParsing="false" onMouseClicked="#handleCanceleProduct" prefHeight="30.0" prefWidth="150.0" styleClass="btn-app" text="Cancelar" />
                   <Button mnemonicParsing="false" onMouseClicked="#handleNewProduct" prefHeight="30.0" prefWidth="150.0" styleClass="btn-app-salvar" text="Salvar" />
                </children>
             </HBox>
          </children>
-      </GridPane>
+      </VBox>
    </children>
 </AnchorPane>
