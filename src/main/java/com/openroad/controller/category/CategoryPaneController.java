@@ -43,9 +43,6 @@ public class CategoryPaneController {
     private TableColumn<CategoryDTO, String> tableColumnName;
 
     @FXML
-    private TableColumn<CategoryDTO, Integer> tableColumnProducts;
-
-    @FXML
     private TableColumn<CategoryDTO, String> tableColumnUpdatedAt;
 
     @FXML
@@ -60,6 +57,38 @@ public class CategoryPaneController {
 
     Alert a;
     private AlertDialog dialog = new AlertDialog();
+
+    @FXML
+    void handleDeleteCategory(MouseEvent event) {
+        CategoryDTO categorySelected = tableViewCategory.getSelectionModel().getSelectedItem();
+        if (categorySelected == null) {
+            dialog.alert(a, AlertType.ERROR, "Alerta de erro!", "Selecionar item",
+                    "Por favor, selecione uma categoria na tabela para poder deleta-lo!");
+            return;
+        }
+        controller.delete(categorySelected.getId());
+        carregarTabViewCategories();
+    }
+
+    @FXML
+    void handleEditeCategory(MouseEvent event) {
+        CategoryDTO categorySelected = tableViewCategory.getSelectionModel().getSelectedItem();
+        if (categorySelected == null) {
+            dialog.alert(a, AlertType.ERROR, "Alerta de erro", "Selecione uma categoria",
+                    "Por favor, selecione uma categoria para atualizar!");
+            return;
+        }
+        try {
+            Boolean confirmedButton = showFXMLCategory(categorySelected);
+            if (confirmedButton) {
+                controller.update(categorySelected.getId(), categorySelected);
+                carregarTabViewCategories();
+                return;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @FXML
     void handleNewCategory(MouseEvent event) {
@@ -79,42 +108,6 @@ public class CategoryPaneController {
         a = new Alert(AlertType.NONE);
         a.initStyle(StageStyle.UNIFIED);
         dialogStage = new Stage();
-
-        tableViewCategory.getSelectionModel().selectedItemProperty().addListener((observable,
-                oldValue, newValue) -> {
-            if (tableViewCategory.getItems().size() >= 0) {
-                selecionarCategoria(observable.getValue());
-                return;
-            }
-        });
-        dialogStage.setOnCloseRequest(event -> {
-            if (dialogStage.isShowing()) {
-                event.consume();
-                dialogStage.hide();
-                dialogStage.close();
-            }
-        });
-
-    }
-
-    private void selecionarCategoria(CategoryDTO dto) {
-        try {
-            CategoryPopupController controllerCategory = showFXMLCategory(dto);
-            if (controllerCategory.getIsButtonConfirmedClicked()) {
-                if (controllerCategory.getIsDelete()) {
-                    controller.delete(dto.getId());
-                    carregarTabViewCategories();
-                    return;
-                }
-                controller.update(dto.getId(), dto);
-                carregarTabViewCategories();
-                return;
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        carregarTabViewCategories();
     }
 
     private void carregarTabViewCategories() {
@@ -141,7 +134,7 @@ public class CategoryPaneController {
         return pane;
     }
 
-    private CategoryPopupController showFXMLCategory(CategoryDTO category) throws IOException {
+    private Boolean showFXMLCategory(CategoryDTO category) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(CategoryPopupController.class.getResource("categoryPopup.fxml"));
         AnchorPane page = (AnchorPane) loader.load();
@@ -159,6 +152,6 @@ public class CategoryPaneController {
         controller.setCategoryDTO(category);
         dialogStage.showAndWait();
 
-        return controller;
+        return controller.getIsButtonConfirmedClicked();
     }
 }

@@ -20,21 +20,18 @@ public class CategoryPopupController {
     private CategoryDTO categoryDTO;
 
     private Boolean isButtonConfirmedClicked = false;
-    private Boolean isDelete = false;
 
     private Stage dialogStage;
 
     @FXML
-    void handleCategoryDelete(MouseEvent event) {
-        dialogStage.hide();
-        isButtonConfirmedClicked = true;
-        isDelete = true;
+    void handleCategoryCancelar(MouseEvent event) {
+        dialogStage.close();
     }
 
     @FXML
-    void handleCategorySave(MouseEvent event) {
+    void handleCategoryAtualizar(MouseEvent event) {
         categoryDTO.setName(inputCategoryName.getText());
-        dialogStage.hide();
+        dialogStage.close();
         isButtonConfirmedClicked = true;
     }
 
@@ -65,7 +62,4 @@ public class CategoryPopupController {
         this.dialogStage = dialogStage;
     }
 
-    public Boolean getIsDelete() {
-        return isDelete;
-    }
 }

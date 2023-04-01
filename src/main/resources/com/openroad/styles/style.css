@@ -133,6 +133,6 @@
     -fx-text-fill: -fx-color-background;
 }
 
-.btn-app-salvar:hover{
+.btn-app-salvar:hover, .delete:hover{
     -fx-cursor: HAND;
 }

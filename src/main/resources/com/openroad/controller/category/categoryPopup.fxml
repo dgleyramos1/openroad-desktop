@@ -18,13 +18,13 @@
             </TextField>
             <AnchorPane>
                <children>
-                  <Button layoutY="2.0" mnemonicParsing="false" onMouseClicked="#handleCategoryDelete" prefHeight="25.0" prefWidth="111.0" text="Deletar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+                  <Button layoutY="2.0" mnemonicParsing="false" onMouseClicked="#handleCategoryCancelar" prefHeight="25.0" prefWidth="111.0" text="Cancelar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
                      <styleClass>
                         <String fx:value="delete" />
                         <String fx:value="btn-app" />
                      </styleClass>
                   </Button>
-                  <Button layoutX="111.0" layoutY="2.0" mnemonicParsing="false" onMouseClicked="#handleCategorySave" prefHeight="25.0" prefWidth="99.0" styleClass="btn-app-salvar" text="Salvar" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                  <Button layoutX="111.0" layoutY="2.0" mnemonicParsing="false" onMouseClicked="#handleCategoryAtualizar" prefHeight="25.0" prefWidth="99.0" styleClass="btn-app-salvar" text="Salvar" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" />
                </children>
             </AnchorPane>
          </children>
