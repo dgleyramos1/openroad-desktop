@@ -2,8 +2,10 @@ package com.openroad.api.catalog.product.controller;
 
 import java.util.List;
 
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +24,7 @@ import com.openroad.api.catalog.product.model.Product;
 import com.openroad.api.catalog.product.service.ProductService;
 
 @RestController
+@Controller
 @RequestMapping("/products")
 public class ProductController {
 
@@ -36,15 +39,11 @@ public class ProductController {
     }
 
     @PostMapping("/create/{category_id}")
-    public ResponseEntity<ProductDTO> create(@PathVariable(name = "category_id") String category_id,
-            @RequestBody ProductCreateDTO dto) {
+    public void create(@PathVariable String category_id, @RequestBody ProductCreateDTO dto) {
         Category category = categoryService.findById(category_id);
         Product productCreate = mapper.toProductCreateDTO(dto);
         productCreate.setCategory(category);
-        Product product = service.create(productCreate);
-
-        ProductDTO result = mapper.toProductDTO(product);
-        return ResponseEntity.status(HttpStatus.CREATED).body(result);
+        mapper.toProductDTO(service.create(productCreate));
     }
 
     @GetMapping
@@ -52,6 +51,10 @@ public class ProductController {
         List<Product> list = service.findAll();
         List<ProductDTO> result = mapper.toProductListDTO(list);
         return ResponseEntity.ok(result);
+    }
+
+    public List<ProductDTO> listProducts() {
+        return mapper.toProductListDTO(service.findAll());
     }
 
     @GetMapping("/{id}")

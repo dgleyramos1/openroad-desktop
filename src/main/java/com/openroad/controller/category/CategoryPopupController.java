@@ -26,7 +26,7 @@ public class CategoryPopupController {
 
     @FXML
     void handleCategoryDelete(MouseEvent event) {
-        dialogStage.close();
+        dialogStage.hide();
         isButtonConfirmedClicked = true;
         isDelete = true;
     }
@@ -34,7 +34,7 @@ public class CategoryPopupController {
     @FXML
     void handleCategorySave(MouseEvent event) {
         categoryDTO.setName(inputCategoryName.getText());
-        dialogStage.close();
+        dialogStage.hide();
         isButtonConfirmedClicked = true;
     }
 

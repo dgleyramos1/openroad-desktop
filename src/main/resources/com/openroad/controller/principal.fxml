@@ -16,8 +16,8 @@
           <Menu id="menu-item" mnemonicParsing="false" text="Inicio">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#handleAnchoPaneAtendente" styleClass="label" text="Funcionarios" />
-                  <MenuItem mnemonicParsing="false" onAction="#handleAnchoPaneCategory" styleClass="label" text="Categorias" />
-                  <MenuItem mnemonicParsing="false" styleClass="label" text="Produtos" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleAnchoPaneCategoria" styleClass="label" text="Categorias" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleAnchoPaneProduto" styleClass="label" text="Produtos" />
                   <MenuItem mnemonicParsing="false" styleClass="label" text="Fechar" />
             </items>
           </Menu>
@@ -38,7 +38,7 @@
             <Insets />
          </VBox.margin>
          <padding>
-            <Insets bottom="4.0" top="4.0" />
+            <Insets left="1.0" />
          </padding>
       </MenuBar>
       <AnchorPane fx:id="anchorPane" snapToPixel="false" styleClass="anchor" stylesheets="@../styles/login.css" VBox.vgrow="ALWAYS">

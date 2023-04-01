@@ -1,12 +1,8 @@
 package com.openroad.controller.category;
 
-import java.beans.EventHandler;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,27 +12,21 @@ import com.openroad.api.catalog.category.controller.CategoryController;
 import com.openroad.api.catalog.category.controller.dtos.CategoryDTO;
 import com.openroad.utils.AlertDialog;
 
-import javafx.beans.Observable;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.stage.WindowEvent;
 import net.rgielen.fxweaver.core.FxmlView;
 
 @Controller
@@ -90,14 +80,18 @@ public class CategoryPaneController {
         a.initStyle(StageStyle.UNIFIED);
         dialogStage = new Stage();
 
-        tableViewCategory.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            selecionarCategoria(observable.getValue());
+        tableViewCategory.getSelectionModel().selectedItemProperty().addListener((observable,
+                oldValue, newValue) -> {
+            if (tableViewCategory.getItems().size() >= 0) {
+                selecionarCategoria(observable.getValue());
+                return;
+            }
         });
-
         dialogStage.setOnCloseRequest(event -> {
             if (dialogStage.isShowing()) {
                 event.consume();
                 dialogStage.hide();
+                dialogStage.close();
             }
         });
 
@@ -113,14 +107,14 @@ public class CategoryPaneController {
                     return;
                 }
                 controller.update(dto.getId(), dto);
+                carregarTabViewCategories();
                 return;
             }
-            carregarTabViewCategories();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        carregarTabViewCategories();
     }
 
     private void carregarTabViewCategories() {

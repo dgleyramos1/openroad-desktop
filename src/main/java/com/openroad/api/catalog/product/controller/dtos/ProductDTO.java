@@ -38,7 +38,7 @@ public class ProductDTO {
     }
 
     public LocalDate getCreated_at() {
-        return created_at;
+        return this.created_at;
     }
 
     public void setCreated_at(LocalDate created_at) {
@@ -46,7 +46,7 @@ public class ProductDTO {
     }
 
     public LocalDate getUpdated_at() {
-        return updated_at;
+        return this.updated_at;
     }
 
     public void setUpdated_at(LocalDate updated_at) {

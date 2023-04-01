@@ -1,6 +1,7 @@
 package com.openroad.api.catalog.product.model;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.CascadeType;

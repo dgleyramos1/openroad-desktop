@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 import com.openroad.ApplicationFX;
 import com.openroad.controller.category.CategoryPaneController;
+import com.openroad.controller.product.ProductPaneController;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -30,9 +31,15 @@ public class PrincipalController {
     }
 
     @FXML
-    public void handleAnchoPaneCategory(ActionEvent event) throws IOException {
+    public void handleAnchoPaneCategoria(ActionEvent event) throws IOException {
         // anchorPane.getChildren().clear();
         pane("categoria");
+    }
+
+    @FXML
+    public void handleAnchoPaneProduto(ActionEvent event) throws IOException {
+        // anchorPane.getChildren().clear();
+        pane("produto");
     }
 
     public static void loadView() throws IOException {
@@ -55,17 +62,20 @@ public class PrincipalController {
         switch (pane) {
             case "atendente":
                 a = AtendenteController.setAnchorPane(anchorPane);
-
                 break;
             case "categoria":
                 a = CategoryPaneController.setAnchorPane(anchorPane);
+                break;
+            case "produto":
+                a = ProductPaneController.setAnchorPane(anchorPane);
                 break;
         }
         anchorPane.setTopAnchor(a, 0.0);
         anchorPane.setBottomAnchor(a, 0.0);
         anchorPane.setLeftAnchor(a, 0.0);
         anchorPane.setRightAnchor(a, 0.0);
-        anchorPane.getChildren().add(a);
+
+        anchorPane.getChildren().addAll(a);
     }
 
 }
