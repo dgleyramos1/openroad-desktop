@@ -71,7 +71,8 @@ public class ProductNewController {
     }
 
     private void handleCategorySelected(CategoryDTO category) {
-        categoryDTO = category;
+        this.categoryDTO = category;
+        System.out.println("Categoria selecionada " + categoryDTO);
     }
 
     @FXML
@@ -82,12 +83,16 @@ public class ProductNewController {
     @FXML
     void handleNewProduct(MouseEvent event) {
         if (inputNameProduct.getText().isEmpty() || inputDescriptionProduct.getText().isEmpty()
-                || inputPriceProduct.getText().isEmpty() || selectCategory.getPromptText().equals("Categoria")) {
-            dialog.alert(a, AlertType.ERROR, "Alerta de erro", "Campos obrigatórios",
-                    "Todos os campos são obrigatórios, por favor preencha-os!");
+                || inputPriceProduct.getText().isEmpty()) {
+            dialog.alert(a, AlertType.WARNING, "Cuidado", "",
+                    "Todos os campos são obrigatórios!");
             return;
         }
-        if (inputPriceProduct.getText().matches("^[a-zA-Z]*\\[@!#$%^&*()/\\]")) {
+        if (categoryDTO == null) {
+            dialog.alert(a, AlertType.WARNING, "Cuidado", "", "Selecione uma categoria para continuar!");
+            return;
+        }
+        if (inputPriceProduct.getText().matches("^[a-zA-Z]*")) {
             dialog.alert(a, AlertType.WARNING, "Cuidado!", "", "Não informe letras ou carateres especiais!");
             return;
         }
@@ -123,7 +128,7 @@ public class ProductNewController {
     }
 
     public CategoryDTO getCategoryDTO() {
-        return categoryDTO;
+        return this.categoryDTO;
     }
 
     public void setCategoryDTOList(List<CategoryDTO> list) {

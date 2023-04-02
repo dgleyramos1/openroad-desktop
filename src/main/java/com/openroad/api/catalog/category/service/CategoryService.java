@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.openroad.api.catalog.category.exception.CategoryNotFoundException;
+import com.openroad.api.catalog.category.exception.CategoryWithProductsException;
 import com.openroad.api.catalog.category.model.Category;
 import com.openroad.api.catalog.category.repository.CategoryRepository;
 
@@ -46,10 +47,13 @@ public class CategoryService {
     }
 
     @Transactional
-    public void delete(String id) {
+    public void delete(String id) throws CategoryWithProductsException {
         Category category = findById(id);
         if (category == null) {
             return;
+        }
+        if (category.getProducts().size() > 0) {
+            throw new CategoryWithProductsException("Categoria não pode ser excluída!");
         }
         repository.deleteById(id);
     }

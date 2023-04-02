@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import com.openroad.ApplicationFX;
 import com.openroad.api.catalog.category.controller.CategoryController;
 import com.openroad.api.catalog.category.controller.dtos.CategoryDTO;
+import com.openroad.api.catalog.category.exception.CategoryWithProductsException;
 import com.openroad.utils.AlertDialog;
 
 import javafx.collections.FXCollections;
@@ -66,8 +67,12 @@ public class CategoryPaneController {
                     "Por favor, selecione uma categoria na tabela para poder deleta-lo!");
             return;
         }
-        controller.delete(categorySelected.getId());
-        carregarTabViewCategories();
+        try {
+            controller.delete(categorySelected.getId());
+            carregarTabViewCategories();
+        } catch (CategoryWithProductsException ex) {
+            dialog.alert(a, AlertType.WARNING, "Cuidado!", "", ex.getMessage());
+        }
     }
 
     @FXML
