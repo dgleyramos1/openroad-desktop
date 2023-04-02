@@ -19,6 +19,10 @@ public class ProductMapper {
         return MODEL_MAPPER.map(product, ProductDTO.class);
     }
 
+    public Product toProduct(ProductDTO product) {
+        return MODEL_MAPPER.map(product, Product.class);
+    }
+
     public List<ProductDTO> toProductListDTO(List<Product> list) {
         return list.stream().map(this::toProductDTO).collect(Collectors.toList());
     }

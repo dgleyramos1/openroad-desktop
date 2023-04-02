@@ -12,7 +12,10 @@
     -fx-border-style: solid;
     -fx-text-fill: white;
 }
-
+#textarea{
+    -fx-control-inner-background:#101026;
+    -fx-outline: none;
+}
 .input:focused{
     -fx-border-color: #3fffa3;
     -fx-Prompt-text-fill: transparent;

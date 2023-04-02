@@ -65,6 +65,10 @@ public class CategoryController {
         return ResponseEntity.ok(result);
     }
 
+    public CategoryDTO categoryById(String id) {
+        return mapper.toCategoryDTO(service.findById(id));
+    }
+
     public void delete(@PathVariable String id) {
         service.delete(id);
     }

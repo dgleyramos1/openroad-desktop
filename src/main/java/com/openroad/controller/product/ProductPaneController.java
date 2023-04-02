@@ -14,6 +14,7 @@ import com.openroad.api.catalog.category.controller.dtos.CategoryDTO;
 import com.openroad.api.catalog.product.controller.ProductController;
 import com.openroad.api.catalog.product.controller.dtos.ProductCreateDTO;
 import com.openroad.api.catalog.product.controller.dtos.ProductDTO;
+import com.openroad.api.catalog.product.service.ProductService;
 import com.openroad.utils.AlertDialog;
 
 import javafx.collections.FXCollections;
@@ -60,11 +61,16 @@ public class ProductPaneController {
     @Autowired
     private CategoryController categoryController;
 
+    @Autowired
+    private ProductService service;
+
     private List<ProductDTO> list = new ArrayList<>();
     private ObservableList<ProductDTO> observableList;
     private List<CategoryDTO> listCategory;
 
     private CategoryDTO categoryDTOSelected;
+
+    private CategoryDTO category;
 
     Stage dialogStage;
 
@@ -100,6 +106,32 @@ public class ProductPaneController {
 
     @FXML
     void handleEditarProduto(MouseEvent event) {
+        ProductDTO selectedProduct = tableViewProducts.getSelectionModel().getSelectedItem();
+        if (selectedProduct == null) {
+            dialog.alert(a, AlertType.WARNING, "Cuidado!", "", "Selecione um produto da tabela");
+            return;
+        }
+        category = categoryController
+                .categoryById(service.seletedProduct(selectedProduct.getId()).getCategory().getId());
+
+        System.out.println("ID da categoria do produto " + category.getId());
+
+        CategoryDTO newCategoryDTOOrNo;
+        try {
+            Boolean confirmedButton = showFXMLEditeProduct(selectedProduct);
+            if (confirmedButton) {
+
+                if (categoryDTOSelected != null) {
+                    newCategoryDTOOrNo = categoryDTOSelected;
+                } else {
+                    newCategoryDTOOrNo = category;
+                }
+                controller.update(selectedProduct.getId(), newCategoryDTOOrNo.getId(), selectedProduct);
+                carregarTableView();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -158,6 +190,30 @@ public class ProductPaneController {
         dialogStage.showAndWait();
 
         categoryDTOSelected = controller.getCategoryDTO();
+        controller.setCategoryDTO(category);
+        return controller.getIsButtonConfirmedClicked();
+    }
+
+    private Boolean showFXMLEditeProduct(ProductDTO productDTO) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(ProductEditeController.class.getResource("editeproduct.fxml"));
+        AnchorPane page = (AnchorPane) loader.load();
+
+        // Criando um Estágio de Diálogo (Stage Dialog)
+
+        dialogStage.setTitle("Produto");
+        Scene scene = new Scene(page);
+        dialogStage.setScene(scene);
+        dialogStage.setResizable(false);
+
+        // Setando o cliente no Controller.
+        ProductEditeController controller = loader.getController();
+        controller.setDialogStage(dialogStage);
+        controller.setProductDTO(productDTO);
+        controller.setCategoryDTOList(listCategory);
+        controller.setCategoryDTO(category);
+        categoryDTOSelected = controller.getCategorySelected();
+        dialogStage.showAndWait();
 
         return controller.getIsButtonConfirmedClicked();
     }

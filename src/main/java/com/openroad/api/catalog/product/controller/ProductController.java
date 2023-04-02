@@ -74,14 +74,11 @@ public class ProductController {
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping("/{id}/{category_id}")
-    public ResponseEntity<ProductDTO> update(@PathVariable String id, @PathVariable String category_id,
-            @RequestBody ProductCreateDTO dto) {
+    public void update(String id, String category_id, ProductDTO dto) {
         Category category = categoryService.findById(category_id);
-        Product productCreate = mapper.toProductCreateDTO(dto);
-        Product product = service.update(id, productCreate);
+        Product productUpdate = mapper.toProduct(dto);
+        Product product = service.update(id, productUpdate);
         product.setCategory(category);
-        ProductDTO result = mapper.toProductDTO(product);
-        return ResponseEntity.status(HttpStatus.OK).body(result);
+        mapper.toProductDTO(product);
     }
 }

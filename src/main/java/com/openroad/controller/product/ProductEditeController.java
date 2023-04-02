@@ -1,25 +1,18 @@
 package com.openroad.controller.product;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import com.openroad.api.catalog.category.controller.CategoryController;
 import com.openroad.api.catalog.category.controller.dtos.CategoryDTO;
-import com.openroad.api.catalog.product.controller.dtos.ProductCreateDTO;
+import com.openroad.api.catalog.product.controller.dtos.ProductDTO;
 import com.openroad.utils.AlertDialog;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.SplitMenuButton;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -27,11 +20,11 @@ import javafx.stage.StageStyle;
 import net.rgielen.fxweaver.core.FxmlView;
 
 @Controller
-@FxmlView("newproduct.fxml")
-public class ProductNewController {
+@FxmlView("editeproduct.fxml")
+public class ProductEditeController {
 
     @FXML
-    private TextField inputDescriptionProduct;
+    private TextArea inputDescriptionProduct;
 
     @FXML
     private TextField inputNameProduct;
@@ -39,7 +32,7 @@ public class ProductNewController {
     @FXML
     private TextField inputPriceProduct;
 
-    private ProductCreateDTO productDTO;
+    private ProductDTO productDTO;
 
     private Boolean isButtonConfirmedClicked = false;
 
@@ -55,6 +48,8 @@ public class ProductNewController {
     Alert a;
     private AlertDialog dialog = new AlertDialog();
 
+    private CategoryDTO categorySelected;
+
     @FXML
     void initialize() {
         a = new Alert(AlertType.NONE);
@@ -62,20 +57,19 @@ public class ProductNewController {
         selectCategory.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
             handleCategorySelected(categoryDTOList.get((int) newValue));
         });
+
     }
 
     private void carregaCategorias() {
-        categoryDTOList.forEach((category) -> {
-            selectCategory.getItems().add(category.getName());
-        });
-        if (categoryDTO != null) {
-            selectCategory.setPromptText(categoryDTO.getName());
+
+        for (int i = 0; i < categoryDTOList.size(); i++) {
+            selectCategory.getItems().add(i, categoryDTOList.get(i).getName());
         }
+
     }
 
     private void handleCategorySelected(CategoryDTO category) {
-        this.categoryDTO = category;
-        System.out.println("Categoria selecionada " + categoryDTO);
+        setCategorySelected(category);
     }
 
     @FXML
@@ -84,34 +78,37 @@ public class ProductNewController {
     }
 
     @FXML
-    void handleNewProduct(MouseEvent event) {
+    void handleUpdateProduct(MouseEvent event) {
         if (inputNameProduct.getText().isEmpty() || inputDescriptionProduct.getText().isEmpty()
                 || inputPriceProduct.getText().isEmpty()) {
             dialog.alert(a, AlertType.WARNING, "Cuidado", "",
                     "Todos os campos são obrigatórios!");
             return;
         }
-        if (categoryDTO == null) {
-            dialog.alert(a, AlertType.WARNING, "Cuidado", "", "Selecione uma categoria para continuar!");
-            return;
-        }
         if (inputPriceProduct.getText().matches("^[a-zA-Z]*")) {
             dialog.alert(a, AlertType.WARNING, "Cuidado!", "", "Não informe letras ou carateres especiais!");
             return;
         }
+
+        var valor = Double.parseDouble(inputPriceProduct.getText().replace(",", "."));
         productDTO.setDescription(inputDescriptionProduct.getText());
         productDTO.setName(inputNameProduct.getText());
-        productDTO.setPrice(Double.parseDouble(inputPriceProduct.getText()));
+        productDTO.setPrice(valor);
         isButtonConfirmedClicked = true;
         dialogStage.close();
     }
 
-    public ProductCreateDTO getProductDTO() {
-        return productDTO;
+    public ProductDTO getProductDTO() {
+        return this.productDTO;
     }
 
-    public void setProductDTO(ProductCreateDTO productDTO) {
+    public void setProductDTO(ProductDTO productDTO) {
         this.productDTO = productDTO;
+        if (productDTO != null) {
+            inputNameProduct.setText(this.productDTO.getName());
+            inputDescriptionProduct.setText(this.productDTO.getDescription());
+            inputPriceProduct.setText(String.valueOf(this.productDTO.getPrice()));
+        }
     }
 
     public Boolean getIsButtonConfirmedClicked() {
@@ -141,5 +138,15 @@ public class ProductNewController {
 
     public void setCategoryDTO(CategoryDTO categoryDTO) {
         this.categoryDTO = categoryDTO;
+        selectCategory.getSelectionModel().select(categoryDTO.getName());
     }
+
+    public CategoryDTO getCategorySelected() {
+        return categorySelected;
+    }
+
+    public void setCategorySelected(CategoryDTO categorySelected) {
+        this.categorySelected = categorySelected;
+    }
+
 }

@@ -12,6 +12,11 @@ public class ProductDTO {
     private Double price;
     private LocalDate created_at;
     private LocalDate updated_at;
+    private String category_id;
+
+    public String getCategory() {
+        return this.category_id;
+    }
 
     public String getId() {
         return id;

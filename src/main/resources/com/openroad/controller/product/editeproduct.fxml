@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="233.0" prefWidth="400.0" styleClass="anchor" stylesheets="@../../styles/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.openroad.controller.product.ProductEditeController">
+   <children>
+      <VBox prefHeight="233.0" prefWidth="400.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="300.0" spacing="10.0">
+               <children>
+                  <Label prefHeight="17.0" prefWidth="72.0" text="Nome:" textFill="WHITE">
+                     <font>
+                        <Font name="Fira Code Regular" size="13.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="inputNameProduct" focusTraversable="false" prefHeight="27.0" prefWidth="270.0" styleClass="input" stylesheets="@../../styles/login.css">
+                     <font>
+                        <Font name="Fira Code Regular" size="13.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="351.0" spacing="10.0">
+               <children>
+                  <Label prefWidth="72.0" text="Descrição" textFill="WHITE">
+                     <font>
+                        <Font name="Fira Code Regular" size="13.0" />
+                     </font>
+                  </Label>
+                  <TextArea id="textarea" fx:id="inputDescriptionProduct" cacheShape="false" focusTraversable="false" pickOnBounds="false" prefHeight="200.0" prefWidth="270.0" snapToPixel="false" styleClass="input" stylesheets="@../../styles/login.css" wrapText="true">
+                     <font>
+                        <Font name="Fira Code Regular" size="13.0" />
+                     </font>
+                  </TextArea>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="200.0" spacing="29.0">
+               <children>
+                  <ComboBox fx:id="selectCategory" focusTraversable="false" pickOnBounds="false" prefWidth="180.0" />
+                  <Group>
+                     <children>
+                        <Label contentDisplay="CENTER" focusTraversable="false" layoutY="5.0" prefWidth="80.0" text="Preço:" textFill="WHITE">
+                           <font>
+                              <Font name="Fira Code Regular" size="13.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="inputPriceProduct" focusTraversable="false" layoutX="58.0" prefHeight="27.0" prefWidth="85.0" styleClass="input" stylesheets="@../../styles/login.css">
+                           <font>
+                              <Font name="Fira Code Regular" size="13.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </Group>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="200.0" spacing="55.0">
+               <children>
+                  <Button mnemonicParsing="false" onMouseClicked="#handleCanceleProduct" prefHeight="30.0" prefWidth="150.0" styleClass="btn-app" text="Cancelar" />
+                  <Button mnemonicParsing="false" onMouseClicked="#handleUpdateProduct" prefHeight="30.0" prefWidth="150.0" styleClass="btn-app-salvar" text="Atualizar" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

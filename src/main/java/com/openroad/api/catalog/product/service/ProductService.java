@@ -68,6 +68,10 @@ public class ProductService {
         return product;
     }
 
+    public Product seletedProduct(String id) {
+        return findById(id);
+    }
+
     private String getUuid() {
         return UUID.randomUUID().toString();
     }
