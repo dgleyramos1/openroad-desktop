@@ -68,10 +68,8 @@ public class ProductController {
         return ResponseEntity.ok(result);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<ProductDTO> delete(@PathVariable String id) {
+    public void delete(String id) {
         service.delete(id);
-        return ResponseEntity.noContent().build();
     }
 
     public void update(String id, String category_id, ProductDTO dto) {

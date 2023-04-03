@@ -18,7 +18,7 @@
               <MenuItem mnemonicParsing="false" onAction="#handleAnchoPaneAtendente" styleClass="label" text="Funcionarios" />
                   <MenuItem mnemonicParsing="false" onAction="#handleAnchoPaneCategoria" styleClass="label" text="Categorias" />
                   <MenuItem mnemonicParsing="false" onAction="#handleAnchoPaneProduto" styleClass="label" text="Produtos" />
-                  <MenuItem mnemonicParsing="false" styleClass="label" text="Fechar" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleAnchoPaneFechar" styleClass="label" text="Fechar" />
             </items>
           </Menu>
           <Menu id="menu-item" mnemonicParsing="false" text="Ordens">

@@ -69,7 +69,7 @@ public class CategoryController {
         return mapper.toCategoryDTO(service.findById(id));
     }
 
-    public void delete(@PathVariable String id) {
+    public void delete(String id) {
         service.delete(id);
     }
 

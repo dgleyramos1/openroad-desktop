@@ -42,6 +42,11 @@ public class PrincipalController {
         pane("produto");
     }
 
+    @FXML
+    public void handleAnchoPaneFechar(ActionEvent event) throws IOException {
+        System.exit(0);
+    }
+
     public static void loadView() throws IOException {
         Stage stage = new Stage();
         FXMLLoader loader = new FXMLLoader(PrincipalController.class.getResource("principal.fxml"));

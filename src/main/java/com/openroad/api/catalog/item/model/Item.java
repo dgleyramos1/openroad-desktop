@@ -1,6 +1,7 @@
 package com.openroad.api.catalog.item.model;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,6 +29,7 @@ public class Item {
     @JoinColumn(name = "product_id", referencedColumnName = "id")
     @JsonManagedReference
     private Product product;
+
     @ManyToOne
     @JoinColumn(name = "order_id", referencedColumnName = "id")
     @JsonManagedReference

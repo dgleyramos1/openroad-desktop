@@ -114,8 +114,6 @@ public class ProductPaneController {
         category = categoryController
                 .categoryById(service.seletedProduct(selectedProduct.getId()).getCategory().getId());
 
-        System.out.println("ID da categoria do produto " + category.getId());
-
         CategoryDTO newCategoryDTOOrNo;
         try {
             Boolean confirmedButton = showFXMLEditeProduct(selectedProduct);
