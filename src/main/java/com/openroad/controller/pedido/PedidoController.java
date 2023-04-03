@@ -1,6 +1,8 @@
 package com.openroad.controller.pedido;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.stereotype.Controller;
 
@@ -10,6 +12,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -20,15 +23,27 @@ import net.rgielen.fxweaver.core.FxmlView;
 public class PedidoController {
 
     @FXML
-    private ListView<String> listView;
+    private ListView<Label> listView;
 
     @FXML
     private ImageView carregador;
 
+    private List<String> list = new ArrayList<>();
+
     @FXML
     void initialize() {
-        ObservableList<String> names = FXCollections.observableArrayList("Mesa 1", "Mesa 2", "Mesa 3", "Mesa 4");
-        listView.setItems(names);
+        list.add("Mesa 1");
+        list.add("Mesa 2");
+        list.add("Mesa 3");
+        list.add("Mesa 4");
+
+        list.forEach(item -> {
+            Label label = new Label();
+            label.setMaxWidth(600);
+            label.setText(item);
+            label.getStyleClass().add("label-list");
+            listView.getItems().add(label);
+        });
 
         listView.getStylesheets().add(getClass().getResource("../../styles/list.css").toExternalForm());
     }

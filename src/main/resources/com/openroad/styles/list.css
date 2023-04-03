@@ -4,17 +4,22 @@
     -fx-box-border: 0px;
 }
 
+.list-view .list-cell:odd, .list-view .list-cell:even{
+    -fx-control-inner-background: transparent;
+}
 
-.list-cell:filled{
+.label-list{
+    -fx-width: 100%;
     -fx-background-color: #101026;
     -fx-text-fill: white;
     -fx-padding: 14px;
     -fx-border-color: #3fffa3;
     -fx-border-width: 0px 0px 0px 3px;
+    -fx-border-radius: 4px 0px 0px 4px;
 }
 
 
-.list-cell:filled:hover {
+.label-list:hover {
     -fx-background-color: #3fffa3 !important;
     -fx-text-fill: #101026;
     -fx-cursor: HAND;
