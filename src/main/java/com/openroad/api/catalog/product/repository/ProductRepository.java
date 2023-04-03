@@ -14,4 +14,6 @@ public interface ProductRepository extends JpaRepository<Product, String> {
 
     @Query(value = "SELECT * FROM products WHERE category_id=:category_id", nativeQuery = true)
     public List<Product> findByCategoryID(@Param(value = "category_id") String category_id);
+
+    public List<Product> findAllByAtivoTrue();
 }

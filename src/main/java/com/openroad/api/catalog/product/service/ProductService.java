@@ -26,6 +26,7 @@ public class ProductService {
     @Transactional
     public Product create(Product productCreate) {
         productCreate.setId(getUuid());
+        productCreate.setAtivo(true);
         productCreate.setCreated_at(LocalDate.now(Clock.system(ZoneId.of("America/Sao_Paulo"))));
         repository.save(productCreate);
         return productCreate;
@@ -33,7 +34,7 @@ public class ProductService {
 
     @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
     public List<Product> findAll() {
-        return repository.findAll();
+        return repository.findAllByAtivoTrue();
     }
 
     @Transactional(readOnly = true)
@@ -53,7 +54,11 @@ public class ProductService {
         if (product == null) {
             return;
         }
-        repository.deleteById(id);
+        if (product.getItems().isEmpty()) {
+            repository.deleteById(id);
+        }
+        product.setAtivo(false);
+        product.setUpdated_at(LocalDate.now(Clock.system(ZoneId.of("America/Sao_Paulo"))));
     }
 
     @Transactional

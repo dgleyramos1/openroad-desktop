@@ -32,13 +32,14 @@ public class Product {
     private Double price;
     private LocalDate created_at;
     private LocalDate updated_at;
+    private Boolean ativo;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     @JsonManagedReference
     private Category category;
 
-    @OneToMany(mappedBy = "product", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "product", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonBackReference
     private List<Item> items;
 
@@ -110,6 +111,14 @@ public class Product {
 
     public void setItems(List<Item> items) {
         this.items = items;
+    }
+
+    public Boolean getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(Boolean ativo) {
+        this.ativo = ativo;
     }
 
 }
