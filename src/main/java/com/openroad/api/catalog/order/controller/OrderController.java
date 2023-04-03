@@ -45,6 +45,10 @@ public class OrderController {
         return ResponseEntity.ok(result);
     }
 
+    public List<OrderDTO> listarOrdens() {
+        return mapper.toOrderListDTO(service.findAll());
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<OrderDTO> findById(@PathVariable String id) {
         Order order = service.findByID(id);

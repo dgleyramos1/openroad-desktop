@@ -4,9 +4,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import com.openroad.ApplicationFX;
+import com.openroad.api.catalog.order.controller.OrderController;
+import com.openroad.api.catalog.order.controller.dtos.OrderDTO;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -28,22 +31,43 @@ public class PedidoController {
     @FXML
     private ImageView carregador;
 
-    private List<String> list = new ArrayList<>();
+    private List<OrderDTO> list;
 
-    @FXML
-    void initialize() {
-        list.add("Mesa 1");
-        list.add("Mesa 2");
-        list.add("Mesa 3");
-        list.add("Mesa 4");
+    private List<Label> listLabel = new ArrayList<>();
+
+    private ObservableList<Label> observableList;
+
+    @Autowired
+    private OrderController controller;
+
+    private void carregaOrdens() {
+
+        list = controller.listarOrdens();
 
         list.forEach(item -> {
             Label label = new Label();
             label.setMaxWidth(600);
-            label.setText(item);
+            label.setText("Mesa " + item.getTable());
             label.getStyleClass().add("label-list");
-            listView.getItems().add(label);
+            listLabel.add(label);
         });
+
+        observableList = FXCollections.observableArrayList(listLabel);
+        listView.setItems(observableList);
+
+    }
+
+    @FXML
+    private void handleListView() {
+        listView.getItems().removeAll(observableList);
+        observableList.clear();
+        listLabel.clear();
+        carregaOrdens();
+    }
+
+    @FXML
+    void initialize() {
+        carregaOrdens();
 
         listView.getStylesheets().add(getClass().getResource("../../styles/list.css").toExternalForm());
     }

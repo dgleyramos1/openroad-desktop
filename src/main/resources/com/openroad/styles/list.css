@@ -4,8 +4,17 @@
     -fx-box-border: 0px;
 }
 
+.list-cell{
+    -fx-padding: 4px 0px;
+}
+
 .list-view .list-cell:odd, .list-view .list-cell:even{
     -fx-control-inner-background: transparent;
+}
+
+.list-cell:filled:selected:focused, .list-cell:filled:selected {
+    -fx-background-color: transparent;
+    -fx-box-border: 0px;
 }
 
 .label-list{
@@ -15,7 +24,6 @@
     -fx-padding: 14px;
     -fx-border-color: #3fffa3;
     -fx-border-width: 0px 0px 0px 3px;
-    -fx-border-radius: 4px 0px 0px 4px;
 }
 
 
