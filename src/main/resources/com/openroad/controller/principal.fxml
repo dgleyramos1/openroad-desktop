@@ -23,7 +23,7 @@
           </Menu>
           <Menu id="menu-item" mnemonicParsing="false" text="Ordens">
             <items>
-              <MenuItem mnemonicParsing="false" styleClass="label" text="Pedidos" />
+              <MenuItem mnemonicParsing="false" onAction="#handleAnchoPanePedido" styleClass="label" text="Pedidos" />
                   <MenuItem mnemonicParsing="false" styleClass="label" text="Cozinha" />
                   <MenuItem mnemonicParsing="false" styleClass="label" text="Relatório" />
             </items>

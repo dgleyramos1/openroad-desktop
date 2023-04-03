@@ -1,0 +1,42 @@
+
+.list-view{
+    -fx-control-inner-background: #1d1d2e;
+    -fx-box-border: 0px;
+}
+
+
+.list-cell:filled{
+    -fx-background-color: #101026;
+    -fx-text-fill: white;
+    -fx-padding: 14px;
+    -fx-border-color: #3fffa3;
+    -fx-border-width: 0px 0px 0px 3px;
+}
+
+
+.list-cell:filled:hover {
+    -fx-background-color: #3fffa3 !important;
+    -fx-text-fill: #101026;
+    -fx-cursor: HAND;
+}
+
+.list-cell:empty {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-border-color: transparent;
+}
+
+.list-view .scroll-bar:vertical .increment-arrow,
+.list-view .scroll-bar:vertical .decrement-arrow,
+.list-view .scroll-bar:vertical .increment-button,
+.list-view .scroll-bar:vertical .decrement-button {
+    -fx-padding: 0px;
+}
+
+.list-view .scroll-bar:vertical {
+    -fx-padding: 0px;
+}
+
+.carregador{
+    -fx-cursor: HAND;
+}

@@ -32,14 +32,6 @@ public class CategoryController {
         this.mapper = mapper;
     }
 
-    @PostMapping("/create")
-    public ResponseEntity<CategoryDTO> create(@RequestBody CategoryCreateDTO dto) {
-        Category categoryCreate = mapper.toCategoryCreateDTO(dto);
-        Category category = service.create(categoryCreate);
-        CategoryDTO result = mapper.toCategoryDTO(category);
-        return ResponseEntity.status(HttpStatus.CREATED).body(result);
-    }
-
     public void createCategory(String text) {
         CategoryCreateDTO categoryCreateDTO = new CategoryCreateDTO();
         categoryCreateDTO.setName(text);

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 import com.openroad.ApplicationFX;
 import com.openroad.controller.category.CategoryPaneController;
+import com.openroad.controller.pedido.PedidoController;
 import com.openroad.controller.product.ProductPaneController;
 
 import javafx.event.ActionEvent;
@@ -47,6 +48,11 @@ public class PrincipalController {
         System.exit(0);
     }
 
+    @FXML
+    public void handleAnchoPanePedido(ActionEvent event) throws IOException {
+        pane("pedido");
+    }
+
     public static void loadView() throws IOException {
         Stage stage = new Stage();
         FXMLLoader loader = new FXMLLoader(PrincipalController.class.getResource("principal.fxml"));
@@ -73,6 +79,9 @@ public class PrincipalController {
                 break;
             case "produto":
                 a = ProductPaneController.setAnchorPane(anchorPane);
+                break;
+            case "pedido":
+                a = PedidoController.setAnchorPane(anchorPane);
                 break;
         }
         anchorPane.setTopAnchor(a, 0.0);
