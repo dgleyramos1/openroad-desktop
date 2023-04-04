@@ -1,5 +1,6 @@
 package com.openroad.controller.pedido;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,12 +8,17 @@ import org.springframework.stereotype.Controller;
 
 import com.openroad.api.catalog.item.controller.dtos.ItemDTO;
 import com.openroad.api.catalog.item.model.Item;
+import com.openroad.api.catalog.order.controller.OrderController;
 import com.openroad.api.catalog.order.controller.dtos.OrderDTO;
 import com.openroad.api.catalog.product.controller.ProductController;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import net.rgielen.fxweaver.core.FxmlView;
@@ -34,12 +40,18 @@ public class PedidoItemsController {
 
     private Stage stage;
 
+    private Boolean confirmedBoolean = false;
+
     private OrderDTO order;
 
     private List<Item> listItems;
 
-    @Autowired
-    private ProductController controller;
+    private Stage dialogStage;
+
+    @FXML
+    void initialize() {
+        dialogStage = new Stage();
+    }
 
     private void carregaItems() {
         listItems.forEach(item -> {
@@ -62,6 +74,22 @@ public class PedidoItemsController {
         carregaItems();
     }
 
+    @FXML
+    void handleCloseOrder(MouseEvent event) {
+        try {
+            Boolean confirmedCloseOrder = showFXMLCLoseOrderConfirmed(order);
+            if (confirmedCloseOrder) {
+                confirmedBoolean = true;
+            }
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } finally {
+            stage.close();
+        }
+
+    }
+
     public void setOrder(OrderDTO order) {
         this.order = order;
         labelOrdenName.setText("Mesa " + order.getTable());
@@ -76,4 +104,32 @@ public class PedidoItemsController {
         this.stage = stage;
     }
 
+    public Boolean getConfirmedBoolean() {
+        return confirmedBoolean;
+    }
+
+    public void setConfirmedBoolean(Boolean confirmedBoolean) {
+        this.confirmedBoolean = confirmedBoolean;
+    }
+
+    private Boolean showFXMLCLoseOrderConfirmed(OrderDTO orderDTO) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(ConfirmedCloseOrderController.class.getResource("confirme.fxml"));
+        AnchorPane page = (AnchorPane) loader.load();
+
+        // Criando um Estágio de Diálogo (Stage Dialog)
+
+        dialogStage.setTitle("Comanda");
+        Scene scene = new Scene(page);
+        dialogStage.setScene(scene);
+        dialogStage.setResizable(false);
+
+        // Setando o cliente no Controller.
+        ConfirmedCloseOrderController controller = loader.getController();
+        controller.setStage(dialogStage);
+        controller.setOrder(orderDTO);
+        dialogStage.showAndWait();
+
+        return controller.getConfirmed();
+    }
 }

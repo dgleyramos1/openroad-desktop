@@ -74,4 +74,12 @@ public class OrderController {
         OrderDTO result = mapper.toOrderDTO(order);
         return ResponseEntity.ok(result);
     }
+
+    public void fecharOrden(String id) {
+        Order order = service.findByID(id);
+        if (order == null) {
+            return;
+        }
+        service.finishOrder(id);
+    }
 }

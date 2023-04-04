@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -17,18 +19,27 @@
                </font>
             </Label>
             <ListView fx:id="listViewItems" focusTraversable="false" layoutX="10.0" layoutY="10.0" prefHeight="500.0" stylesheets="@../../styles/list.css" />
-            <HBox alignment="CENTER_RIGHT" prefHeight="33.0" prefWidth="400.0" spacing="10.0">
+            <HBox alignment="CENTER_RIGHT" prefHeight="33.0" prefWidth="400.0" spacing="20.0">
                <children>
-                  <Label text="Total:" textFill="#ff3f4b">
+                  <Group>
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="53.0" text="Total:" textFill="#ff3f4b">
+                           <font>
+                              <Font name="Fira Code Regular" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="labelOrdenTotal" layoutX="53.0" text="150" textFill="WHITE">
+                           <font>
+                              <Font name="Fira Code Regular" size="13.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Group>
+                  <Button mnemonicParsing="false" onMouseClicked="#handleCloseOrder" styleClass="btn-app-salvar" stylesheets="@../../styles/login.css" text="Fechar mesa">
                      <font>
                         <Font name="Fira Code Regular" size="13.0" />
                      </font>
-                  </Label>
-                  <Label fx:id="labelOrdenTotal" text="150" textFill="WHITE">
-                     <font>
-                        <Font name="Fira Code Regular" size="13.0" />
-                     </font>
-                  </Label>
+                  </Button>
                </children>
             </HBox>
          </children>

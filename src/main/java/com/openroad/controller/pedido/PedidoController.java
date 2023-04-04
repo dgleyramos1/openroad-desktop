@@ -5,12 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 
 import com.openroad.ApplicationFX;
 import com.openroad.api.catalog.item.controller.ItemController;
-import com.openroad.api.catalog.item.controller.dtos.ItemDTO;
 import com.openroad.api.catalog.item.model.Item;
 import com.openroad.api.catalog.order.controller.OrderController;
 import com.openroad.api.catalog.order.controller.dtos.OrderDTO;
@@ -22,7 +20,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Alert.AlertType;
@@ -69,7 +66,12 @@ public class PedidoController {
         }
         OrderDTO order = controller.getOrder(order_id);
         try {
-            showFXMLOrder(order);
+            Boolean confirmedButton = showFXMLOrder(order);
+            if (confirmedButton) {
+                controller.fecharOrden(order.getId());
+                listLabel.clear();
+                carregaOrdens();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -96,7 +98,7 @@ public class PedidoController {
 
     @FXML
     private void handleListView() {
-        listView.getItems().removeAll(observableList);
+        listView.getItems().clear();
         observableList.clear();
         listLabel.clear();
         carregaOrdens();
@@ -107,6 +109,7 @@ public class PedidoController {
         dialogStage = new Stage();
         alert = new Alert(AlertType.NONE);
         alert.initStyle(StageStyle.UNIFIED);
+        listLabel.clear();
         carregaOrdens();
 
         listView.getStylesheets().add(getClass().getResource("../../styles/list.css").toExternalForm());
@@ -125,7 +128,7 @@ public class PedidoController {
         return pane;
     }
 
-    private void showFXMLOrder(OrderDTO orderDTO) throws IOException {
+    private Boolean showFXMLOrder(OrderDTO orderDTO) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(PedidoItemsController.class.getResource("items.fxml"));
         AnchorPane page = (AnchorPane) loader.load();
@@ -143,5 +146,7 @@ public class PedidoController {
         controller.setOrder(orderDTO);
         controller.setListItems(listItems);
         dialogStage.showAndWait();
+
+        return controller.getConfirmedBoolean();
     }
 }
