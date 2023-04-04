@@ -16,7 +16,7 @@
                   <Font name="Fira Code Regular" size="13.0" />
                </font>
             </Label>
-            <ListView fx:id="listViewItems" focusTraversable="false" layoutX="10.0" layoutY="10.0" prefHeight="600.0" stylesheets="@../../styles/list.css" />
+            <ListView fx:id="listViewItems" focusTraversable="false" layoutX="10.0" layoutY="10.0" prefHeight="500.0" stylesheets="@../../styles/list.css" />
             <HBox alignment="CENTER_RIGHT" prefHeight="33.0" prefWidth="400.0" spacing="10.0">
                <children>
                   <Label text="Total:" textFill="#ff3f4b">

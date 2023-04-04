@@ -53,3 +53,22 @@
 .carregador{
     -fx-cursor: HAND;
 }
+
+
+.grid-label-product{
+    -fx-text-fill: #3fffa3;
+    -fx-font-size: 16px;
+}
+
+.grid-label-description{
+    -fx-text-fill: #fff;
+    -fx-font-size: 14px;
+}
+
+.grid-pane{
+    -fx-padding: 10px;
+}
+
+.grid-pane:selected, .grid-pane:focused{
+    -fx-background: transparent;
+}
