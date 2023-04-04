@@ -89,7 +89,7 @@ public class ItemController {
         return ResponseEntity.ok().body(result);
     }
 
-    public List<ItemDTO> getItems(String order_id) {
-        return mapper.toItemListDTO(service.findByOrderId(order_id));
+    public List<Item> getItems(String order_id) {
+        return service.findByOrderId(order_id);
     }
 }

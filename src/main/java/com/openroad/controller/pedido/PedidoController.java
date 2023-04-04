@@ -11,20 +11,25 @@ import org.springframework.stereotype.Controller;
 import com.openroad.ApplicationFX;
 import com.openroad.api.catalog.item.controller.ItemController;
 import com.openroad.api.catalog.item.controller.dtos.ItemDTO;
+import com.openroad.api.catalog.item.model.Item;
 import com.openroad.api.catalog.order.controller.OrderController;
 import com.openroad.api.catalog.order.controller.dtos.OrderDTO;
+import com.openroad.utils.AlertDialog;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import net.rgielen.fxweaver.core.FxmlView;
 
 @Controller
@@ -51,12 +56,18 @@ public class PedidoController {
 
     Stage dialogStage;
 
-    private List<ItemDTO> listItems;
+    private List<Item> listItems;
+
+    private AlertDialog dialog = new AlertDialog();
+    Alert alert;
 
     private void selectedOrder(String order_id) {
         listItems = itemController.getItems(order_id);
+        if (listItems.isEmpty()) {
+            dialog.alert(alert, AlertType.INFORMATION, "Alerta", "", "A mesa ainda não pediu!");
+            return;
+        }
         OrderDTO order = controller.getOrder(order_id);
-        System.out.println("Valor da comanda " + order.getTotal());
         try {
             showFXMLOrder(order);
         } catch (IOException e) {
@@ -94,6 +105,8 @@ public class PedidoController {
     @FXML
     void initialize() {
         dialogStage = new Stage();
+        alert = new Alert(AlertType.NONE);
+        alert.initStyle(StageStyle.UNIFIED);
         carregaOrdens();
 
         listView.getStylesheets().add(getClass().getResource("../../styles/list.css").toExternalForm());

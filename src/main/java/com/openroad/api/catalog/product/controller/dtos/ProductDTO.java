@@ -1,8 +1,10 @@
 package com.openroad.api.catalog.product.controller.dtos;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.openroad.api.catalog.item.controller.dtos.ItemDTO;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ProductDTO {
@@ -13,6 +15,12 @@ public class ProductDTO {
     private LocalDate created_at;
     private LocalDate updated_at;
     private String category_id;
+
+    private List<ItemDTO> items;
+
+    public List<ItemDTO> getItems() {
+        return items;
+    }
 
     public String getCategory() {
         return this.category_id;

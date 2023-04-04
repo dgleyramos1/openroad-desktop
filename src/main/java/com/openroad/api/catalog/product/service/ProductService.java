@@ -80,4 +80,8 @@ public class ProductService {
         return UUID.randomUUID().toString();
     }
 
+    public Product getProductByItemId(String item_id) {
+        return repository.findByItemId(item_id);
+    }
+
 }

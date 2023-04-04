@@ -16,4 +16,7 @@ public interface ProductRepository extends JpaRepository<Product, String> {
     public List<Product> findByCategoryID(@Param(value = "category_id") String category_id);
 
     public List<Product> findAllByAtivoTrue();
+
+    @Query(value = "SELECT * FROM products p LEFT JOIN items i ON p.id = :id)", nativeQuery = true)
+    public Product findByItemId(@Param(value = "id") String id);
 }

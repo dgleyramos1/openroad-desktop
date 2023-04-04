@@ -61,6 +61,10 @@ public class ProductController {
         return ResponseEntity.ok(result);
     }
 
+    public ProductDTO getProduct(String item_id) {
+        return mapper.toProductDTO(service.getProductByItemId(item_id));
+    }
+
     @GetMapping("/category/{category_id}")
     public ResponseEntity<List<ProductDTO>> findByCategoryId(@PathVariable String category_id) {
         List<Product> list = service.findByCategoryId(category_id);
