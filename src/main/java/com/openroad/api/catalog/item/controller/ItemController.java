@@ -69,8 +69,7 @@ public class ItemController {
             @PathVariable(name = "order_id") String order_id) {
         Order order = orderService.findByID(order_id);
         Item item = service.findById(id);
-        order.setTotal(order.getTotal() + item.getPrice());
-        orderService.update(order_id, order);
+        orderService.setTotalValue(order_id, order.getTotal() + item.getPrice());
         Item sendItem = service.sendToKicthen(id);
         ItemDTO result = mapper.toItemDTO(sendItem);
         return ResponseEntity.status(HttpStatus.OK).body(result);
@@ -88,5 +87,9 @@ public class ItemController {
         List<Item> items = service.kitchen(order_id);
         List<ItemDTO> result = mapper.toItemListDTO(items);
         return ResponseEntity.ok().body(result);
+    }
+
+    public List<ItemDTO> getItems(String order_id) {
+        return mapper.toItemListDTO(service.findByOrderId(order_id));
     }
 }

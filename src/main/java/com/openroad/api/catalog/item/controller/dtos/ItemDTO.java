@@ -9,9 +9,9 @@ public class ItemDTO {
 
     private String id;
     private int amount;
-    private Float price;
-    private boolean status;
-    private boolean draft;
+    private Double price;
+    private Boolean status;
+    private Boolean draft;
 
     private LocalDate created_at;
     private LocalDate updated_at;
@@ -24,27 +24,27 @@ public class ItemDTO {
         this.id = id;
     }
 
-    public Float getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(Float price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
-    public boolean isStatus() {
+    public Boolean isStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(Boolean status) {
         this.status = status;
     }
 
-    public boolean isDraft() {
+    public Boolean isDraft() {
         return draft;
     }
 
-    public void setDraft(boolean draft) {
+    public void setDraft(Boolean draft) {
         this.draft = draft;
     }
 

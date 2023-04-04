@@ -41,8 +41,8 @@ public class itemService {
     @Transactional
     public Item sendToKicthen(String id) {
         Item item = findById(id);
-        item.setDraft(false);
         item.setStatus(true);
+        item.setDraft(false);
         item.setUpdated_at(LocalDate.now());
         repository.save(item);
         return item;
@@ -60,6 +60,11 @@ public class itemService {
     @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
     public List<Item> kitchen(String order_id) {
         return repository.findAllStatusTrue(order_id);
+    }
+
+    @Transactional
+    public List<Item> findByOrderId(String order_id) {
+        return repository.findAllByOrderId(order_id);
     }
 
     @Transactional

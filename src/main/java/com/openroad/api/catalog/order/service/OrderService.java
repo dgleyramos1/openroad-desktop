@@ -51,6 +51,12 @@ public class OrderService {
         return order;
     }
 
+    public void setTotalValue(String id, Double value) {
+        Order order = findByID(id);
+        order.setTotal(value);
+        repository.save(order);
+    }
+
     @Transactional
     public Order finishOrder(String id) {
         Order order = findByID(id);

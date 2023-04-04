@@ -56,6 +56,10 @@ public class OrderController {
         return ResponseEntity.ok(result);
     }
 
+    public OrderDTO getOrder(String id) {
+        return mapper.toOrderDTO(service.findByID(id));
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<OrderDTO> update(@PathVariable String id, @RequestBody OrderCreateDTO dto) {
         Order orderUpdate = mapper.toOrderCreateDTO(dto);

@@ -5,9 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 
 import com.openroad.ApplicationFX;
+import com.openroad.api.catalog.item.controller.ItemController;
+import com.openroad.api.catalog.item.controller.dtos.ItemDTO;
 import com.openroad.api.catalog.order.controller.OrderController;
 import com.openroad.api.catalog.order.controller.dtos.OrderDTO;
 
@@ -15,10 +18,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import net.rgielen.fxweaver.core.FxmlView;
 
 @Controller
@@ -40,6 +46,24 @@ public class PedidoController {
     @Autowired
     private OrderController controller;
 
+    @Autowired
+    private ItemController itemController;
+
+    Stage dialogStage;
+
+    private List<ItemDTO> listItems;
+
+    private void selectedOrder(String order_id) {
+        listItems = itemController.getItems(order_id);
+        OrderDTO order = controller.getOrder(order_id);
+        System.out.println("Valor da comanda " + order.getTotal());
+        try {
+            showFXMLOrder(order);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void carregaOrdens() {
 
         list = controller.listarOrdens();
@@ -48,7 +72,9 @@ public class PedidoController {
             Label label = new Label();
             label.setMaxWidth(600);
             label.setText("Mesa " + item.getTable());
+            label.setId(item.getId());
             label.getStyleClass().add("label-list");
+            label.setOnMouseClicked(event -> selectedOrder(label.getId()));
             listLabel.add(label);
         });
 
@@ -67,6 +93,7 @@ public class PedidoController {
 
     @FXML
     void initialize() {
+        dialogStage = new Stage();
         carregaOrdens();
 
         listView.getStylesheets().add(getClass().getResource("../../styles/list.css").toExternalForm());
@@ -83,5 +110,25 @@ public class PedidoController {
             new IOException("Error " + ex.getMessage());
         }
         return pane;
+    }
+
+    private void showFXMLOrder(OrderDTO orderDTO) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(PedidoItemsController.class.getResource("items.fxml"));
+        AnchorPane page = (AnchorPane) loader.load();
+
+        // Criando um Estágio de Diálogo (Stage Dialog)
+
+        dialogStage.setTitle("Comanda");
+        Scene scene = new Scene(page);
+        dialogStage.setScene(scene);
+        dialogStage.setResizable(false);
+
+        // Setando o cliente no Controller.
+        PedidoItemsController controller = loader.getController();
+        controller.setStage(dialogStage);
+        controller.setOrder(orderDTO);
+        controller.setListItems(listItems);
+        dialogStage.showAndWait();
     }
 }

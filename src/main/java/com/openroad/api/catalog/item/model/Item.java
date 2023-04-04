@@ -22,8 +22,8 @@ public class Item {
     @Column(nullable = false)
     private int amount;
     private Double price;
-    private boolean status;
-    private boolean draft;
+    private Boolean status;
+    private Boolean draft;
 
     @ManyToOne
     @JoinColumn(name = "product_id", referencedColumnName = "id")

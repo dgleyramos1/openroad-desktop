@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="anchor" stylesheets="@../../styles/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.openroad.controller.pedido.PedidoItemsController">
+   <children>
+      <VBox prefWidth="400.0" spacing="10.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+         <children>
+            <Label fx:id="labelOrdenName" text="Mesa 1" textFill="#3fffa3">
+               <font>
+                  <Font name="Fira Code Regular" size="13.0" />
+               </font>
+            </Label>
+            <ListView fx:id="listViewItems" focusTraversable="false" layoutX="10.0" layoutY="10.0" prefHeight="600.0" stylesheets="@../../styles/list.css" />
+            <HBox alignment="CENTER_RIGHT" prefHeight="33.0" prefWidth="400.0" spacing="10.0">
+               <children>
+                  <Label text="Total:" textFill="#ff3f4b">
+                     <font>
+                        <Font name="Fira Code Regular" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="labelOrdenTotal" text="150" textFill="WHITE">
+                     <font>
+                        <Font name="Fira Code Regular" size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
