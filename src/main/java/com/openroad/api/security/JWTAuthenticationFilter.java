@@ -8,10 +8,6 @@ import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.env.Environment;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -26,8 +22,7 @@ import com.openroad.api.user.model.User;
 
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
-    @Value("${app.token.access}")
-    static String TOKEN_SENHA;
+    static String TOKEN_SENHA = "0948fdd6-031c-4b38-8a25-222efe017760";
 
     private final AuthenticationManager authenticationManager;
 
