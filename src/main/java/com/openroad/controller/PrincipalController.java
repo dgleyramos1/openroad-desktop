@@ -15,6 +15,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import net.rgielen.fxweaver.core.FxmlView;
@@ -66,10 +67,12 @@ public class PrincipalController {
         Parent root = loader.load();
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.setTitle("Open Road");
+        stage.setTitle("OpenRoad");
+        stage.setResizable(false);
         stage.setMinHeight(600.0);
         stage.setMinWidth(800.0);
         stage.initStyle(StageStyle.UNIFIED);
+        stage.initModality(Modality.APPLICATION_MODAL);
         stage.show();
     }
 
