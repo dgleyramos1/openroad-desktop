@@ -54,7 +54,7 @@ public class PedidoItemsController {
     private void carregaItems() {
         listItems.forEach(item -> {
             GridPane grid = new GridPane();
-            grid.setMaxWidth(300.0);
+            grid.setMaxWidth(350.0);
             Label product = new Label();
             Label description = new Label();
             description.setWrapText(true);
