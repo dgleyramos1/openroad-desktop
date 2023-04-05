@@ -17,4 +17,7 @@ public interface ItemRepository extends JpaRepository<Item, String> {
 
     @Query(value = "SELECT * FROM items WHERE order_id=:id", nativeQuery = true)
     public List<Item> findAllByOrderId(@Param(value = "id") String id);
+
+    @Query(value = "SELECT * FROM items WHERE status=true", nativeQuery = true)
+    public List<Item> findAllStatusTrueForKitchen();
 }

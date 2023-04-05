@@ -64,12 +64,8 @@ public class ItemController {
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping("/{id}/{order_id}")
-    public ResponseEntity<ItemDTO> sendToKitchen(@PathVariable(name = "id") String id,
-            @PathVariable(name = "order_id") String order_id) {
-        Order order = orderService.findByID(order_id);
-        Item item = service.findById(id);
-        orderService.setTotalValue(order_id, order.getTotal() + item.getPrice());
+    @PutMapping("/kitchen/{id}")
+    public ResponseEntity<ItemDTO> sendToKitchen(@PathVariable(name = "id") String id) {
         Item sendItem = service.sendToKicthen(id);
         ItemDTO result = mapper.toItemDTO(sendItem);
         return ResponseEntity.status(HttpStatus.OK).body(result);
@@ -78,6 +74,7 @@ public class ItemController {
     @PutMapping("/delivered/{id}")
     public ResponseEntity<ItemDTO> delivered(@PathVariable String id) {
         Item item = service.delivered(id);
+        orderService.setTotalValue(item.getOrder().getId(), item.getOrder().getTotal() + item.getPrice());
         ItemDTO result = mapper.toItemDTO(item);
         return ResponseEntity.ok().body(result);
     }
@@ -87,6 +84,10 @@ public class ItemController {
         List<Item> items = service.kitchen(order_id);
         List<ItemDTO> result = mapper.toItemListDTO(items);
         return ResponseEntity.ok().body(result);
+    }
+
+    public List<Item> findAll() {
+        return service.findAll();
     }
 
     public List<Item> getItems(String order_id) {

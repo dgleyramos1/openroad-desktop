@@ -1,7 +1,6 @@
 package com.openroad.api.catalog.item.model;
 
 import java.time.LocalDate;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,6 +20,8 @@ public class Item {
     private String id;
     @Column(nullable = false)
     private int amount;
+    private String observation;
+
     private Double price;
     private Boolean status;
     private Boolean draft;
@@ -108,6 +109,14 @@ public class Item {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public String getObservation() {
+        return observation;
+    }
+
+    public void setObservation(String observation) {
+        this.observation = observation;
     }
 
 }

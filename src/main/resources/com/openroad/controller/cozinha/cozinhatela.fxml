@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Label?>
@@ -12,39 +10,33 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane styleClass="anchor" stylesheets="@../../styles/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.openroad.controller.pedido.PedidoController">
+<AnchorPane styleClass="anchor" stylesheets="@../../styles/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.openroad.controller.cozinha.CozinhaController">
    <children>
-      <BorderPane prefHeight="451.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
             <Group BorderPane.alignment="CENTER">
                <children>
                   <Group>
                      <children>
-                        <Label layoutY="1.0" text="Mesas" textFill="WHITE">
+                        <Label focusTraversable="false" style="-fx-text-fill: #fff;" text="Pedidos" textFill="WHITE">
                            <font>
-                              <Font name="Fira Code Regular" size="14.0" />
+                              <Font name="Fira Code Regular" size="13.0" />
                            </font>
                         </Label>
-                        <ImageView fx:id="carregador" fitHeight="86.0" fitWidth="20.0" layoutX="73.0" layoutY="2.0" onMouseClicked="#handleListView" pickOnBounds="true" preserveRatio="true" styleClass="carregador">
+                        <ImageView fitHeight="150.0" fitWidth="20.0" layoutX="66.0" onMouseClicked="#handleDados" pickOnBounds="true" preserveRatio="true" smooth="false" styleClass="carregador">
                            <image>
                               <Image url="@../../img/Vector.png" />
                            </image>
-                           <viewport>
-                              <Rectangle2D />
-                           </viewport>
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </ImageView>
                      </children>
                   </Group>
-                  <ListView fx:id="listView" focusTraversable="false" layoutY="31.0" maxHeight="1.7976931348623157E308" prefWidth="600.0" stylesheets="@../../styles/list.css">
+                  <ListView fx:id="listViewPedidos" focusTraversable="false" layoutY="26.0" prefWidth="600.0" stylesheets="@../../styles/list.css">
                      <cursor>
                         <Cursor fx:constant="DEFAULT" />
                      </cursor>
-                     <opaqueInsets>
-                        <Insets top="10.0" />
-                     </opaqueInsets>
                   </ListView>
                </children>
             </Group>

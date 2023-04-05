@@ -36,8 +36,6 @@ public class PedidoItemsController {
     @FXML
     private ListView<GridPane> listViewItems;
 
-    private List<GridPane> grids;
-
     private Stage stage;
 
     private Boolean confirmedBoolean = false;
@@ -56,8 +54,10 @@ public class PedidoItemsController {
     private void carregaItems() {
         listItems.forEach(item -> {
             GridPane grid = new GridPane();
+            grid.setMaxWidth(300.0);
             Label product = new Label();
             Label description = new Label();
+            description.setWrapText(true);
             product.getStyleClass().add("grid-label-product");
             description.getStyleClass().add("grid-label-description");
             grid.getStyleClass().add("grid-pane");
