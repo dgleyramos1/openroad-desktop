@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Group?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -37,11 +38,25 @@
       </MenuBar>
       <AnchorPane fx:id="anchorPane" snapToPixel="false" styleClass="anchor" stylesheets="@../styles/login.css" VBox.vgrow="ALWAYS">
          <children>
-            <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" graphicTextGap="10.0" prefHeight="567.0" prefWidth="800.0" text="OpenRoad version 1.0" textAlignment="CENTER" textFill="WHITE" wrapText="true" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" graphicTextGap="10.0" prefHeight="567.0" prefWidth="800.0" text="versão 1.0" textAlignment="CENTER" textFill="WHITE" wrapText="true" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <font>
                   <Font name="Fira Code Regular" size="14.0" />
                </font>
             </Label>
+            <Group layoutX="222.0" layoutY="205.0">
+               <children>
+                  <Label text="Open" textFill="WHITE">
+                     <font>
+                        <Font name="Fira Code Bold" size="72.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="173.0" layoutY="52.0" text="Road" textFill="WHITE">
+                     <font>
+                        <Font name="Fira Code Bold" size="72.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Group>
          </children></AnchorPane>
    </children>
 </VBox>
