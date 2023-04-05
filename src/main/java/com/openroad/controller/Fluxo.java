@@ -14,7 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.stage.Modality;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import net.rgielen.fxweaver.core.FxmlView;
@@ -44,6 +44,8 @@ public class Fluxo {
         stage.setTitle("Open Road");
         stage.setResizable(false);
         stage.initStyle(StageStyle.UNIFIED);
+        stage.getIcons().add(new Image(Fluxo.class.getResourceAsStream("../img/software.png")));
+
         stage.show();
         s = stage;
         s.close();

@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -73,6 +74,7 @@ public class PrincipalController {
         stage.setMinWidth(800.0);
         stage.initStyle(StageStyle.UNIFIED);
         stage.initModality(Modality.APPLICATION_MODAL);
+        stage.getIcons().add(new Image(PrincipalController.class.getResourceAsStream("../img/software.png")));
         stage.show();
     }
 
