@@ -55,10 +55,10 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         DetailUserData userData = (DetailUserData) authResult.getPrincipal();
         String token = JWT.create()
                 .withSubject(userData.getUsername())
-                .withExpiresAt(new Date(System.currentTimeMillis() + (30 * 24 * 60 * 60 * 100)))
+                .withExpiresAt(new Date(System.currentTimeMillis() + 43200000))
                 .sign(Algorithm.HMAC512(TOKEN_SENHA));
 
-        response.getWriter().write(token);
+        response.getWriter().write("{token: " + token + "}");
         response.getWriter().flush();
     }
 
