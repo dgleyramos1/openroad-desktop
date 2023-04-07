@@ -44,7 +44,6 @@ public class Fluxo {
         stage.setTitle("Open Road");
         stage.setResizable(false);
         stage.initStyle(StageStyle.UNIFIED);
-        stage.getIcons().add(new Image(Fluxo.class.getResourceAsStream("../img/software.png")));
 
         stage.show();
         s = stage;

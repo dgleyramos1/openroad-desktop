@@ -57,14 +57,23 @@ public class PedidoItemsController {
             grid.setMaxWidth(350.0);
             Label product = new Label();
             Label description = new Label();
+            Label qtd = new Label();
+            Label price = new Label();
             description.setWrapText(true);
             product.getStyleClass().add("grid-label-product");
             description.getStyleClass().add("grid-label-description");
+            qtd.getStyleClass().add("grid-label-description");
+            price.getStyleClass().add("grid-label-description");
             grid.getStyleClass().add("grid-pane");
             product.setText(item.getProduct().getName());
             description.setText(item.getProduct().getDescription());
+            qtd.setText("Quantidade: " + item.getAmount());
+            price.setText("Valor: " + String.format("%.2f", item.getPrice()));
             grid.add(product, 0, 0);
             grid.add(description, 0, 1);
+            grid.add(qtd, 0, 2);
+            grid.add(price, 0, 3);
+
             listViewItems.getItems().add(grid);
         });
     }

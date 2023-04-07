@@ -76,7 +76,7 @@ public class Login {
         Parent root = loader.load();
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.setTitle("Open Road - Login");
+        stage.setTitle("OpenRoad - Login");
         stage.setResizable(false);
         stage.show();
         s = stage;

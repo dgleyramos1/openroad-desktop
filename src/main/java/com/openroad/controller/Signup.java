@@ -73,7 +73,7 @@ public class Signup {
         Parent root = loader.load();
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.setTitle("Open Road - Sign-up");
+        stage.setTitle("OpenRoad - Sign-up");
         stage.setResizable(false);
         stage.show();
         s = stage;

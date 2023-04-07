@@ -51,6 +51,15 @@ public class OrderService {
         return order;
     }
 
+    @Transactional
+    public void delete(String order_id) {
+        Order order = findByID(order_id);
+        if (order == null) {
+            return;
+        }
+        repository.deleteById(order_id);
+    }
+
     public void setTotalValue(String id, Double value) {
         Order order = findByID(id);
         order.setTotal(value);

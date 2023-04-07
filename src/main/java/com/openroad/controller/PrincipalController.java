@@ -74,7 +74,6 @@ public class PrincipalController {
         stage.setMinWidth(800.0);
         stage.initStyle(StageStyle.UNIFIED);
         stage.initModality(Modality.APPLICATION_MODAL);
-        stage.getIcons().add(new Image(PrincipalController.class.getResourceAsStream("../img/software.png")));
         stage.show();
     }
 

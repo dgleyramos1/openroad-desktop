@@ -21,6 +21,10 @@
     -fx-cursor: HAND;
 }
 
+.label:focus-within{
+    -fx-background-color: -fx-input-background;
+}
+
 #menu-item .label{
     -fx-text-fill: white;
 }
