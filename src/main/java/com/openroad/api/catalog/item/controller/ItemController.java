@@ -41,7 +41,7 @@ public class ItemController {
     }
 
     @PostMapping("/create/{order_id}/{product_id}")
-    public ResponseEntity<ItemDTO> create(@PathVariable(name = "order_id") String order_id,
+    public ResponseEntity<Item> create(@PathVariable(name = "order_id") String order_id,
             @PathVariable(name = "product_id") String product_id, @RequestBody ItemCreateDTO dto) {
         Order order = orderService.findByID(order_id);
         Product product = productService.findById(product_id);
@@ -49,8 +49,13 @@ public class ItemController {
         item.setProduct(product);
         item.setOrder(order);
         Item itemSave = service.create(item);
-        ItemDTO result = mapper.toItemDTO(itemSave);
-        return ResponseEntity.status(HttpStatus.CREATED).body(result);
+        return ResponseEntity.status(HttpStatus.CREATED).body(itemSave);
+    }
+
+    @GetMapping("/item/{id}")
+    public ResponseEntity<Item> findById(@PathVariable(name = "id") String id) {
+        Item item = service.findById(id);
+        return ResponseEntity.status(HttpStatus.OK).body(item);
     }
 
     @DeleteMapping("/{id}")
@@ -59,16 +64,17 @@ public class ItemController {
         if (!item.isDraft()) {
             return ResponseEntity.status(404).body(null);
         }
-        service.delete(item);
-
+        item.setProduct(null);
+        item.setOrder(null);
+        Item update = service.update(item);
+        service.delete(update);
         return ResponseEntity.noContent().build();
     }
 
     @PutMapping("/kitchen/{id}")
-    public ResponseEntity<ItemDTO> sendToKitchen(@PathVariable(name = "id") String id) {
-        Item sendItem = service.sendToKicthen(id);
-        ItemDTO result = mapper.toItemDTO(sendItem);
-        return ResponseEntity.status(HttpStatus.OK).body(result);
+    public ResponseEntity<Item> sendToKitchen(@PathVariable(name = "id") String id) {
+        Item item = service.sendToKicthen(id);
+        return ResponseEntity.status(HttpStatus.OK).body(item);
     }
 
     @PutMapping("/delivered/{id}")

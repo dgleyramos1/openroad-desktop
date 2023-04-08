@@ -39,11 +39,16 @@ public class itemService {
     }
 
     @Transactional
+    public Item update(Item item) {
+        repository.save(item);
+        return item;
+    }
+
+    @Transactional
     public Item sendToKicthen(String id) {
         Item item = findById(id);
-        item.setStatus(true);
-        item.setDraft(false);
         item.setUpdated_at(LocalDate.now());
+        item.setStatus(true);
         repository.save(item);
         return item;
     }
