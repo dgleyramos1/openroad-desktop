@@ -11,7 +11,7 @@ import com.openroad.ApplicationFX;
 import com.openroad.api.catalog.item.controller.ItemController;
 import com.openroad.api.catalog.item.model.Item;
 import com.openroad.api.catalog.order.controller.OrderController;
-import com.openroad.api.catalog.order.controller.dtos.OrderDTO;
+import com.openroad.api.catalog.order.model.Order;
 import com.openroad.utils.AlertDialog;
 
 import javafx.collections.FXCollections;
@@ -24,6 +24,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -39,7 +40,7 @@ public class PedidoController {
     @FXML
     private ImageView carregador;
 
-    private List<OrderDTO> list;
+    private List<Order> list;
 
     private List<Label> listLabel = new ArrayList<>();
 
@@ -58,13 +59,13 @@ public class PedidoController {
     private AlertDialog dialog = new AlertDialog();
     Alert alert;
 
-    private void selectedOrder(String order_id) {
-        listItems = itemController.getItems(order_id);
+    private void selectedOrder(Label label) {
+        listItems = itemController.getItems(label.getId());
         if (listItems.isEmpty()) {
             dialog.alert(alert, AlertType.INFORMATION, "Alerta", "", "A mesa ainda não pediu!");
             return;
         }
-        OrderDTO order = controller.getOrder(order_id);
+        Order order = controller.getOrder(label.getId());
         try {
             Boolean confirmedButton = showFXMLOrder(order);
             if (confirmedButton) {
@@ -85,9 +86,10 @@ public class PedidoController {
             Label label = new Label();
             label.setMaxWidth(600);
             label.setText("Mesa " + item.getTable());
-            label.setId(item.getId());
             label.getStyleClass().add("label-list");
-            label.setOnMouseClicked(event -> selectedOrder(label.getId()));
+            label.setId(item.getId());
+            System.out.println(label.getId());
+            label.setOnMouseClicked(event -> selectedOrder(label));
             listLabel.add(label);
         });
 
@@ -97,7 +99,7 @@ public class PedidoController {
     }
 
     @FXML
-    private void handleListView() {
+    private void handleListView(MouseEvent event) {
         listView.getItems().clear();
         observableList.clear();
         listLabel.clear();
@@ -128,7 +130,7 @@ public class PedidoController {
         return pane;
     }
 
-    private Boolean showFXMLOrder(OrderDTO orderDTO) throws IOException {
+    private Boolean showFXMLOrder(Order orderDTO) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(PedidoItemsController.class.getResource("items.fxml"));
         AnchorPane page = (AnchorPane) loader.load();

@@ -11,6 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.openroad.api.catalog.item.model.Item;
 
@@ -26,8 +29,9 @@ public class Order {
     private LocalDate created_at;
     private LocalDate updated_at;
 
-    @OneToMany(mappedBy = "order", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonBackReference
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private List<Item> items;
 
     public String getId() {

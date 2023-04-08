@@ -1,6 +1,6 @@
 package com.openroad.controller.pedido;
 
-import com.openroad.api.catalog.order.controller.dtos.OrderDTO;
+import com.openroad.api.catalog.order.model.Order;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -21,7 +21,7 @@ public class ConfirmedCloseOrderController {
 
     private Stage stage;
 
-    private OrderDTO order;
+    private Order order;
 
     @FXML
     void handleCloseOrderNo(MouseEvent event) {
@@ -46,7 +46,7 @@ public class ConfirmedCloseOrderController {
         return confirmed;
     }
 
-    public void setOrder(OrderDTO order) {
+    public void setOrder(Order order) {
         this.order = order;
         labelInfoOrder.setText("Mesa " + order.getTable());
         labelInfoPrice.setText(String.format("%.2f", order.getTotal()));

@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.openroad.api.catalog.order.controller.dtos.OrderCreateDTO;
@@ -47,8 +46,8 @@ public class OrderController {
         return ResponseEntity.ok(result);
     }
 
-    public List<OrderDTO> listarOrdens() {
-        return mapper.toOrderListDTO(service.findAll());
+    public List<Order> listarOrdens() {
+        return service.findAll();
     }
 
     @GetMapping("/{id}")
@@ -58,8 +57,8 @@ public class OrderController {
         return ResponseEntity.ok(result);
     }
 
-    public OrderDTO getOrder(String id) {
-        return mapper.toOrderDTO(service.findByID(id));
+    public Order getOrder(String id) {
+        return service.findByID(id);
     }
 
     @PutMapping("/{id}")

@@ -67,7 +67,7 @@ public class ItemController {
         item.setProduct(null);
         item.setOrder(null);
         Item update = service.update(item);
-        service.delete(update);
+        service.delete(item);
         return ResponseEntity.noContent().build();
     }
 

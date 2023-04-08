@@ -3,14 +3,10 @@ package com.openroad.controller.pedido;
 import java.io.IOException;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import com.openroad.api.catalog.item.controller.dtos.ItemDTO;
 import com.openroad.api.catalog.item.model.Item;
-import com.openroad.api.catalog.order.controller.OrderController;
-import com.openroad.api.catalog.order.controller.dtos.OrderDTO;
-import com.openroad.api.catalog.product.controller.ProductController;
+import com.openroad.api.catalog.order.model.Order;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -40,7 +36,7 @@ public class PedidoItemsController {
 
     private Boolean confirmedBoolean = false;
 
-    private OrderDTO order;
+    private Order order;
 
     private List<Item> listItems;
 
@@ -99,7 +95,7 @@ public class PedidoItemsController {
 
     }
 
-    public void setOrder(OrderDTO order) {
+    public void setOrder(Order order) {
         this.order = order;
         labelOrdenName.setText("Mesa " + order.getTable());
         labelOrdenTotal.setText(String.format("%.2f", order.getTotal()));
@@ -121,7 +117,7 @@ public class PedidoItemsController {
         this.confirmedBoolean = confirmedBoolean;
     }
 
-    private Boolean showFXMLCLoseOrderConfirmed(OrderDTO orderDTO) throws IOException {
+    private Boolean showFXMLCLoseOrderConfirmed(Order orderDTO) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(ConfirmedCloseOrderController.class.getResource("confirme.fxml"));
         AnchorPane page = (AnchorPane) loader.load();
