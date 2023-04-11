@@ -24,10 +24,15 @@
           </Menu>
           <Menu id="menu-item" mnemonicParsing="false" text="Ordens">
             <items>
-               <MenuItem  mnemonicParsing="false" onAction="#handleAnchoPanePedido" styleClass="label" text="Mesas" />
-               <MenuItem  mnemonicParsing="false" onAction="#handleAnchoPaneCozinha" styleClass="label" text="Pedidos" />
+               <MenuItem mnemonicParsing="false" onAction="#handleAnchoPanePedido" styleClass="label" text="Mesas" />
+               <MenuItem mnemonicParsing="false" onAction="#handleAnchoPaneCozinha" styleClass="label" text="Pedidos" />
             </items>
           </Menu>
+            <Menu id="menu-item" mnemonicParsing="false" text="Ajuda">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#handleAnchoPaneConexao" styleClass="label" text="Conexão" />
+               </items>
+            </Menu>
         </menus>
          <VBox.margin>
             <Insets />

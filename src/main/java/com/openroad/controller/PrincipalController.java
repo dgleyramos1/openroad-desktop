@@ -1,6 +1,8 @@
 package com.openroad.controller;
 
 import java.io.IOException;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.openroad.ApplicationFX;
@@ -14,7 +16,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -27,6 +28,16 @@ public class PrincipalController {
 
     @FXML
     private AnchorPane anchorPane;
+
+    Stage dialogStage;
+
+    @Value("${server.port}")
+    private String port;
+
+    @FXML
+    void initialize() {
+        dialogStage = new Stage();
+    }
 
     @FXML
     public void handleAnchoPaneAtendente(ActionEvent event) throws IOException {
@@ -59,6 +70,11 @@ public class PrincipalController {
     @FXML
     public void handleAnchoPaneCozinha(ActionEvent event) throws IOException {
         pane("cozinha");
+    }
+
+    @FXML
+    public void handleAnchoPaneConexao(ActionEvent event) throws IOException {
+        showFXMLNewProduct(port);
     }
 
     public static void loadView() throws IOException {
@@ -105,4 +121,21 @@ public class PrincipalController {
         anchorPane.getChildren().addAll(a);
     }
 
+    private void showFXMLNewProduct(String port) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(ConexaoController.class.getResource("conexao.fxml"));
+        AnchorPane page = (AnchorPane) loader.load();
+
+        // Criando um Estágio de Diálogo (Stage Dialog)
+
+        dialogStage.setTitle("Conexão");
+        Scene scene = new Scene(page);
+        dialogStage.setScene(scene);
+        dialogStage.setResizable(false);
+
+        // Setando o cliente no Controller.
+        ConexaoController controller = loader.getController();
+        controller.setPort(port);
+        dialogStage.showAndWait();
+    }
 }

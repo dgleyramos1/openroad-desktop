@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane styleClass="anchor" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.openroad.controller.ConexaoController">
+   <children>
+      <VBox layoutX="75.0" prefHeight="112.0" prefWidth="310.0" spacing="10.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+         <children>
+            <Label text="Para que a conexão com o aplicativo mobile seja feita corretamente é importante colocar o IP e a Porta como está aqui!" textAlignment="JUSTIFY" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="Fira Code Regular" size="10.0" />
+               </font>
+            </Label>
+            <HBox alignment="BASELINE_LEFT" pickOnBounds="false" prefHeight="17.0" prefWidth="310.0" spacing="200.0">
+               <children>
+                  <Label text="IP" textFill="WHITE">
+                     <font>
+                        <Font name="Fira Code Regular" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label text="PORT" textFill="WHITE">
+                     <font>
+                        <Font name="Fira Code Regular" size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="34.0" prefWidth="310.0" spacing="10.0" stylesheets="@../styles/login.css">
+               <children>
+                  <TextField fx:id="textFieldIP" disable="true" prefHeight="25.0" prefWidth="206.0" styleClass="input">
+                     <font>
+                        <Font name="Fira Code Regular" size="13.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="textFieldPort" disable="true" editable="false" prefHeight="25.0" prefWidth="90.0" styleClass="input">
+                     <font>
+                        <Font name="Fira Code Regular" size="13.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
