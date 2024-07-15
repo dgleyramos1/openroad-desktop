@@ -42,6 +42,7 @@ public class CozinhaController {
         carregaDados();
     }
 
+
     private void carregaDados() {
         listItems = controller.findAll();
 
