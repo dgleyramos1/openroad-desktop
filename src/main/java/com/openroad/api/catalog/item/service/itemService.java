@@ -28,6 +28,8 @@ public class itemService {
         itemCreate.setPrice(itemCreate.getProduct().getPrice() * itemCreate.getAmount());
         itemCreate.setDraft(true);
         itemCreate.setStatus(false);
+        itemCreate.setKitchen(false);
+        itemCreate.setDelivered(false);
         repository.save(itemCreate);
         return itemCreate;
     }
@@ -49,6 +51,7 @@ public class itemService {
         Item item = findById(id);
         item.setUpdated_at(LocalDate.now());
         item.setStatus(true);
+        item.setKitchen(true);
         repository.save(item);
         return item;
     }
@@ -58,6 +61,7 @@ public class itemService {
         Item item = findById(id);
         item.setStatus(false);
         item.setDraft(false);
+        item.setDelivered(true);
         item.setUpdated_at(LocalDate.now());
         repository.save(item);
         return item;

@@ -88,6 +88,7 @@ public class ProductPaneController {
             }
         } catch (IOException e) {
             e.printStackTrace();
+            System.out.println("Caiu no catch: " + e.getMessage());
         }
 
     }
@@ -169,8 +170,9 @@ public class ProductPaneController {
     }
 
     private Boolean showFXMLNewProduct(ProductCreateDTO productDTO) throws IOException {
+        System.out.println("Iniciando criação de produto");
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(ProductNewController.class.getResource("newproduct.fxml"));
+        loader.setLocation(ProductNewController.class.getResource("newProduct.fxml"));
         AnchorPane page = (AnchorPane) loader.load();
 
         // Criando um Estágio de Diálogo (Stage Dialog)
@@ -189,6 +191,7 @@ public class ProductPaneController {
 
         categoryDTOSelected = controller.getCategoryDTO();
         controller.setCategoryDTO(category);
+        System.out.println("Finalizando criação de produto");
         return controller.getIsButtonConfirmedClicked();
     }
 

@@ -13,6 +13,9 @@ public class ItemDTO {
     private Double price;
     private Boolean status;
     private Boolean draft;
+    private Boolean kitchen;
+    
+    private Boolean delivered;
 
     private LocalDate created_at;
     private LocalDate updated_at;
@@ -54,6 +57,22 @@ public class ItemDTO {
     public void setDraft(Boolean draft) {
         this.draft = draft;
     }
+    public Boolean getKitchen() {
+        return kitchen;
+    }
+
+    public void setKitchen(Boolean kitchen) {
+        this.kitchen = kitchen;
+    }
+
+    public Boolean getDelivered() {
+        return delivered;
+    }
+
+    public void setDelivered(Boolean delivered) {
+        this.delivered = delivered;
+    }
+
 
     public LocalDate getCreated_at() {
         return created_at;

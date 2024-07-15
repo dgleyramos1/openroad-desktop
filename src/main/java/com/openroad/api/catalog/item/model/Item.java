@@ -25,6 +25,11 @@ public class Item {
     private Double price;
     private Boolean status;
     private Boolean draft;
+    private Boolean kitchen;
+    
+    private Boolean delivered;
+
+    
 
     @ManyToOne
     @JoinColumn(name = "product_id", referencedColumnName = "id")
@@ -117,6 +122,21 @@ public class Item {
 
     public void setObservation(String observation) {
         this.observation = observation;
+    }
+    public Boolean getKitchen() {
+        return kitchen;
+    }
+
+    public void setKitchen(Boolean kitchen) {
+        this.kitchen = kitchen;
+    }
+
+    public Boolean getDelivered() {
+        return delivered;
+    }
+
+    public void setDelivered(Boolean delivered) {
+        this.delivered = delivered;
     }
 
 }
